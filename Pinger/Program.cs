@@ -6,14 +6,13 @@ namespace Pinger
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             Console.WriteLine("Hello World!");
             var hosts = File.ReadAllLines("./hosts.txt");
             List<string> hostslist = new List<string>(hosts);
             Pinger pinger = new Pinger();
-            Dictionary<string, string> hostcollection = new Dictionary<string, string>();
-            hostcollection = pinger.Ping(hostslist);
+            var hostcollection = pinger.Ping(hostslist);
             foreach (var host in hostcollection)
             {
                 Console.WriteLine("Host: " + host.Key);

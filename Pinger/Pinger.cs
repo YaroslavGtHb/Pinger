@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net.NetworkInformation;
-using System.Text;
 
 namespace Pinger
 {
@@ -17,7 +16,7 @@ namespace Pinger
                 try
                 {
                     PingReply pingReply = ping.Send(rowhost);
-                    answer.Add(pingReply.Address.ToString(), pingReply.Status.ToString());
+                    if (pingReply != null) answer.Add(pingReply.Address.ToString(), pingReply.Status.ToString());
                 }
                 catch (PingException e)
                 {
@@ -36,11 +35,11 @@ namespace Pinger
                 try
                 {
                     PingReply pingReply = ping.Send(pingedhost.Key);
-                    if (pingReply.Status.ToString() != pingedhost.Value)
+                    if (pingReply != null && pingReply.Status.ToString() != pingedhost.Value)
                     {
                         using (var writer = new StreamWriter(logpath, true))
                         {
-                            writer.WriteLine(DateTime.Now + " " + pingReply.Address + " " + pingReply.Status);
+                             writer.WriteLine(DateTime.Now + " " + pingReply.Address + " " + pingReply.Status);
                         }
                     }
                 }
