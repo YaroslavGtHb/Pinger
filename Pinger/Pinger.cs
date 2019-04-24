@@ -18,7 +18,7 @@ namespace Pinger
                     PingReply pingReply = ping.Send(rowhost);
                     if (pingReply != null) answer.Add(pingReply.Address.ToString(), "OK (" + pingReply.Status + ")");
                 }
-                catch (PingException e)
+                catch (PingException)
                 {
                     answer.Add(rowhost, "FAILED");
                 }            
