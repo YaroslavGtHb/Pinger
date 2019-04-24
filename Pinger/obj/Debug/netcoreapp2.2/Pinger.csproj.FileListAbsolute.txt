@@ -1,0 +1,11 @@
+C:\Users\Anonymous\Desktop\HubForEducation\Pinger\Pinger\bin\Debug\netcoreapp2.2\Pinger.deps.json
+C:\Users\Anonymous\Desktop\HubForEducation\Pinger\Pinger\bin\Debug\netcoreapp2.2\Pinger.runtimeconfig.json
+C:\Users\Anonymous\Desktop\HubForEducation\Pinger\Pinger\bin\Debug\netcoreapp2.2\Pinger.runtimeconfig.dev.json
+C:\Users\Anonymous\Desktop\HubForEducation\Pinger\Pinger\bin\Debug\netcoreapp2.2\Pinger.dll
+C:\Users\Anonymous\Desktop\HubForEducation\Pinger\Pinger\bin\Debug\netcoreapp2.2\Pinger.pdb
+C:\Users\Anonymous\Desktop\HubForEducation\Pinger\Pinger\obj\Debug\netcoreapp2.2\Pinger.csprojAssemblyReference.cache
+C:\Users\Anonymous\Desktop\HubForEducation\Pinger\Pinger\obj\Debug\netcoreapp2.2\Pinger.csproj.CoreCompileInputs.cache
+C:\Users\Anonymous\Desktop\HubForEducation\Pinger\Pinger\obj\Debug\netcoreapp2.2\Pinger.AssemblyInfoInputs.cache
+C:\Users\Anonymous\Desktop\HubForEducation\Pinger\Pinger\obj\Debug\netcoreapp2.2\Pinger.AssemblyInfo.cs
+C:\Users\Anonymous\Desktop\HubForEducation\Pinger\Pinger\obj\Debug\netcoreapp2.2\Pinger.dll
+C:\Users\Anonymous\Desktop\HubForEducation\Pinger\Pinger\obj\Debug\netcoreapp2.2\Pinger.pdb
