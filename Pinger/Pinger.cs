@@ -16,11 +16,11 @@ namespace Pinger
                 try
                 {
                     PingReply pingReply = ping.Send(rowhost);
-                    if (pingReply != null) answer.Add(pingReply.Address.ToString(), pingReply.Status.ToString());
+                    if (pingReply != null) answer.Add(pingReply.Address.ToString(), "OK (" + pingReply.Status + ")");
                 }
                 catch (PingException e)
                 {
-                    Console.Write(DateTime.Now + " " + e.Message);
+                    answer.Add(rowhost, "FAILED");
                 }            
             }
             return answer;
@@ -39,15 +39,15 @@ namespace Pinger
                     {
                         using (var writer = new StreamWriter(logpath, true))
                         {
-                             writer.WriteLine(DateTime.Now + " " + pingReply.Address + " " + pingReply.Status);
+                             writer.WriteLine(DateTime.Now + " " + pingReply.Address + " " + "OK (" + pingReply.Status + ")");
                         }
                     }
                 }
-                catch (ArgumentException e)
+                catch (ArgumentException)
                 {
                     using (var writer = new StreamWriter(logpath, true))
                     {
-                        Console.WriteLine(DateTime.Now + " " + e.Message);
+                        writer.WriteLine(DateTime.Now + " " + pingedhost.Key + " " + "FAILED");
                     }
                 }
 
