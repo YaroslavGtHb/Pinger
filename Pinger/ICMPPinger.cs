@@ -5,7 +5,7 @@ using System.Net.NetworkInformation;
 
 namespace Pinger
 {
-    public class Pinger
+    public class ICMPPinger : IPinger
     {
         public Dictionary<string, string> Ping(List<string> rowhosts)
         {
