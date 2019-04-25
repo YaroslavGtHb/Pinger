@@ -22,11 +22,14 @@ namespace Pinger
             //pinger.PingAndLogging(hostcollection, "./log.txt");
 
             //Console.ReadKey();
+
+
             HttpWebRequest webRequest = (HttpWebRequest)WebRequest
-                .Create("");
+                .Create("http://google.com");
             webRequest.AllowAutoRedirect = false;
             HttpWebResponse response = (HttpWebResponse)webRequest.GetResponse();
             //http://qaru.site/questions/30019/getting-http-status-code-number-200-301-404-etc-from-httpwebrequest-and-httpwebresponse
+
 
             Console.Write(response.StatusCode.ToString());
 
