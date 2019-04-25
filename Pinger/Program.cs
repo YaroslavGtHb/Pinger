@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Net;
 
 namespace Pinger
@@ -25,10 +23,10 @@ namespace Pinger
 
             //Console.ReadKey();
             HttpWebRequest webRequest = (HttpWebRequest)WebRequest
-                .Create("https://www.google.com/");
+                .Create("");
             webRequest.AllowAutoRedirect = false;
             HttpWebResponse response = (HttpWebResponse)webRequest.GetResponse();
-            //Returns "MovedPermanently", not 301 which is what I want.
+            //http://qaru.site/questions/30019/getting-http-status-code-number-200-301-404-etc-from-httpwebrequest-and-httpwebresponse
 
             Console.Write(response.StatusCode.ToString());
 
