@@ -9,26 +9,30 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Pinger/HTTPPinger.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="10" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
+            <state relative-caret-position="465">
+              <caret line="31" column="8" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="8" />
               <folding>
-                <marker date="1556175130641" expanded="true" signature="51:201" ph="{...}" />
-                <marker date="1556175130641" expanded="true" signature="84:199" ph="{...}" />
-                <marker date="1556175130641" expanded="true" signature="160:193" ph="{...}" />
+                <marker date="1556264381221" expanded="true" signature="6:88" ph="..." />
+                <marker date="1556264381221" expanded="true" signature="106:1119" ph="{...}" />
+                <marker date="1556264381221" expanded="true" signature="139:1117" ph="{...}" />
+                <marker date="1556264381221" expanded="true" signature="215:1075" ph="{...}" />
+                <marker date="1556264381221" expanded="true" signature="389:1028" ph="{...}" />
+                <marker date="1556264381221" expanded="true" signature="423:877" ph="{...}" />
+                <marker date="1556264381221" expanded="true" signature="915:1002" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Pinger/ICMPPinger.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="7" column="37" lean-forward="true" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
+            <state relative-caret-position="300">
+              <caret line="23" column="29" lean-forward="true" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="29" />
               <folding>
                 <marker date="1556175130641" expanded="false" signature="6:101" ph="..." />
                 <marker date="1556175130641" expanded="true" signature="119:1909" ph="{...}" />
@@ -49,20 +53,45 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Pinger/Program.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="480">
+              <caret line="33" column="56" selection-start-line="33" selection-start-column="26" selection-end-line="33" selection-end-column="56" />
+              <folding>
+                <marker date="1556175130641" expanded="false" signature="6:31" ph="..." />
+                <marker date="1556175130641" expanded="true" signature="49:1163" ph="{...}" />
+                <marker date="1556175130641" expanded="true" signature="69:1161" ph="{...}" />
+                <marker date="1556175130641" expanded="true" signature="102:1155" ph="{...}" />
+                <marker date="1556175130641" expanded="true" signature="125:599" ph="/* Console.WriteLine(&quot;Hello World!&quot;); ... */" />
+                <marker date="1556175130641" expanded="true" signature="614:701" ph="/* pinger.PingAndLogging(hostcollection, &quot;./log.txt&quot;); ... */" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Pinger/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Pinger/ICMPPinger.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Pinger/HTTPPinger.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Pinger/HTTPPinger.cs" />
+      </list>
+    </option>
+  </component>
   <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="278" />
-    <option name="y" value="61" />
+    <option name="x" value="283" />
+    <option name="y" value="30" />
     <option name="width" value="1397" />
-    <option name="height" value="953" />
+    <option name="height" value="954" />
   </component>
   <component name="ProjectView">
     <navigator currentView="SolutionExplorer" proportions="" version="1">
@@ -141,12 +170,13 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1556175702039</updated>
-      <workItem from="1556175707745" duration="5508000" />
+      <workItem from="1556175707745" duration="6104000" />
+      <workItem from="1556263052483" duration="2905000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5508000" />
+    <option name="totallyTimeSpent" value="9009000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -158,22 +188,13 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="278" y="61" width="1397" height="953" extended-state="1" />
-    <editor active="true" />
+    <frame x="334" y="64" width="1397" height="954" extended-state="0" />
     <layout>
-      <window_info id="Favorites" side_tool="true" />
-      <window_info id="Image Layers" />
-      <window_info id="Capture Tool" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24981302" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25355273" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="NuGet" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Unit Tests" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" weight="0.3292683" />
-      <window_info anchor="bottom" id="Database Changes" />
-      <window_info anchor="bottom" id="Performance Profiler" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Capture Tool" order="3" />
+      <window_info id="Favorites" order="4" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -181,19 +202,27 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="right" id="Errors In Solution" />
-      <window_info anchor="right" id="Database" />
-      <window_info anchor="right" id="Unit Tests Coverage" />
+      <window_info anchor="bottom" id="NuGet" order="7" />
+      <window_info anchor="bottom" id="Performance Profiler" order="8" />
+      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="10" />
+      <window_info anchor="bottom" id="Database Changes" order="11" />
+      <window_info anchor="bottom" id="Unit Tests" order="12" />
+      <window_info anchor="bottom" id="Terminal" order="13" />
+      <window_info anchor="bottom" id="Event Log" order="14" side_tool="true" weight="0.3292683" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Capture Analysis" order="3" />
+      <window_info anchor="right" id="Errors In Solution" order="4" />
+      <window_info anchor="right" id="Database" order="5" />
+      <window_info anchor="right" id="Unit Tests Coverage" order="6" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="UnityProjectConfiguration" hasMinimizedUI="null" />
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -206,22 +235,25 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Pinger/HTTPPinger.cs">
+    <entry file="file://$PROJECT_DIR$/Pinger/Program.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="10" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
+        <state relative-caret-position="480">
+          <caret line="33" column="56" selection-start-line="33" selection-start-column="26" selection-end-line="33" selection-end-column="56" />
           <folding>
-            <marker date="1556175130641" expanded="true" signature="51:201" ph="{...}" />
-            <marker date="1556175130641" expanded="true" signature="84:199" ph="{...}" />
-            <marker date="1556175130641" expanded="true" signature="160:193" ph="{...}" />
+            <marker date="1556175130641" expanded="false" signature="6:31" ph="..." />
+            <marker date="1556175130641" expanded="true" signature="49:1163" ph="{...}" />
+            <marker date="1556175130641" expanded="true" signature="69:1161" ph="{...}" />
+            <marker date="1556175130641" expanded="true" signature="102:1155" ph="{...}" />
+            <marker date="1556175130641" expanded="true" signature="125:599" ph="/* Console.WriteLine(&quot;Hello World!&quot;); ... */" />
+            <marker date="1556175130641" expanded="true" signature="614:701" ph="/* pinger.PingAndLogging(hostcollection, &quot;./log.txt&quot;); ... */" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Pinger/ICMPPinger.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="7" column="37" lean-forward="true" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
+        <state relative-caret-position="300">
+          <caret line="23" column="29" lean-forward="true" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="29" />
           <folding>
             <marker date="1556175130641" expanded="false" signature="6:101" ph="..." />
             <marker date="1556175130641" expanded="true" signature="119:1909" ph="{...}" />
@@ -237,6 +269,22 @@
             <marker date="1556175130641" expanded="true" signature="1353:1532" ph="{...}" />
             <marker date="1556175130641" expanded="true" signature="1614:1863" ph="{...}" />
             <marker date="1556175130641" expanded="true" signature="1705:1845" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pinger/HTTPPinger.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" column="8" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="8" />
+          <folding>
+            <marker date="1556264381221" expanded="true" signature="6:88" ph="..." />
+            <marker date="1556264381221" expanded="true" signature="106:1119" ph="{...}" />
+            <marker date="1556264381221" expanded="true" signature="139:1117" ph="{...}" />
+            <marker date="1556264381221" expanded="true" signature="215:1075" ph="{...}" />
+            <marker date="1556264381221" expanded="true" signature="389:1028" ph="{...}" />
+            <marker date="1556264381221" expanded="true" signature="423:877" ph="{...}" />
+            <marker date="1556264381221" expanded="true" signature="915:1002" ph="{...}" />
           </folding>
         </state>
       </provider>
