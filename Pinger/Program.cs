@@ -29,6 +29,7 @@ namespace Pinger
             webRequest.AllowAutoRedirect = false;
             HttpWebResponse response = (HttpWebResponse)webRequest.GetResponse();
             //http://qaru.site/questions/30019/getting-http-status-code-number-200-301-404-etc-from-httpwebrequest-and-httpwebresponse
+            //https://stackoverflow.com/questions/26067342/how-to-implement-psping-tcp-ping-in-c-sharp
 
 
             Console.Write(response.StatusCode.ToString());
