@@ -56,7 +56,7 @@ namespace Pinger
 
         public void PingAndLogging(Dictionary<string, string> pingedhosts, string logpath)
         {
-            Ping ping = new Ping();
+            var ping = new Ping();
 
             foreach (var pingedhost in pingedhosts)
             {
