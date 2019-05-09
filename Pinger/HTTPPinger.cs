@@ -8,10 +8,21 @@ namespace Pinger
 {
     class HTTPPinger : IPinger
     {
-        public Dictionary<string, string> Ping(List<string> rowhosts)
+        private List<string> _rowhosts;
+        private Dictionary<string, string> _pingedhosts;
+        private string _logpath;
+
+        public HTTPPinger(List<string> rowhosts, Dictionary<string, string> pingedhosts, string logpath)
+        {
+            _rowhosts = rowhosts;
+            _pingedhosts = pingedhosts;
+            _logpath = logpath;
+        }
+
+        public Dictionary<string, string> Ping()
         {
             Dictionary<string, string> answer = new Dictionary<string, string>();
-            foreach (var rowhost in rowhosts)
+            foreach (var rowhost in _rowhosts)
             {
                 try
                 {
@@ -30,9 +41,9 @@ namespace Pinger
             return answer;          
         }
 
-        public void PingAndLogging(Dictionary<string, string> pingedhosts, string logpath)
+        public void PingAndLogging()
         {
-            foreach (var pingedhost in pingedhosts)
+            foreach (var pingedhost in _pingedhosts)
             {
                 try
                 {
@@ -41,14 +52,14 @@ namespace Pinger
                     webRequest.AllowAutoRedirect = false;
                     HttpWebResponse response = (HttpWebResponse)webRequest.GetResponse();
 
-                    using (var writer = new StreamWriter(logpath, true))
+                    using (var writer = new StreamWriter(_logpath, true))
                     {
                         writer.WriteLine(DateTime.Now + " " + pingedhost.Key + " " + "OK (" + response.StatusCode + ")");
                     }
                 }
                 catch (ArgumentException)
                 {
-                    using (var writer = new StreamWriter(logpath, true))
+                    using (var writer = new StreamWriter(_logpath, true))
                     {
                         writer.WriteLine(DateTime.Now + " " + pingedhost.Key + " " + "FAILED");
                     }
