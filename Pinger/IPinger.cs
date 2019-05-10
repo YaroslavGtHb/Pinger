@@ -5,6 +5,6 @@ namespace Pinger
     interface IPinger
     {
         Dictionary<string, string> Ping();
-        void PingAndLogging();
+        void Logging(string Host, string Responce);
     }
 }

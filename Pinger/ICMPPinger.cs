@@ -8,13 +8,11 @@ namespace Pinger
     public class ICMPPinger : IPinger
     {
         private List<string> _rowhosts;
-        private Dictionary<string, string> _pingedhosts;
         private string _logpath;
 
-        public ICMPPinger(List<string> rowhosts, Dictionary<string, string> pingedhosts, string logpath)
+        public ICMPPinger(List<string> rowhosts, string logpath)
         {
             _rowhosts = rowhosts;
-            _pingedhosts = pingedhosts;
             _logpath = logpath;
         }
 
@@ -24,10 +22,11 @@ namespace Pinger
             Ping ping = new Ping();
             foreach (var rowhost in _rowhosts)
             {
+
                 try
                 {
                     PingReply pingReply = ping.Send(rowhost);
-                    if (pingReply != null) answer.Add(pingReply.Address.ToString(), "OK (" + pingReply.Status + ")");
+                    if (pingReply != null) answer.Add(pingReply.Address.ToString(), pingReply.Status.ToString());
                 }
                 catch (PingException)
                 {
@@ -37,33 +36,22 @@ namespace Pinger
             return answer;
         }
 
-        public void PingAndLogging ()
+        public void Logging(string responce, string host)
         {
-            Ping ping = new Ping();
-
-            foreach (var pingedhost in _pingedhosts)
+            if (responce == "Success")
             {
-                try
-                {
-                    PingReply pingReply = ping.Send(pingedhost.Key);
-                    if (pingReply != null && pingReply.Status.ToString() != pingedhost.Value)
-                    {
-                        using (var writer = new StreamWriter(_logpath, true))
-                        {
-                             writer.WriteLine(DateTime.Now + " " + pingReply.Address + " " + "OK (" + pingReply.Status + ")");
-                        }
-                    }
-                }
-                catch (ArgumentException)
-                {
-                    using (var writer = new StreamWriter(_logpath, true))
-                    {
-                        writer.WriteLine(DateTime.Now + " " + pingedhost.Key + " " + "FAILED");
-                    }
-                }
-
+                responce = "OK";
             }
-            
+
+            else
+            {
+                responce = "FAILED";
+            }
+
+            using (var writer = new StreamWriter(_logpath, true))
+            {
+                writer.WriteLine(DateTime.Now + " " + host + " " + responce);
+            }
         }
     }
 }
