@@ -11,13 +11,11 @@ namespace Pinger
     {
         private List<string> _rowhosts;
         private string _logpath;
-        private int _statuscode;
 
-        public HTTPPinger(List<string> rowhosts, string logpath, int statuscode)
+        public HTTPPinger(List<string> rowhosts, string logpath)
         {
             _rowhosts = rowhosts;
             _logpath = logpath;
-            _statuscode = statuscode;
         }
 
         public Dictionary<string, string> Ping()
@@ -32,7 +30,11 @@ namespace Pinger
                     webRequest.AllowAutoRedirect = false;
                     HttpWebResponse response = (HttpWebResponse) webRequest.GetResponse();
 
-                    if (response.StatusCode.ToString() != null && (int)response.StatusCode == _statuscode) answer.Add(rowhost, response.StatusCode.ToString());
+                    if (response.StatusCode.ToString() != null && (int)response.StatusCode == 300) answer.Add(rowhost, response.StatusCode.ToString());
+                    else
+                    {
+                        answer.Add(rowhost, "FAILED ");
+                    }
                 }
                 catch (PingException)
                 {
@@ -65,15 +67,6 @@ namespace Pinger
 
         public void Logging(string host, string responce)
         {
-            if (responce == _statuscode.ToString())
-            {
-                responce = "OK";
-            }
-
-            else
-            {
-                responce = "FAILED";
-            }
 
             using (var writer = new StreamWriter(_logpath, true))
             {
