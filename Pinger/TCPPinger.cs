@@ -9,7 +9,7 @@ using System.Threading;
 
 namespace Pinger
 {
-    public class TCPPinger
+    public class TCPPinger : IPinger
     {
         private List<string> _rowhosts;
         private string _logpath;
@@ -33,24 +33,19 @@ namespace Pinger
 
                     EndPoint endPoint = new IPEndPoint(ip[0], 80);
                     var times = new List<double>();
-                    for (int i = 0; i < 4; i++)
-                    {
-                        var sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                        sock.Blocking = true;
+                    var sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                    sock.Blocking = true;
 
-                        var stopwatch = new Stopwatch();
+                    var stopwatch = new Stopwatch();
 
-                        stopwatch.Start();
-                        sock.Connect(endPoint);
-                        stopwatch.Stop();
+                    stopwatch.Start();
+                    sock.Connect(endPoint);
+                    stopwatch.Stop();
 
-                        double t = stopwatch.Elapsed.TotalMilliseconds;
-                        times.Add(t);
+                    double t = stopwatch.Elapsed.TotalMilliseconds;
+                    times.Add(t);
 
-                        sock.Close();
-
-                        Thread.Sleep(1000);
-                    }
+                    sock.Close();
 
                     answer.Add(rowhost, times.Max().ToString());
                 }
@@ -59,6 +54,7 @@ namespace Pinger
                     answer.Add(rowhost, "FAILED");
                 }
             }
+
             return answer;
         }
 

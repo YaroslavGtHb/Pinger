@@ -9,6 +9,7 @@ namespace Pinger
     {
         static void Main()
         {
+            
             List<string> hosts = new List<string>(File.ReadAllLines("./hosts.txt"));
 
 
