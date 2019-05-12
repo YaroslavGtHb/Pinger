@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Net;
 
 namespace Pinger
 {
@@ -7,6 +9,13 @@ namespace Pinger
     {
         static void Main()
         {
+            HttpWebRequest webRequest = (HttpWebRequest)WebRequest
+                .Create("https://www.google.com/");
+            webRequest.AllowAutoRedirect = false;
+            HttpWebResponse response = (HttpWebResponse) webRequest.GetResponse();
+            Console.WriteLine((int)response.StatusCode);
+            Console.ReadKey();
+
             List<string> hosts = new List<string>(File.ReadAllLines("./hosts.txt"));
 
 

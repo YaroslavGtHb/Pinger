@@ -11,11 +11,13 @@ namespace Pinger
     {
         private List<string> _rowhosts;
         private string _logpath;
+        private int _statuscode;
 
-        public HTTPPinger(List<string> rowhosts, string logpath)
+        public HTTPPinger(List<string> rowhosts, string logpath, int statuscode)
         {
             _rowhosts = rowhosts;
             _logpath = logpath;
+            _statuscode = statuscode;
         }
 
         public Dictionary<string, string> Ping()
@@ -30,7 +32,7 @@ namespace Pinger
                     webRequest.AllowAutoRedirect = false;
                     HttpWebResponse response = (HttpWebResponse) webRequest.GetResponse();
 
-                    if (response.StatusCode.ToString() != null) answer.Add(rowhost, response.StatusCode.ToString());
+                    if (response.StatusCode.ToString() != null && (int)response.StatusCode == _statuscode) answer.Add(rowhost, response.StatusCode.ToString());
                 }
                 catch (PingException)
                 {

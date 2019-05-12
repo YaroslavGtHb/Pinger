@@ -5,12 +5,14 @@
         private IPinger _IcmpPinger;
         private IPinger _HttpPinger;
         private IPinger _TcpPinger;
+        private string _logpath;
 
-        public UniversalPinger(IPinger IcmpPinger, IPinger HttpPinger, IPinger TcpPinger)
+        public UniversalPinger(IPinger IcmpPinger, IPinger HttpPinger, IPinger TcpPinger, string logpath)
         {
             _IcmpPinger = IcmpPinger;
             _HttpPinger = HttpPinger;
             _TcpPinger = TcpPinger;
+            _logpath = logpath;
         }
 
         //TODO add logic to UniversalPinger.
