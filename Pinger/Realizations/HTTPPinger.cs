@@ -7,7 +7,7 @@ using System.Net.Sockets;
 
 namespace Pinger
 {
-    class HTTPPinger : IPinger
+    public class HTTPPinger : IHttpPinger
     {
         private List<string> _rowhosts;
         private string _logpath;
@@ -30,7 +30,8 @@ namespace Pinger
                     webRequest.AllowAutoRedirect = false;
                     HttpWebResponse response = (HttpWebResponse) webRequest.GetResponse();
 
-                    if (response.StatusCode.ToString() != null && (int)response.StatusCode == 300) answer.Add(rowhost, response.StatusCode.ToString());
+                    if (response.StatusCode.ToString() != null && (int) response.StatusCode == 300)
+                        answer.Add(rowhost, response.StatusCode.ToString());
                     else
                     {
                         answer.Add(rowhost, "FAILED ");
@@ -60,19 +61,17 @@ namespace Pinger
                 {
                     answer.Add(rowhost, "FAILED");
                 }
-                
             }
-            return answer;          
+
+            return answer;
         }
 
         public void Logging(string host, string responce)
         {
-
             using (var writer = new StreamWriter(_logpath, true))
             {
                 writer.WriteLine(DateTime.Now + " " + host + " " + responce);
             }
-
         }
     }
 }

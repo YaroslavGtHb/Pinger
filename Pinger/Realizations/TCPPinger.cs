@@ -9,7 +9,7 @@ using System.Threading;
 
 namespace Pinger
 {
-    public class TCPPinger : IPinger
+    public class TCPPinger : ITcpPinger
     {
         private List<string> _rowhosts;
         private string _logpath;

@@ -5,7 +5,7 @@ using System.Net.NetworkInformation;
 
 namespace Pinger
 {
-    public class ICMPPinger : IPinger
+    public class ICMPPinger : IIcmpPinger
     {
         private List<string> _rowhosts;
         private string _logpath;
@@ -22,7 +22,6 @@ namespace Pinger
             Ping ping = new Ping();
             foreach (var rowhost in _rowhosts)
             {
-
                 try
                 {
                     PingReply pingReply = ping.Send(rowhost);
@@ -31,8 +30,9 @@ namespace Pinger
                 catch (PingException)
                 {
                     answer.Add(rowhost, "FAILED");
-                }            
+                }
             }
+
             return answer;
         }
 
