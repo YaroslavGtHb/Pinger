@@ -65,6 +65,15 @@ namespace Pinger
 
         public void Logging(string host, string responce)
         {
+            if (responce == _statuscode.ToString())
+            {
+                responce = "OK";
+            }
+
+            else
+            {
+                responce = "FAILED";
+            }
 
             using (var writer = new StreamWriter(_logpath, true))
             {
