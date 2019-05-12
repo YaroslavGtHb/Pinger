@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.2",
-    "signature": "751a0f22dd6b5189fc64cdfe882469d77fcefd19"
+    "signature": "ddae17e0ae1d7df35be2c4be5e1ca4ae95631797"
   },
   "compilationOptions": {},
   "targets": {
@@ -10,7 +10,8 @@
         "dependencies": {
           "Ninject": "3.3.4",
           "Ninject.Extensions.Conventions": "3.3.0",
-          "Ninject.Extensions.Factory": "3.3.2"
+          "Ninject.Extensions.Factory": "3.3.2",
+          "Ninject.Extensions.Interception": "3.3.3"
         },
         "runtime": {
           "Pinger.dll": {}
@@ -67,6 +68,17 @@
           "lib/netstandard2.0/Ninject.Extensions.Factory.dll": {
             "assemblyVersion": "3.3.2.0",
             "fileVersion": "3.3.2.0"
+          }
+        }
+      },
+      "Ninject.Extensions.Interception/3.3.3": {
+        "dependencies": {
+          "Ninject": "3.3.4"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Ninject.Extensions.Interception.dll": {
+            "assemblyVersion": "3.3.3.0",
+            "fileVersion": "3.3.3.0"
           }
         }
       },
@@ -434,6 +446,13 @@
       "sha512": "sha512-H9s77i9WsbgF6s7OieQ+c51KoW90jJAQqb0ClEqi6SBtL7jySUjh/5HCjnYgyQ8iYcWhvhw9cFnYxX9CB1kL7Q==",
       "path": "ninject.extensions.factory/3.3.2",
       "hashPath": "ninject.extensions.factory.3.3.2.nupkg.sha512"
+    },
+    "Ninject.Extensions.Interception/3.3.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-uGo/qhqZtJNirePB+ZgRW8ehWx3A9Z8eDEeuzuo3la0P00s59MsdiArXars3zPOR/sShKLhZUMP4S8oMwnzvog==",
+      "path": "ninject.extensions.interception/3.3.3",
+      "hashPath": "ninject.extensions.interception.3.3.3.nupkg.sha512"
     },
     "runtime.native.System/4.3.0": {
       "type": "package",
