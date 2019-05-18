@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.IO.Pipes;
 using Ninject;
+using Ninject.Extensions.Factory;
 using Ninject.Modules;
 using Ninject.Parameters;
 
@@ -12,11 +13,15 @@ namespace Pinger
     {
         static void Main()
         {
-            List<string> hosts = new List<string>(File.ReadAllLines("./hosts.txt"));
 
             IKernel kernel = new StandardKernel(new NinjectConfig());
 
-            UniversalPinger pinger = kernel.Get<UniversalPinger>(new Parameter("rowhosts", hosts, true));
+            if (!kernel.HasModule("Ninject.Extensions.Factory.FuncModule"))
+            {
+                kernel.Load(new FuncModule());
+            }
+
+            UniversalPinger pinger = kernel.Get<UniversalPinger>();
             pinger.Run();
         }
         //https://habr.com/ru/post/235995/

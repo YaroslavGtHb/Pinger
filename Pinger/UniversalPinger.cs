@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Runtime.InteropServices.ComTypes;
 using Ninject;
 
@@ -7,15 +8,13 @@ namespace Pinger
     public class UniversalPinger
     {
         private readonly IPingerFactory _pingerFactory;
-        private List<string> _rowhosts;
-        private string _logpath;
+        private List<string> _rowhosts = new List<string>(File.ReadAllLines("./hosts.txt"));
+        private string _logpath = "./logs.txt";
 
         [Inject]
-        public UniversalPinger(IPingerFactory pingerFactory, List<string> rowhosts, string logpath)
+        public UniversalPinger(IPingerFactory pingerFactory)
         {
             _pingerFactory = pingerFactory;
-            _logpath = logpath;
-            _rowhosts = rowhosts;
         }
 
         public void Run()
