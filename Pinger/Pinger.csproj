@@ -6,8 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Castle.Core" Version="4.4.0" />
-    <PackageReference Include="Castle.Windsor" Version="5.0.0" />
     <PackageReference Include="Ninject" Version="3.3.4" />
     <PackageReference Include="Ninject.Extensions.Conventions" Version="3.3.0" />
     <PackageReference Include="Ninject.Extensions.Factory" Version="3.3.2" />

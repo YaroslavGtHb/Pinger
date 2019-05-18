@@ -5,7 +5,6 @@ using System.IO.Pipes;
 using Ninject;
 using Ninject.Modules;
 using Ninject.Parameters;
-using Castle;
 
 namespace Pinger
 {
@@ -16,7 +15,8 @@ namespace Pinger
             List<string> hosts = new List<string>(File.ReadAllLines("./hosts.txt"));
 
             IKernel kernel = new StandardKernel(new NinjectConfig());
-            UniversalPinger pinger = kernel.Get<UniversalPinger>();
+
+            UniversalPinger pinger = kernel.Get<UniversalPinger>(new Parameter("rowhosts", hosts, true));
             pinger.Run();
         }
         //https://habr.com/ru/post/235995/
