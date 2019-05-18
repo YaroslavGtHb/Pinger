@@ -25,6 +25,7 @@ namespace Pinger
             {
                 HPinger.Logging(answer.Value, answer.Key);
             }
+
         }
         //TODO add logic to UniversalPinger.
         //TODO fix all pinger classes to new format, one method for check and write to file, one metod for check one ip.

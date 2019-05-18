@@ -30,11 +30,11 @@ namespace Pinger
                     webRequest.AllowAutoRedirect = false;
                     HttpWebResponse response = (HttpWebResponse) webRequest.GetResponse();
 
-                    if (response.StatusCode.ToString() != null && (int) response.StatusCode == 300)
+                    if (response.StatusCode.ToString() != null && (int) response.StatusCode == 200)
                         answer.Add(rowhost, response.StatusCode.ToString());
                     else
                     {
-                        answer.Add(rowhost, "FAILED ");
+                        answer.Add(rowhost, "FAILED");
                     }
                 }
                 catch (PingException)
