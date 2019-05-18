@@ -11,7 +11,7 @@ namespace Pinger
             Bind<IHttpPinger>().To<HTTPPinger>();
             Bind<ITcpPinger>().To<TCPPinger>();
 
-            Bind<IPingerFactory>().ToFactory();
+            Bind<UniversalPinger>().ToFactory();
         }
     }
 }
