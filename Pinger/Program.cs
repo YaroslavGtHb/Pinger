@@ -15,7 +15,6 @@ namespace Pinger
             List<string> hosts = new List<string>(File.ReadAllLines("./hosts.txt"));
 
             IKernel kernel = new StandardKernel(new NinjectConfig());
-
             UniversalPinger pinger = kernel.Get<UniversalPinger>(new Parameter("rowhosts", hosts, true));
             pinger.Run();
         }
