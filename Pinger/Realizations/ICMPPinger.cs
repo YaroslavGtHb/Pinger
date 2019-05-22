@@ -24,7 +24,7 @@ namespace Pinger
             foreach (var rowhost in _rowhosts)
             {
                 Console.WriteLine("Host: " + rowhost);
-                Console.WriteLine("Period: " + 1);
+                Console.WriteLine("Period: " + _settings.period);
                 Console.WriteLine("Protocol: " + _settings.protocol);
                 Console.WriteLine();
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using Newtonsoft.Json;
 using Ninject;
 
@@ -46,13 +47,15 @@ namespace Pinger
 
                 while (true)
                 {
+                    Thread.Sleep(_settings.period);
+
                     var tempAnswer = ICMPPinger.Ping();
 
-                    var ExceptAnswer = tempAnswer.Except(mainAnswer).ToList();
+                    var exceptAnswer = tempAnswer.Except(mainAnswer).ToList();
 
-                    if (ExceptAnswer != null)
+                    if (exceptAnswer != null)
                     {
-                        foreach (var item in ExceptAnswer)
+                        foreach (var item in exceptAnswer)
                         {
                             ICMPPinger.Logging(item.Key, item.Value);
                         }
