@@ -39,10 +39,10 @@ namespace Pinger
                 var mainAnswer = ICMPPinger.Ping();
 
 
-                foreach (var item1 in mainAnswer)
+                foreach (var item in mainAnswer)
                 {
-                    ICMPPinger.Logging(item1.Key, item1.Value);
-                    Console.WriteLine(item1.Key + " " + item1.Value);
+                    ICMPPinger.Logging(item.Key, item.Value);
+                    Console.WriteLine(item.Key + " " + item.Value);
                 }
 
                 while (true)
@@ -53,10 +53,10 @@ namespace Pinger
 
                     if (ExceptAnswer != null)
                     {
-                        foreach (var item2 in ExceptAnswer)
+                        foreach (var item in ExceptAnswer)
                         {
-                            ICMPPinger.Logging(item2.Key, item2.Value);
-                            Console.WriteLine(item2.Key + " " + item2.Value);
+                            ICMPPinger.Logging(item.Key, item.Value);
+                            Console.WriteLine(item.Key + " " + item.Value);
                         }
 
                         mainAnswer = tempAnswer;
