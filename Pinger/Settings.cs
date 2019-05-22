@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace Pinger
 {
     class Settings
     {
-        public string rowhosts { get; set; }
-        public string logpath { get; set; }
-        public string protocol { get; set; }
-        public int httpvalidcode { get; set; }
+        public string rowhostspath { get; set; } = "./hosts.txt";
+        public string logpath { get; set; } = "./logs.txt";
+        public string protocol { get; set; } = "ICMP";
+        public int httpvalidcode { get; set; } = 200;
     }
 }

@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices.ComTypes;
+using System.Runtime.Serialization.Json;
+using Castle.Components.DictionaryAdapter;
+using Newtonsoft.Json;
 using Ninject;
 
 namespace Pinger
@@ -8,8 +11,9 @@ namespace Pinger
     public class UniversalPinger
     {
         private readonly IPingerFactory _pingerFactory;
-        private List<string> _rowhosts = new List<string>(File.ReadAllLines("./hosts.txt"));
-        private string _logpath = "./logs.txt";
+        private List<string> _rowhosts = new List<string>(File.ReadAllLines("./Hosts.txt"));
+        private string _logpath = "./Logs.txt";
+        Settings settings = new Settings();
 
         [Inject]
         public UniversalPinger(IPingerFactory pingerFactory)
@@ -19,6 +23,17 @@ namespace Pinger
 
         public void Run()
         {
+
+            if (File.Exists("./Settings.json"))
+            {
+                File.WriteAllText("./Settings.json", JsonConvert.SerializeObject(settings));
+            }
+            else
+            {
+                settings = JsonConvert.DeserializeObject<Settings>("./Settings.json");
+            }
+
+
             var HPinger =_pingerFactory.CreateHttpPinger(_rowhosts, _logpath);
             var hAnswers = HPinger.Ping();
             foreach (var answer in hAnswers)

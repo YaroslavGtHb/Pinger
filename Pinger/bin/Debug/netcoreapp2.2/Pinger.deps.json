@@ -1,13 +1,14 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.2",
-    "signature": "ddae17e0ae1d7df35be2c4be5e1ca4ae95631797"
+    "signature": "1249423c9add5ae185c048dc7d114cb729aa6b3e"
   },
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v2.2": {
       "Pinger/1.0.0": {
         "dependencies": {
+          "Newtonsoft.Json": "12.0.2",
           "Ninject": "3.3.4",
           "Ninject.Extensions.Conventions": "3.3.0",
           "Ninject.Extensions.Factory": "3.3.2",
@@ -33,6 +34,14 @@
           "lib/netstandard1.3/Castle.Core.dll": {
             "assemblyVersion": "4.0.0.0",
             "fileVersion": "4.2.0.0"
+          }
+        }
+      },
+      "Newtonsoft.Json/12.0.2": {
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "12.0.0.0",
+            "fileVersion": "12.0.2.23222"
           }
         }
       },
@@ -425,6 +434,13 @@
       "sha512": "sha512-1TtKHYYVfox7aUZ0akCqkULmAjpG8X5ZRzTzTiONY34xtvvaPuUSSdVL1VaF/1/ljRhOkpy+uKOGn6XoFGvorw==",
       "path": "castle.core/4.2.0",
       "hashPath": "castle.core.4.2.0.nupkg.sha512"
+    },
+    "Newtonsoft.Json/12.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-rTK0s2EKlfHsQsH6Yx2smvcTCeyoDNgCW7FEYyV01drPlh2T243PR2DiDXqtC5N4GDm4Ma/lkxfW5a/4793vbA==",
+      "path": "newtonsoft.json/12.0.2",
+      "hashPath": "newtonsoft.json.12.0.2.nupkg.sha512"
     },
     "Ninject/3.3.4": {
       "type": "package",
