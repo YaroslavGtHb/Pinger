@@ -31,6 +31,26 @@
           "target": "Package",
           "version": "[2.2.0, )",
           "autoReferenced": true
+        },
+        "Newtonsoft.Json": {
+          "target": "Package",
+          "version": "[12.0.2, )"
+        },
+        "Ninject": {
+          "target": "Package",
+          "version": "[3.3.4, )"
+        },
+        "Ninject.Extensions.Conventions": {
+          "target": "Package",
+          "version": "[3.3.0, )"
+        },
+        "Ninject.Extensions.Factory": {
+          "target": "Package",
+          "version": "[3.3.2, )"
+        },
+        "Ninject.Extensions.Interception": {
+          "target": "Package",
+          "version": "[3.3.3, )"
         }
       },
       "imports": [

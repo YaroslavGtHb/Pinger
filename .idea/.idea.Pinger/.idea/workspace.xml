@@ -10,61 +10,44 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Pinger/HTTPPinger.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="31" column="8" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="8" />
-              <folding>
-                <marker date="1556264381221" expanded="true" signature="6:88" ph="..." />
-                <marker date="1556264381221" expanded="true" signature="106:1119" ph="{...}" />
-                <marker date="1556264381221" expanded="true" signature="139:1117" ph="{...}" />
-                <marker date="1556264381221" expanded="true" signature="215:1075" ph="{...}" />
-                <marker date="1556264381221" expanded="true" signature="389:1028" ph="{...}" />
-                <marker date="1556264381221" expanded="true" signature="423:877" ph="{...}" />
-                <marker date="1556264381221" expanded="true" signature="915:1002" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Pinger/ICMPPinger.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="23" column="29" lean-forward="true" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="29" />
-              <folding>
-                <marker date="1556175130641" expanded="false" signature="6:101" ph="..." />
-                <marker date="1556175130641" expanded="true" signature="119:1909" ph="{...}" />
-                <marker date="1556175130641" expanded="true" signature="159:1907" ph="{...}" />
-                <marker date="1556175130641" expanded="true" signature="235:847" ph="{...}" />
-                <marker date="1556175130641" expanded="true" signature="409:810" ph="{...}" />
-                <marker date="1556175130641" expanded="true" signature="443:659" ph="{...}" />
-                <marker date="1556175130641" expanded="true" signature="697:784" ph="{...}" />
-                <marker date="1556175130641" expanded="true" signature="940:1901" ph="{...}" />
-                <marker date="1556175130641" expanded="true" signature="1039:1878" ph="{...}" />
-                <marker date="1556175130641" expanded="true" signature="1073:1572" ph="{...}" />
-                <marker date="1556175130641" expanded="true" signature="1254:1554" ph="{...}" />
-                <marker date="1556175130641" expanded="true" signature="1353:1532" ph="{...}" />
-                <marker date="1556175130641" expanded="true" signature="1614:1863" ph="{...}" />
-                <marker date="1556175130641" expanded="true" signature="1705:1845" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Pinger/Program.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="33" column="56" selection-start-line="33" selection-start-column="26" selection-end-line="33" selection-end-column="56" />
+            <state relative-caret-position="255">
+              <caret line="24" column="25" lean-forward="true" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="25" />
               <folding>
-                <marker date="1556175130641" expanded="false" signature="6:31" ph="..." />
-                <marker date="1556175130641" expanded="true" signature="49:1163" ph="{...}" />
-                <marker date="1556175130641" expanded="true" signature="69:1161" ph="{...}" />
-                <marker date="1556175130641" expanded="true" signature="102:1155" ph="{...}" />
-                <marker date="1556175130641" expanded="true" signature="125:599" ph="/* Console.WriteLine(&quot;Hello World!&quot;); ... */" />
-                <marker date="1556175130641" expanded="true" signature="614:701" ph="/* pinger.PingAndLogging(hostcollection, &quot;./log.txt&quot;); ... */" />
+                <marker date="1558422337848" expanded="false" signature="6:185" ph="..." />
+                <marker date="1558422337848" expanded="true" signature="203:959" ph="{...}" />
+                <marker date="1558422337848" expanded="true" signature="223:957" ph="{...}" />
+                <marker date="1558422337848" expanded="true" signature="256:594" ph="{...}" />
+                <marker date="1558422337848" expanded="true" signature="414:489" ph="{...}" />
+                <marker date="1558422337848" expanded="true" signature="603:951" ph="/* https://habr.com/ru/post/235995 ... */" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Pinger/UniversalPinger.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="600">
+              <caret line="60" column="32" lean-forward="true" selection-start-line="60" selection-start-column="32" selection-end-line="60" selection-end-column="32" />
+              <folding>
+                <marker date="1558535739121" expanded="false" signature="6:282" ph="..." />
+                <marker date="1558535739121" expanded="true" signature="300:2521" ph="{...}" />
+                <marker date="1558535739121" expanded="true" signature="335:2519" ph="{...}" />
+                <marker date="1558535739121" expanded="true" signature="528:592" ph="{...}" />
+                <marker date="1558535739121" expanded="true" signature="619:2256" ph="{...}" />
+                <marker date="1558535739121" expanded="true" signature="847:968" ph="{...}" />
+                <marker date="1558535739121" expanded="true" signature="985:1100" ph="{...}" />
+                <marker date="1558535739121" expanded="true" signature="1146:1993" ph="{...}" />
+                <marker date="1558535739121" expanded="true" signature="1317:1415" ph="{...}" />
+                <marker date="1558535739121" expanded="true" signature="1514:1979" ph="{...}" />
+                <marker date="1558535739121" expanded="true" signature="1644:1940" ph="{...}" />
+                <marker date="1558535739121" expanded="true" signature="1723:1918" ph="{...}" />
+                <marker date="1558535739121" expanded="true" signature="1799:1892" ph="{...}" />
+                <marker date="1558535739121" expanded="true" signature="2159:2246" ph="{...}" />
+                <marker date="1558535739121" expanded="true" signature="2265:2512" ph="/* TODO add logic to UniversalPinger. ... */" />
               </folding>
             </state>
           </provider>
@@ -77,19 +60,20 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Pinger/Program.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Pinger/ICMPPinger.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Pinger/HTTPPinger.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Pinger/UniversalPinger.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Pinger/HTTPPinger.cs" />
+        <option value="$PROJECT_DIR$/Pinger/Program.cs" />
+        <option value="$PROJECT_DIR$/Pinger/UniversalPinger.cs" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="283" />
-    <option name="y" value="30" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="329" />
+    <option name="y" value="58" />
     <option name="width" value="1397" />
     <option name="height" value="954" />
   </component>
@@ -98,7 +82,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="FileSystemExplorer" />
+      <pane id="AssemblyExplorer" />
       <pane id="SolutionExplorer">
         <subPane>
           <expand>
@@ -111,12 +95,36 @@
               <item name="Pinger" type="24d0babc:SolutionExplorerModelNode" />
               <item name="Pinger" type="24d0babc:SolutionExplorerModelNode" />
             </path>
+            <path>
+              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="Pinger" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Pinger" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Dependencies" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="Pinger" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Pinger" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Intefaces" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="Pinger" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Pinger" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="IoC" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="Pinger" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Pinger" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Realizations" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
           </expand>
           <select />
         </subPane>
         <option name="show-all-files" value="false" />
       </pane>
-      <pane id="AssemblyExplorer" />
+      <pane id="FileSystemExplorer" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -171,12 +179,13 @@
       <option name="presentableId" value="Default" />
       <updated>1556175702039</updated>
       <workItem from="1556175707745" duration="6104000" />
-      <workItem from="1556263052483" duration="2905000" />
+      <workItem from="1556263052483" duration="4114000" />
+      <workItem from="1558530968280" duration="3990000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9009000" />
+    <option name="totallyTimeSpent" value="14208000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -188,9 +197,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="334" y="64" width="1397" height="954" extended-state="0" />
+    <frame x="329" y="58" width="1397" height="954" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25355273" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25729245" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Capture Tool" order="3" />
@@ -209,7 +219,7 @@
       <window_info anchor="bottom" id="Database Changes" order="11" />
       <window_info anchor="bottom" id="Unit Tests" order="12" />
       <window_info anchor="bottom" id="Terminal" order="13" />
-      <window_info anchor="bottom" id="Event Log" order="14" side_tool="true" weight="0.3292683" />
+      <window_info anchor="bottom" id="Event Log" order="14" side_tool="true" weight="0.32886723" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -235,17 +245,12 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Pinger/Program.cs">
+    <entry file="file://$PROJECT_DIR$/Pinger/HTTPPinger.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="33" column="56" selection-start-line="33" selection-start-column="26" selection-end-line="33" selection-end-column="56" />
+        <state relative-caret-position="435">
+          <caret line="31" column="8" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="8" />
           <folding>
-            <marker date="1556175130641" expanded="false" signature="6:31" ph="..." />
-            <marker date="1556175130641" expanded="true" signature="49:1163" ph="{...}" />
-            <marker date="1556175130641" expanded="true" signature="69:1161" ph="{...}" />
-            <marker date="1556175130641" expanded="true" signature="102:1155" ph="{...}" />
-            <marker date="1556175130641" expanded="true" signature="125:599" ph="/* Console.WriteLine(&quot;Hello World!&quot;); ... */" />
-            <marker date="1556175130641" expanded="true" signature="614:701" ph="/* pinger.PingAndLogging(hostcollection, &quot;./log.txt&quot;); ... */" />
+            <element signature="e#0#88#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -254,37 +259,44 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="23" column="29" lean-forward="true" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pinger/Program.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="24" column="25" lean-forward="true" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="25" />
           <folding>
-            <marker date="1556175130641" expanded="false" signature="6:101" ph="..." />
-            <marker date="1556175130641" expanded="true" signature="119:1909" ph="{...}" />
-            <marker date="1556175130641" expanded="true" signature="159:1907" ph="{...}" />
-            <marker date="1556175130641" expanded="true" signature="235:847" ph="{...}" />
-            <marker date="1556175130641" expanded="true" signature="409:810" ph="{...}" />
-            <marker date="1556175130641" expanded="true" signature="443:659" ph="{...}" />
-            <marker date="1556175130641" expanded="true" signature="697:784" ph="{...}" />
-            <marker date="1556175130641" expanded="true" signature="940:1901" ph="{...}" />
-            <marker date="1556175130641" expanded="true" signature="1039:1878" ph="{...}" />
-            <marker date="1556175130641" expanded="true" signature="1073:1572" ph="{...}" />
-            <marker date="1556175130641" expanded="true" signature="1254:1554" ph="{...}" />
-            <marker date="1556175130641" expanded="true" signature="1353:1532" ph="{...}" />
-            <marker date="1556175130641" expanded="true" signature="1614:1863" ph="{...}" />
-            <marker date="1556175130641" expanded="true" signature="1705:1845" ph="{...}" />
+            <marker date="1558422337848" expanded="false" signature="6:185" ph="..." />
+            <marker date="1558422337848" expanded="true" signature="203:959" ph="{...}" />
+            <marker date="1558422337848" expanded="true" signature="223:957" ph="{...}" />
+            <marker date="1558422337848" expanded="true" signature="256:594" ph="{...}" />
+            <marker date="1558422337848" expanded="true" signature="414:489" ph="{...}" />
+            <marker date="1558422337848" expanded="true" signature="603:951" ph="/* https://habr.com/ru/post/235995 ... */" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Pinger/HTTPPinger.cs">
+    <entry file="file://$PROJECT_DIR$/Pinger/UniversalPinger.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="31" column="8" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="8" />
+        <state relative-caret-position="600">
+          <caret line="60" column="32" lean-forward="true" selection-start-line="60" selection-start-column="32" selection-end-line="60" selection-end-column="32" />
           <folding>
-            <marker date="1556264381221" expanded="true" signature="6:88" ph="..." />
-            <marker date="1556264381221" expanded="true" signature="106:1119" ph="{...}" />
-            <marker date="1556264381221" expanded="true" signature="139:1117" ph="{...}" />
-            <marker date="1556264381221" expanded="true" signature="215:1075" ph="{...}" />
-            <marker date="1556264381221" expanded="true" signature="389:1028" ph="{...}" />
-            <marker date="1556264381221" expanded="true" signature="423:877" ph="{...}" />
-            <marker date="1556264381221" expanded="true" signature="915:1002" ph="{...}" />
+            <marker date="1558535739121" expanded="false" signature="6:282" ph="..." />
+            <marker date="1558535739121" expanded="true" signature="300:2521" ph="{...}" />
+            <marker date="1558535739121" expanded="true" signature="335:2519" ph="{...}" />
+            <marker date="1558535739121" expanded="true" signature="528:592" ph="{...}" />
+            <marker date="1558535739121" expanded="true" signature="619:2256" ph="{...}" />
+            <marker date="1558535739121" expanded="true" signature="847:968" ph="{...}" />
+            <marker date="1558535739121" expanded="true" signature="985:1100" ph="{...}" />
+            <marker date="1558535739121" expanded="true" signature="1146:1993" ph="{...}" />
+            <marker date="1558535739121" expanded="true" signature="1317:1415" ph="{...}" />
+            <marker date="1558535739121" expanded="true" signature="1514:1979" ph="{...}" />
+            <marker date="1558535739121" expanded="true" signature="1644:1940" ph="{...}" />
+            <marker date="1558535739121" expanded="true" signature="1723:1918" ph="{...}" />
+            <marker date="1558535739121" expanded="true" signature="1799:1892" ph="{...}" />
+            <marker date="1558535739121" expanded="true" signature="2159:2246" ph="{...}" />
+            <marker date="1558535739121" expanded="true" signature="2265:2512" ph="/* TODO add logic to UniversalPinger. ... */" />
           </folding>
         </state>
       </provider>

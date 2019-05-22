@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.ComTypes;
 using System.Runtime.Serialization.Json;
+using System.Threading;
 using Castle.Components.DictionaryAdapter;
 using Newtonsoft.Json;
 using Ninject;
@@ -11,9 +13,7 @@ namespace Pinger
     public class UniversalPinger
     {
         private readonly IPingerFactory _pingerFactory;
-        private List<string> _rowhosts = new List<string>(File.ReadAllLines("./Hosts.txt"));
-        private string _logpath = "./Logs.txt";
-        Settings settings = new Settings();
+        private Settings settings = new Settings();
 
         [Inject]
         public UniversalPinger(IPingerFactory pingerFactory)
@@ -23,6 +23,10 @@ namespace Pinger
 
         public void Run()
         {
+            
+            string logpath = settings.logpath;
+            List<string> rowhosts = new List<string>(File.ReadAllLines(settings.rowhostspath));
+            
 
             if (File.Exists("./Settings.json"))
             {
@@ -33,8 +37,36 @@ namespace Pinger
                 settings = JsonConvert.DeserializeObject<Settings>("./Settings.json");
             }
 
+            if (settings.protocol == "ICMP")
+            {
+                var ICMPPinger = _pingerFactory.CreateTcpPinger(rowhosts, logpath);
+                
+                foreach (var item in ICMPPinger.Ping())
+                {
+                    ICMPPinger.Logging(item.Value, item.Key);
+                }
 
-            var HPinger =_pingerFactory.CreateHttpPinger(_rowhosts, _logpath);
+                var MainAnswer = ICMPPinger.Ping();
+                
+                while (true)
+                {  
+                    var TempAnswer = ICMPPinger.Ping();
+
+                    foreach (var main in MainAnswer)
+                    {
+                        foreach (var temp in TempAnswer)
+                        {
+                            if (main.Key != temp)
+                            {
+                                
+                            }
+                        }
+                    }
+                    
+                }
+            }
+
+            var HPinger =_pingerFactory.CreateHttpPinger(rowhosts, logpath);
             var hAnswers = HPinger.Ping();
             foreach (var answer in hAnswers)
             {
