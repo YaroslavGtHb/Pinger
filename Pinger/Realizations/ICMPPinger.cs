@@ -25,7 +25,15 @@ namespace Pinger
                 try
                 {
                     PingReply pingReply = ping.Send(rowhost);
-                    if (pingReply != null) answer.Add(pingReply.Address.ToString(), pingReply.Status.ToString());
+
+                    if (pingReply.Status.ToString() == "Success")
+                    {
+                        answer.Add(rowhost, "OK");
+                    }
+                    else
+                    {
+                        answer.Add(rowhost, "FAILED");
+                    }
                 }
                 catch (PingException)
                 {
@@ -36,18 +44,8 @@ namespace Pinger
             return answer;
         }
 
-        public void Logging(string responce, string host)
+        public void Logging(string host, string responce)
         {
-            if (responce == "Success")
-            {
-                responce = "OK";
-            }
-
-            else
-            {
-                responce = "FAILED";
-            }
-
             using (var writer = new StreamWriter(_logpath, true))
             {
                 writer.WriteLine(DateTime.Now + " " + host + " " + responce);

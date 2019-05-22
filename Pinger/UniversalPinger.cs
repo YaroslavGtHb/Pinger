@@ -1,10 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices.ComTypes;
-using System.Runtime.Serialization.Json;
-using System.Threading;
-using Castle.Components.DictionaryAdapter;
+using System.Linq;
 using Newtonsoft.Json;
 using Ninject;
 
@@ -13,7 +10,7 @@ namespace Pinger
     public class UniversalPinger
     {
         private readonly IPingerFactory _pingerFactory;
-        private Settings settings = new Settings();
+        private Settings _settings = new Settings();
 
         [Inject]
         public UniversalPinger(IPingerFactory pingerFactory)
@@ -23,60 +20,54 @@ namespace Pinger
 
         public void Run()
         {
-            
-            string logpath = settings.logpath;
-            List<string> rowhosts = new List<string>(File.ReadAllLines(settings.rowhostspath));
-            
+            string logpath = _settings.logpath;
+            List<string> rowhosts = new List<string>(File.ReadAllLines(_settings.rowhostspath));
 
-            if (File.Exists("./Settings.json"))
+
+            if (!File.Exists(_settings.settingspath))
             {
-                File.WriteAllText("./Settings.json", JsonConvert.SerializeObject(settings));
+                File.WriteAllText(_settings.settingspath, JsonConvert.SerializeObject(_settings));
             }
             else
             {
-                settings = JsonConvert.DeserializeObject<Settings>("./Settings.json");
+                _settings = JsonConvert.DeserializeObject<Settings>(File.ReadAllText(_settings.settingspath));
             }
 
-            if (settings.protocol == "ICMP")
+            if (_settings.protocol == "ICMP")
             {
-                var ICMPPinger = _pingerFactory.CreateTcpPinger(rowhosts, logpath);
-                
-                foreach (var item in ICMPPinger.Ping())
+                var ICMPPinger = _pingerFactory.CreateIcmpPinger(rowhosts, logpath);
+                var mainAnswer = ICMPPinger.Ping();
+
+
+                foreach (var item1 in mainAnswer)
                 {
-                    ICMPPinger.Logging(item.Value, item.Key);
+                    ICMPPinger.Logging(item1.Key, item1.Value);
+                    Console.WriteLine(item1.Key + " " + item1.Value);
                 }
 
-                var MainAnswer = ICMPPinger.Ping();
-                
                 while (true)
-                {  
-                    var TempAnswer = ICMPPinger.Ping();
+                {
+                    var tempAnswer = ICMPPinger.Ping();
 
-                    foreach (var main in MainAnswer)
+                    var ExceptAnswer = tempAnswer.Except(mainAnswer).ToList();
+
+                    if (ExceptAnswer != null)
                     {
-                        foreach (var temp in TempAnswer)
+                        foreach (var item2 in ExceptAnswer)
                         {
-                            if (main.Key != temp)
-                            {
-                                
-                            }
+                            ICMPPinger.Logging(item2.Key, item2.Value);
+                            Console.WriteLine(item2.Key + " " + item2.Value);
                         }
-                    }
-                    
-                }
-            }
 
-            var HPinger =_pingerFactory.CreateHttpPinger(rowhosts, logpath);
-            var hAnswers = HPinger.Ping();
-            foreach (var answer in hAnswers)
-            {
-                HPinger.Logging(answer.Value, answer.Key);
+                        mainAnswer = tempAnswer;
+                    }
+                }
             }
         }
+
         //TODO add logic to UniversalPinger.
         //TODO fix all pinger classes to new format, one method for check and write to file, one metod for check one ip.
         //https://habr.com/ru/post/131993/
         //http://80levelelf.com/Post?postId=20
-
     }
 }
