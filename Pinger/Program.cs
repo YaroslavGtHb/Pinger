@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.IO.Pipes;
-using Ninject;
+﻿using Ninject;
 using Ninject.Extensions.Factory;
-using Ninject.Modules;
-using Ninject.Parameters;
 
 namespace Pinger
 {
