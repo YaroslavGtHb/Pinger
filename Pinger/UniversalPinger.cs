@@ -38,11 +38,10 @@ namespace Pinger
                 var ICMPPinger = _pingerFactory.CreateIcmpPinger(rowhosts, logpath);
                 var mainAnswer = ICMPPinger.Ping();
 
-
                 foreach (var item in mainAnswer)
                 {
                     ICMPPinger.Logging(item.Key, item.Value);
-                    Console.WriteLine(item.Key + " " + item.Value);
+                    
                 }
 
                 while (true)
@@ -56,7 +55,6 @@ namespace Pinger
                         foreach (var item in ExceptAnswer)
                         {
                             ICMPPinger.Logging(item.Key, item.Value);
-                            Console.WriteLine(item.Key + " " + item.Value);
                         }
 
                         mainAnswer = tempAnswer;

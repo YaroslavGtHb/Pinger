@@ -9,6 +9,7 @@ namespace Pinger
     {
         private List<string> _rowhosts;
         private string _logpath;
+        private Settings _settings = new Settings();
 
         public ICMPPinger(List<string> rowhosts, string logpath)
         {
@@ -22,6 +23,11 @@ namespace Pinger
             Ping ping = new Ping();
             foreach (var rowhost in _rowhosts)
             {
+                Console.WriteLine("Host: " + rowhost);
+                Console.WriteLine("Period: " + 1);
+                Console.WriteLine("Protocol: " + _settings.protocol);
+                Console.WriteLine();
+
                 try
                 {
                     PingReply pingReply = ping.Send(rowhost);
