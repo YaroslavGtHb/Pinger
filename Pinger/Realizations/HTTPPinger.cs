@@ -11,6 +11,7 @@ namespace Pinger
     {
         private List<string> _rowhosts;
         private string _logpath;
+        private Settings _settings = new Settings();
 
         public HTTPPinger(List<string> rowhosts, string logpath)
         {
@@ -23,6 +24,11 @@ namespace Pinger
             Dictionary<string, string> answer = new Dictionary<string, string>();
             foreach (var rowhost in _rowhosts)
             {
+                Console.WriteLine("Host: " + rowhost);
+                Console.WriteLine("Period: " + _settings.period);
+                Console.WriteLine("Protocol: " + _settings.protocol);
+                Console.WriteLine();
+
                 try
                 {
                     HttpWebRequest webRequest = (HttpWebRequest) WebRequest
@@ -30,8 +36,8 @@ namespace Pinger
                     webRequest.AllowAutoRedirect = false;
                     HttpWebResponse response = (HttpWebResponse) webRequest.GetResponse();
 
-                    if (response.StatusCode.ToString() != null && (int) response.StatusCode == 200)
-                        answer.Add(rowhost, response.StatusCode.ToString());
+                    if (response.StatusCode.ToString() != null && (int) response.StatusCode == _settings.httpvalidcode)
+                        answer.Add(rowhost, "OK");
                     else
                     {
                         answer.Add(rowhost, "FAILED");

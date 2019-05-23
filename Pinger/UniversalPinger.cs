@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -41,7 +42,6 @@ namespace Pinger
                 foreach (var item in mainAnswer)
                 {
                     ICMPPinger.Logging(item.Key, item.Value);
-                    
                 }
 
                 while (true)
@@ -57,6 +57,66 @@ namespace Pinger
                         foreach (var item in exceptAnswer)
                         {
                             ICMPPinger.Logging(item.Key, item.Value);
+                        }
+
+                        mainAnswer = tempAnswer;
+                    }
+                }
+            }
+
+            if (_settings.protocol == "HTTP")
+            {
+                var HTTPPinger = _pingerFactory.CreateHttpPinger(rowhosts, logpath);
+                var mainAnswer = HTTPPinger.Ping();
+
+                foreach (var item in mainAnswer)
+                {
+                    HTTPPinger.Logging(item.Key, item.Value);
+                }
+
+                while (true)
+                {
+                    Thread.Sleep(_settings.period);
+
+                    var tempAnswer = HTTPPinger.Ping();
+
+                    var exceptAnswer = tempAnswer.Except(mainAnswer).ToList();
+
+                    if (exceptAnswer != null)
+                    {
+                        foreach (var item in exceptAnswer)
+                        {
+                            HTTPPinger.Logging(item.Key, item.Value);
+                        }
+
+                        mainAnswer = tempAnswer;
+                    }
+                }
+            }
+
+            if (_settings.protocol == "TCP")
+            {
+                var TCPPinger = _pingerFactory.CreateHttpPinger(rowhosts, logpath);
+                var mainAnswer = TCPPinger.Ping();
+
+                foreach (var item in mainAnswer)
+                {
+                    TCPPinger.Logging(item.Key, item.Value);
+                }
+
+                while (true)
+                {
+                    Thread.Sleep(_settings.period);
+
+                    var tempAnswer = TCPPinger.Ping();
+
+                    var exceptAnswer = tempAnswer.Except(mainAnswer).ToList();
+
+                    if (exceptAnswer != null)
+                    {
+                        foreach (var item in exceptAnswer)
+                        {
+                            TCPPinger.Logging(item.Key, item.Value);
                         }
 
                         mainAnswer = tempAnswer;

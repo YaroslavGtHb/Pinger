@@ -12,6 +12,7 @@ namespace Pinger
     {
         private List<string> _rowhosts;
         private string _logpath;
+        private Settings _settings = new Settings();
 
         public TCPPinger(List<string> rowhosts, string logpath)
         {
@@ -26,6 +27,11 @@ namespace Pinger
 
             foreach (var rowhost in _rowhosts)
             {
+                Console.WriteLine("Host: " + rowhost);
+                Console.WriteLine("Period: " + _settings.period);
+                Console.WriteLine("Protocol: " + _settings.protocol);
+                Console.WriteLine();
+
                 try
                 {
                     IPAddress[] ip = Dns.GetHostAddresses(rowhost);
@@ -46,7 +52,7 @@ namespace Pinger
 
                     sock.Close();
 
-                    answer.Add(rowhost, times.Max().ToString());
+                    answer.Add(rowhost, "OK");
                 }
                 catch (SocketException)
                 {
@@ -59,16 +65,6 @@ namespace Pinger
 
         public void Logging(string responce, string host)
         {
-            if (responce != "FAILED")
-            {
-                responce = "OK";
-            }
-
-            else
-            {
-                responce = "FAILED";
-            }
-
             using (var writer = new StreamWriter(_logpath, true))
             {
                 writer.WriteLine(DateTime.Now + " " + host + " " + responce);

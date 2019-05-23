@@ -8,3 +8,4 @@ C:\Users\Anonymous\Desktop\HubForEducation\Pinger\Pinger\obj\Debug\netcoreapp2.2
 C:\Users\Anonymous\Desktop\HubForEducation\Pinger\Pinger\obj\Debug\netcoreapp2.2\Pinger.AssemblyInfo.cs
 C:\Users\Anonymous\Desktop\HubForEducation\Pinger\Pinger\obj\Debug\netcoreapp2.2\Pinger.dll
 C:\Users\Anonymous\Desktop\HubForEducation\Pinger\Pinger\obj\Debug\netcoreapp2.2\Pinger.pdb
+C:\Users\Anonymous\Desktop\HubForEducation\Pinger\Pinger\obj\Debug\netcoreapp2.2\Pinger.csprojAssemblyReference.cache
