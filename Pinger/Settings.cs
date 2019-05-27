@@ -1,6 +1,6 @@
 ﻿namespace Pinger
 {
-    class Settings
+    public class Settings
     {
         public string rowhostspath { get; set; } = "./hosts.txt";
         public string logpath { get; set; } = "./logs.txt";

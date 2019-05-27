@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -124,10 +123,5 @@ namespace Pinger
                 }
             }
         }
-
-        //TODO add logic to UniversalPinger.
-        //TODO fix all pinger classes to new format, one method for check and write to file, one metod for check one ip.
-        //https://habr.com/ru/post/131993/
-        //http://80levelelf.com/Post?postId=20
     }
 }
