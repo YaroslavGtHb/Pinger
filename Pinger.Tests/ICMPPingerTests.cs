@@ -28,9 +28,6 @@ namespace Pinger.Tests
             actual.Add("92.51.57.80", "OK");
             actual.Add("34.22.1.23", "FAILED");
 
-            //Do not forget to tell Mary
-            //that the two things that I like are programming and she is.
-
             Assert.AreEqual(expected, actual);
         }
 
