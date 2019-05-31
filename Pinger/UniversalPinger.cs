@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -37,16 +39,22 @@ namespace Pinger
             {
                 IcmpPing();
             }
-
-            if (_settings.Protocol == "HTTP")
+            else if (_settings.Protocol == "HTTP")
             {
                 HttpPing();
             }
-
-            if (_settings.Protocol == "TCP")
+            else if (_settings.Protocol == "TCP")
             {
                 TcpPinger();
             }
+            else
+            {
+                Console.WriteLine("Wrong protocol value in settings file.");
+                Console.WriteLine("Any key to start default ICMP Ping.");
+                Console.ReadKey();
+                IcmpPing();
+            }
+            
         }
 
         private void IcmpPing()
