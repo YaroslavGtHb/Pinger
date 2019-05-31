@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using Pinger.Intefaces;
 
-namespace Pinger
+namespace Pinger.IoC
 {
     public interface IPingerFactory
     {

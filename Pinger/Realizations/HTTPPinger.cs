@@ -4,16 +4,17 @@ using System.IO;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
+using Pinger.Intefaces;
 
-namespace Pinger
+namespace Pinger.Realizations
 {
-    public class HTTPPinger : IHttpPinger
+    public class HttpPinger : IHttpPinger
     {
         private List<string> _rowhosts;
         private string _logpath;
         private Settings _settings = new Settings();
 
-        public HTTPPinger(List<string> rowhosts, string logpath)
+        public HttpPinger(List<string> rowhosts, string logpath)
         {
             _rowhosts = rowhosts;
             _logpath = logpath;
@@ -25,8 +26,8 @@ namespace Pinger
             foreach (var rowhost in _rowhosts)
             {
                 Console.WriteLine("Host: " + rowhost);
-                Console.WriteLine("Period: " + _settings.period);
-                Console.WriteLine("Protocol: " + _settings.protocol);
+                Console.WriteLine("Period: " + _settings.Period);
+                Console.WriteLine("Protocol: " + _settings.Protocol);
                 Console.WriteLine();
 
                 try
@@ -36,7 +37,7 @@ namespace Pinger
                     webRequest.AllowAutoRedirect = false;
                     HttpWebResponse response = (HttpWebResponse) webRequest.GetResponse();
 
-                    if (response.StatusCode.ToString() != null && (int) response.StatusCode == _settings.httpvalidcode)
+                    if (response.StatusCode.ToString() != null && (int) response.StatusCode == _settings.Httpvalidcode)
                         answer.Add(rowhost, "OK");
                     else
                     {

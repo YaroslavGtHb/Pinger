@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using NUnit.Framework;
+using Pinger.Realizations;
 
 namespace Pinger.Tests
 {
-    public class ICMPPingerTests
+    public class IcmpPingerTests
     {
         string logpath = "./LogsTest.txt";
         List<string> rowhosts = new List<string>(File.ReadAllLines("./HostsTest.txt"));
@@ -17,7 +18,7 @@ namespace Pinger.Tests
         [Test]
         public void PingTest()
         {
-            ICMPPinger icmppinger = new ICMPPinger(rowhosts, logpath);
+            IcmpPinger icmppinger = new IcmpPinger(rowhosts, logpath);
 
             Dictionary<string, string> actual = new Dictionary<string, string>();
 
@@ -34,7 +35,7 @@ namespace Pinger.Tests
         [Test]
         public void LoggingTest()
         {
-            ICMPPinger icmppinger = new ICMPPinger(rowhosts, logpath);
+            IcmpPinger icmppinger = new IcmpPinger(rowhosts, logpath);
             foreach (var item in rowhosts)
             {
                 icmppinger.Logging(item, "OK");

@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using Pinger.Intefaces;
 
-namespace Pinger
+namespace Pinger.Realizations
 {
-    public class TCPPinger : ITcpPinger
+    public class TcpPinger : ITcpPinger
     {
         private List<string> _rowhosts;
         private string _logpath;
         private Settings _settings = new Settings();
 
-        public TCPPinger(List<string> rowhosts, string logpath)
+        public TcpPinger(List<string> rowhosts, string logpath)
         {
             _rowhosts = rowhosts;
             _logpath = logpath;
@@ -28,8 +28,8 @@ namespace Pinger
             foreach (var rowhost in _rowhosts)
             {
                 Console.WriteLine("Host: " + rowhost);
-                Console.WriteLine("Period: " + _settings.period);
-                Console.WriteLine("Protocol: " + _settings.protocol);
+                Console.WriteLine("Period: " + _settings.Period);
+                Console.WriteLine("Protocol: " + _settings.Protocol);
                 Console.WriteLine();
 
                 try

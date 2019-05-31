@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using Newtonsoft.Json;
 using Ninject;
+using Pinger.IoC;
 
 namespace Pinger
 {
@@ -11,6 +12,7 @@ namespace Pinger
     {
         private readonly IPingerFactory _pingerFactory;
         private Settings _settings = new Settings();
+
 
         [Inject]
         public UniversalPinger(IPingerFactory pingerFactory)
@@ -20,107 +22,120 @@ namespace Pinger
 
         public void Run()
         {
-            string logpath = _settings.logpath;
-            List<string> rowhosts = new List<string>(File.ReadAllLines(_settings.rowhostspath));
+            
 
-
-            if (!File.Exists(_settings.settingspath))
+            if (!File.Exists(_settings.Settingspath))
             {
-                File.WriteAllText(_settings.settingspath, JsonConvert.SerializeObject(_settings));
+                File.WriteAllText(_settings.Settingspath, JsonConvert.SerializeObject(_settings));
             }
             else
             {
-                _settings = JsonConvert.DeserializeObject<Settings>(File.ReadAllText(_settings.settingspath));
+                _settings = JsonConvert.DeserializeObject<Settings>(File.ReadAllText(_settings.Settingspath));
             }
 
-            if (_settings.protocol == "ICMP")
+            if (_settings.Protocol == "ICMP")
             {
-                var ICMPPinger = _pingerFactory.CreateIcmpPinger(rowhosts, logpath);
-                var mainAnswer = ICMPPinger.Ping();
-
-                foreach (var item in mainAnswer)
-                {
-                    ICMPPinger.Logging(item.Key, item.Value);
-                }
-
-                while (true)
-                {
-                    Thread.Sleep(_settings.period);
-
-                    var tempAnswer = ICMPPinger.Ping();
-
-                    var exceptAnswer = tempAnswer.Except(mainAnswer).ToList();
-
-                    if (exceptAnswer != null)
-                    {
-                        foreach (var item in exceptAnswer)
-                        {
-                            ICMPPinger.Logging(item.Key, item.Value);
-                        }
-
-                        mainAnswer = tempAnswer;
-                    }
-                }
+                IcmpPing();
             }
 
-            if (_settings.protocol == "HTTP")
+            if (_settings.Protocol == "HTTP")
             {
-                var HTTPPinger = _pingerFactory.CreateHttpPinger(rowhosts, logpath);
-                var mainAnswer = HTTPPinger.Ping();
-
-                foreach (var item in mainAnswer)
-                {
-                    HTTPPinger.Logging(item.Key, item.Value);
-                }
-
-                while (true)
-                {
-                    Thread.Sleep(_settings.period);
-
-                    var tempAnswer = HTTPPinger.Ping();
-
-                    var exceptAnswer = tempAnswer.Except(mainAnswer).ToList();
-
-                    if (exceptAnswer != null)
-                    {
-                        foreach (var item in exceptAnswer)
-                        {
-                            HTTPPinger.Logging(item.Key, item.Value);
-                        }
-
-                        mainAnswer = tempAnswer;
-                    }
-                }
+                HttpPing();
             }
 
-            if (_settings.protocol == "TCP")
+            if (_settings.Protocol == "TCP")
             {
-                var TCPPinger = _pingerFactory.CreateHttpPinger(rowhosts, logpath);
-                var mainAnswer = TCPPinger.Ping();
+                TcpPinger();
+            }
+        }
 
-                foreach (var item in mainAnswer)
+        private void IcmpPing()
+        {
+            string logpath = _settings.Logpath;
+            List<string> rowhosts = new List<string>(File.ReadAllLines(_settings.Rowhostspath));
+
+            var icmpPinger = _pingerFactory.CreateIcmpPinger(rowhosts, logpath);
+            var mainAnswer = icmpPinger.Ping();
+
+            foreach (var item in mainAnswer)
+            {
+                icmpPinger.Logging(item.Key, item.Value);
+            }
+
+            while (true)
+            {
+                Thread.Sleep(_settings.Period);
+
+                var tempAnswer = icmpPinger.Ping();
+
+                var exceptAnswer = tempAnswer.Except(mainAnswer).ToList();
+
+                foreach (var item in exceptAnswer)
                 {
-                    TCPPinger.Logging(item.Key, item.Value);
+                    icmpPinger.Logging(item.Key, item.Value);
                 }
 
-                while (true)
+                mainAnswer = tempAnswer;
+            }
+        }
+
+        private void HttpPing()
+        {
+            string logpath = _settings.Logpath;
+            List<string> rowhosts = new List<string>(File.ReadAllLines(_settings.Rowhostspath));
+
+            var httpPinger = _pingerFactory.CreateHttpPinger(rowhosts, logpath);
+            var mainAnswer = httpPinger.Ping();
+
+            foreach (var item in mainAnswer)
+            {
+                httpPinger.Logging(item.Key, item.Value);
+            }
+
+            while (true)
+            {
+                Thread.Sleep(_settings.Period);
+
+                var tempAnswer = httpPinger.Ping();
+
+                var exceptAnswer = tempAnswer.Except(mainAnswer).ToList();
+
+                foreach (var item in exceptAnswer)
                 {
-                    Thread.Sleep(_settings.period);
-
-                    var tempAnswer = TCPPinger.Ping();
-
-                    var exceptAnswer = tempAnswer.Except(mainAnswer).ToList();
-
-                    if (exceptAnswer != null)
-                    {
-                        foreach (var item in exceptAnswer)
-                        {
-                            TCPPinger.Logging(item.Key, item.Value);
-                        }
-
-                        mainAnswer = tempAnswer;
-                    }
+                    httpPinger.Logging(item.Key, item.Value);
                 }
+
+                mainAnswer = tempAnswer;
+            }
+        }
+
+        private void TcpPinger()
+        {
+            string logpath = _settings.Logpath;
+            List<string> rowhosts = new List<string>(File.ReadAllLines(_settings.Rowhostspath));
+
+            var tcpPinger = _pingerFactory.CreateTcpPinger(rowhosts, logpath);
+            var mainAnswer = tcpPinger.Ping();
+
+            foreach (var item in mainAnswer)
+            {
+                tcpPinger.Logging(item.Key, item.Value);
+            }
+
+            while (true)
+            {
+                Thread.Sleep(_settings.Period);
+
+                var tempAnswer = tcpPinger.Ping();
+
+                var exceptAnswer = tempAnswer.Except(mainAnswer).ToList();
+
+                foreach (var item in exceptAnswer)
+                {
+                    tcpPinger.Logging(item.Key, item.Value);
+                }
+
+                mainAnswer = tempAnswer;
             }
         }
     }

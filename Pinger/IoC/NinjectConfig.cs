@@ -1,15 +1,17 @@
 ﻿using Ninject.Extensions.Factory;
 using Ninject.Modules;
+using Pinger.Intefaces;
+using Pinger.Realizations;
 
-namespace Pinger
+namespace Pinger.IoC
 {
     public class NinjectConfig : NinjectModule
     {
         public override void Load()
         {
-            Bind<IIcmpPinger>().To<ICMPPinger>();
-            Bind<IHttpPinger>().To<HTTPPinger>();
-            Bind<ITcpPinger>().To<TCPPinger>();
+            Bind<IIcmpPinger>().To<IcmpPinger>();
+            Bind<IHttpPinger>().To<HttpPinger>();
+            Bind<ITcpPinger>().To<TcpPinger>();
 
             Bind<IPingerFactory>().ToFactory();
         }

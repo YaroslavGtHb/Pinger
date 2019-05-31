@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using NUnit.Framework;
+using Pinger.Realizations;
 
 namespace Pinger.Tests
 {
-    public class TCPPingTests
+    public class TcpPingTests
     {
         string logpath = "./LogsTest.txt";
         List<string> rowhosts = new List<string>(File.ReadAllLines("./HostsTest.txt"));
@@ -13,8 +14,8 @@ namespace Pinger.Tests
         [Test]
         public void PingTest()
         {
-            TCPPinger tcppinger = new TCPPinger(rowhosts, logpath);
-
+            TcpPinger tcppinger = new TcpPinger(rowhosts, logpath);
+            
             Dictionary<string, string> actual = new Dictionary<string, string>();
 
             Dictionary<string, string> expected = tcppinger.Ping();
@@ -30,7 +31,7 @@ namespace Pinger.Tests
         [Test]
         public void LoggingTest()
         {
-            TCPPinger tcppinger = new TCPPinger(rowhosts, logpath);
+            TcpPinger tcppinger = new TcpPinger(rowhosts, logpath);
             foreach (var item in rowhosts)
             {
                 tcppinger.Logging(item, "OK");

@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net.NetworkInformation;
+using Pinger.Intefaces;
 
-namespace Pinger
+namespace Pinger.Realizations
 {
-    public class ICMPPinger : IIcmpPinger
+    public class IcmpPinger : IIcmpPinger
     {
         private List<string> _rowhosts;
         private string _logpath;
         private Settings _settings = new Settings();
 
-        public ICMPPinger(List<string> rowhosts, string logpath)
+        public IcmpPinger(List<string> rowhosts, string logpath)
         {
             _rowhosts = rowhosts;
             _logpath = logpath;
@@ -24,8 +25,8 @@ namespace Pinger
             foreach (var rowhost in _rowhosts)
             {
                 Console.WriteLine("Host: " + rowhost);
-                Console.WriteLine("Period: " + _settings.period);
-                Console.WriteLine("Protocol: " + _settings.protocol);
+                Console.WriteLine("Period: " + _settings.Period);
+                Console.WriteLine("Protocol: " + _settings.Protocol);
                 Console.WriteLine();
 
                 try

@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using NUnit.Framework;
+using Pinger.Realizations;
 
 namespace Pinger.Tests
 {
-    class HTTPPingerTests
+    class HttpPingerTests
     {
         string logpath = "./LogsTest.txt";
         List<string> rowhosts = new List<string>(File.ReadAllLines("./HostsTest.txt"));
@@ -15,7 +14,7 @@ namespace Pinger.Tests
         [Test]
         public void PingTest()
         {
-            HTTPPinger httppinger = new HTTPPinger(rowhosts, logpath);
+            HttpPinger httppinger = new HttpPinger(rowhosts, logpath);
 
             Dictionary<string, string> actual = new Dictionary<string, string>();
 
@@ -32,7 +31,7 @@ namespace Pinger.Tests
         [Test]
         public void LoggingTest()
         {
-            HTTPPinger httppinger = new HTTPPinger(rowhosts, logpath);
+            HttpPinger httppinger = new HttpPinger(rowhosts, logpath);
             foreach (var item in rowhosts)
             {
                 httppinger.Logging(item, "OK");

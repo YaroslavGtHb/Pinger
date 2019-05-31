@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace Pinger
+namespace Pinger.Intefaces
 {
     public interface IIcmpPinger
     {
         Dictionary<string, string> Ping();
-        void Logging(string Host, string Responce);
+        void Logging(string host, string responce);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Ninject;
 using Ninject.Extensions.Factory;
+using Pinger.IoC;
 
 namespace Pinger
 {
