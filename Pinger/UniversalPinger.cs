@@ -16,7 +16,7 @@ namespace Pinger
         private string wronghostmessage = "Wrong row hosts path in setiings file.";
 
         private string wringsettingsmessage =
-            "Wrong parametr in settings file. Program will be using default settings. Press any key to start.";
+            "Wrong parameter in settings file. Program will be using default settings. Press any key to start.";
 
         [Inject]
         public UniversalPinger(IPingerFactory pingerFactory)
