@@ -53,9 +53,19 @@ namespace Pinger.Realizations
 
         public void Logging(string host, string responce)
         {
-            using (var writer = new StreamWriter(_logpath, true))
+            try
             {
-                writer.WriteLine(DateTime.Now + " " + host + " " + responce);
+                using (var writer = new StreamWriter("./Logs.txt", true))
+                {
+                    writer.WriteLine(DateTime.Now + " " + host + " " + responce);
+                }
+            }
+            catch (DirectoryNotFoundException)
+            {
+                using (var writer = new StreamWriter(_logpath, true))
+                {
+                    writer.WriteLine(DateTime.Now + " " + host + " " + responce);
+                }
             }
         }
     }

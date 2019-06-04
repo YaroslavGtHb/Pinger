@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.Design;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -59,8 +59,21 @@ namespace Pinger
 
         private void IcmpPing()
         {
+            //DirectoryNotFoundException
             string logpath = _settings.Logpath;
-            List<string> rowhosts = new List<string>(File.ReadAllLines(_settings.Rowhostspath));
+
+            List<string> rowhosts;
+
+            try
+            {
+                rowhosts = new List<string>(File.ReadAllLines(_settings.Rowhostspath));
+            }
+            catch (DirectoryNotFoundException)
+            {
+                Console.WriteLine("Wrong row hosts path in setiings file.");
+                Console.ReadKey();
+                return;
+            }
 
             var icmpPinger = _pingerFactory.CreateIcmpPinger(rowhosts, logpath);
             var mainAnswer = icmpPinger.Ping();
@@ -90,7 +103,19 @@ namespace Pinger
         private void HttpPing()
         {
             string logpath = _settings.Logpath;
-            List<string> rowhosts = new List<string>(File.ReadAllLines(_settings.Rowhostspath));
+
+            List<string> rowhosts;
+
+            try
+            {
+                rowhosts = new List<string>(File.ReadAllLines(_settings.Rowhostspath));
+            }
+            catch (DirectoryNotFoundException)
+            {
+                Console.WriteLine("Wrong row hosts path in setiings file.");
+                Console.ReadKey();
+                return;
+            }
 
             var httpPinger = _pingerFactory.CreateHttpPinger(rowhosts, logpath);
             var mainAnswer = httpPinger.Ping();
@@ -120,7 +145,19 @@ namespace Pinger
         private void TcpPinger()
         {
             string logpath = _settings.Logpath;
-            List<string> rowhosts = new List<string>(File.ReadAllLines(_settings.Rowhostspath));
+
+            List<string> rowhosts;
+
+            try
+            {
+                rowhosts = new List<string>(File.ReadAllLines(_settings.Rowhostspath));
+            }
+            catch (DirectoryNotFoundException)
+            {
+                Console.WriteLine("Wrong row hosts path in setiings file.");
+                Console.ReadKey();
+                return;
+            }
 
             var tcpPinger = _pingerFactory.CreateTcpPinger(rowhosts, logpath);
             var mainAnswer = tcpPinger.Ping();
