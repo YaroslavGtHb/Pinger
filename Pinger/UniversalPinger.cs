@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -14,7 +13,10 @@ namespace Pinger
     {
         private readonly IPingerFactory _pingerFactory;
         private Settings _settings = new Settings();
+        private string wronghostmessage = "Wrong row hosts path in setiings file.";
 
+        private string wringsettingsmessage =
+            "Wrong parametr in settings file. Program will be using default settings. Press any key to start.";
 
         [Inject]
         public UniversalPinger(IPingerFactory pingerFactory)
@@ -32,7 +34,15 @@ namespace Pinger
             }
             else
             {
-                _settings = JsonConvert.DeserializeObject<Settings>(File.ReadAllText(_settings.Settingspath));
+                try
+                {
+                    _settings = JsonConvert.DeserializeObject<Settings>(File.ReadAllText(_settings.Settingspath));
+                }
+                catch (JsonReaderException)
+                {
+                    Console.WriteLine(wringsettingsmessage);
+                    Console.ReadKey();
+                }
             }
 
             if (_settings.Protocol == "ICMP")
@@ -59,7 +69,6 @@ namespace Pinger
 
         private void IcmpPing()
         {
-            //DirectoryNotFoundException
             string logpath = _settings.Logpath;
 
             List<string> rowhosts;
@@ -70,7 +79,7 @@ namespace Pinger
             }
             catch (DirectoryNotFoundException)
             {
-                Console.WriteLine("Wrong row hosts path in setiings file.");
+                Console.WriteLine(wronghostmessage);
                 Console.ReadKey();
                 return;
             }
@@ -112,7 +121,7 @@ namespace Pinger
             }
             catch (DirectoryNotFoundException)
             {
-                Console.WriteLine("Wrong row hosts path in setiings file.");
+                Console.WriteLine(wronghostmessage);
                 Console.ReadKey();
                 return;
             }
@@ -154,7 +163,7 @@ namespace Pinger
             }
             catch (DirectoryNotFoundException)
             {
-                Console.WriteLine("Wrong row hosts path in setiings file.");
+                Console.WriteLine(wronghostmessage);
                 Console.ReadKey();
                 return;
             }
