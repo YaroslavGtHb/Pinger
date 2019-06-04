@@ -26,8 +26,6 @@ namespace Pinger
 
         public void Run()
         {
-            
-
             if (!File.Exists(_settings.Settingspath))
             {
                 File.WriteAllText(_settings.Settingspath, JsonConvert.SerializeObject(_settings));
@@ -64,7 +62,6 @@ namespace Pinger
                 Console.ReadKey();
                 IcmpPing();
             }
-            
         }
 
         private void IcmpPing()

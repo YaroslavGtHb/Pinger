@@ -15,7 +15,7 @@ namespace Pinger.Tests
         public void PingTest()
         {
             TcpPinger tcppinger = new TcpPinger(rowhosts, logpath);
-            
+
             Dictionary<string, string> actual = new Dictionary<string, string>();
 
             Dictionary<string, string> expected = tcppinger.Ping();

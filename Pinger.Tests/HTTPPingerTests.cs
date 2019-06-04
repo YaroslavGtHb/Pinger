@@ -39,6 +39,5 @@ namespace Pinger.Tests
 
             File.Delete(logpath);
         }
-
     }
 }
