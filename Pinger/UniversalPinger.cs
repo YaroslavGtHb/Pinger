@@ -13,10 +13,14 @@ namespace Pinger
     {
         private readonly IPingerFactory _pingerFactory;
         private Settings _settings = new Settings();
+
+        private string wrongsettingsmessage =
+            "Wrong parameter in settings file. Program will be using default settings. Press any key to start.";
+
         private string wronghostmessage = "Wrong row hosts path in setiings file.";
 
-        private string wringsettingsmessage =
-            "Wrong parameter in settings file. Program will be using default settings. Press any key to start.";
+        private string wrongprotocolmessage =
+            "Wrong protocol value in settings file. \n Any key to start default ICMP Ping.";
 
         [Inject]
         public UniversalPinger(IPingerFactory pingerFactory)
@@ -24,8 +28,10 @@ namespace Pinger
             _pingerFactory = pingerFactory;
         }
 
-        public void Run()
+        public void Run(Settings settings)
         {
+            _settings = settings;
+
             if (!File.Exists(_settings.Settingspath))
             {
                 File.WriteAllText(_settings.Settingspath, JsonConvert.SerializeObject(_settings));
@@ -38,7 +44,7 @@ namespace Pinger
                 }
                 catch (JsonReaderException)
                 {
-                    Console.WriteLine(wringsettingsmessage);
+                    Console.WriteLine(wrongsettingsmessage);
                     Console.ReadKey();
                 }
             }
@@ -57,8 +63,7 @@ namespace Pinger
             }
             else
             {
-                Console.WriteLine("Wrong protocol value in settings file.");
-                Console.WriteLine("Any key to start default ICMP Ping.");
+                Console.WriteLine(wrongprotocolmessage);
                 Console.ReadKey();
                 IcmpPing();
             }

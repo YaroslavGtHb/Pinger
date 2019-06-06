@@ -1,5 +1,6 @@
 ﻿using Ninject;
 using Ninject.Extensions.Factory;
+using Ninject.Parameters;
 using Pinger.IoC;
 
 namespace Pinger
@@ -15,8 +16,10 @@ namespace Pinger
                 kernel.Load(new FuncModule());
             }
 
+            Settings settings = new Settings();
+
             UniversalPinger pinger = kernel.Get<UniversalPinger>();
-            pinger.Run();
+            pinger.Run(settings);
         }
 
         //https://habr.com/ru/post/235995/
