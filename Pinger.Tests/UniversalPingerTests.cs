@@ -9,16 +9,35 @@ namespace Pinger.Tests
 {
     class UniversalPingerTests
     {
+        [Test]
+        public void WrongValueTest()
+        {
+
+            TestDelegate wrongvalue = WrongValue;
+            Assert.Throws(typeof(JsonReaderException), wrongvalue);
+        }
+
+        private void WrongValue()
+        {
+            UniversalTesting("./WrongValue.json");
+        }
 
         [Test]
         public void WrongHostTest()
         {
-            
-            TestDelegate calculate = new TestDelegate(WrongHost);;
-            Assert.Throws(typeof(JsonReaderException), calculate);
+            TestDelegate wronghost = WrongHost;
+            Assert.Throws(typeof(FileNotFoundException), wronghost);
         }
 
         private void WrongHost()
+
+        {
+            UniversalTesting("./WrongHost.json");
+        }
+
+
+
+        private void UniversalTesting(string testsettingspath)
         {
             IKernel kernel = new StandardKernel(new NinjectConfig());
 
@@ -27,9 +46,9 @@ namespace Pinger.Tests
                 kernel.Load(new FuncModule());
             }
 
-            Settings settings = new Settings();
+            var settings = new Settings();
 
-            settings = JsonConvert.DeserializeObject<Settings>(File.ReadAllText("./SettingsWrongHost.json"));
+            settings = JsonConvert.DeserializeObject<Settings>(File.ReadAllText(testsettingspath));
 
             UniversalPinger pinger = kernel.Get<UniversalPinger>();
             pinger.Run(settings);

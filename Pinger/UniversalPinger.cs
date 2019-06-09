@@ -17,7 +17,7 @@ namespace Pinger
         private string wrongsettingsmessage =
             "Wrong parameter in settings file. Program will be using default settings. Press any key to start.";
 
-        private string wronghostmessage = "Wrong row hosts path in setiings file.";
+        private string wronghostmessage = "Wrong row hosts path in settings file.";
 
         private string wrongprotocolmessage =
             "Wrong protocol value in settings file. \n Any key to start default ICMP Ping.";
