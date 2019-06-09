@@ -15,6 +15,7 @@ namespace Pinger.Tests
 
             TestDelegate wrongvalue = WrongValue;
             Assert.Throws(typeof(JsonReaderException), wrongvalue);
+            File.Delete("./Logs.txt");
         }
 
         private void WrongValue()
@@ -27,6 +28,7 @@ namespace Pinger.Tests
         {
             TestDelegate wronghost = WrongHost;
             Assert.Throws(typeof(FileNotFoundException), wronghost);
+            File.Delete("./Logs.txt");
         }
 
         private void WrongHost()
