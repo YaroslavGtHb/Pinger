@@ -33,7 +33,7 @@ namespace Pinger.Realizations
                 {
                     PingReply pingReply = ping.Send(rowhost);
 
-                    if (pingReply.Status.ToString() == "Success")
+                    if (pingReply != null && pingReply.Status.ToString() == "Success")
                     {
                         answer.Add(rowhost, "OK");
                     }
