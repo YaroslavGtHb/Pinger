@@ -3,24 +3,29 @@ using Newtonsoft.Json;
 using Ninject;
 using Ninject.Extensions.Factory;
 using NUnit.Framework;
+using NUnit.Framework.Internal;
 using Pinger.IoC;
 
 namespace Pinger.Tests
 {
     class UniversalPingerTests
     {
+        private string logspath = "./Logs.txt";
+        private string wrongvaluepath = "./WrongValue.json";
+        private string wronghost = "./WrongHost.json";
+
         [Test]
         public void WrongValueTest()
         {
 
             TestDelegate wrongvalue = WrongValue;
             Assert.Throws(typeof(JsonReaderException), wrongvalue);
-            File.Delete("./Logs.txt");
+            File.Delete(logspath);
         }
 
         private void WrongValue()
         {
-            UniversalTesting("./WrongValue.json");
+            UniversalTesting(wrongvaluepath);
         }
 
         [Test]
@@ -28,13 +33,13 @@ namespace Pinger.Tests
         {
             TestDelegate wronghost = WrongHost;
             Assert.Throws(typeof(FileNotFoundException), wronghost);
-            File.Delete("./Logs.txt");
+            File.Delete(logspath);
         }
 
         private void WrongHost()
 
         {
-            UniversalTesting("./WrongHost.json");
+            UniversalTesting(wronghost);
         }
 
 
