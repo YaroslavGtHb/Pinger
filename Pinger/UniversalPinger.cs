@@ -13,25 +13,19 @@ namespace Pinger
     {
         private readonly IPingerFactory _pingerFactory;
         private Settings _settings = new Settings();
-
         private string wrongsettingsmessage =
             "Wrong parameter in settings file. Program will be using default settings. Press any key to start.";
-
         private string wronghostmessage = "Wrong row hosts path in settings file.";
-
         private string wrongprotocolmessage =
             "Wrong protocol value in settings file. \n Any key to start default ICMP Ping.";
-
         [Inject]
         public UniversalPinger(IPingerFactory pingerFactory)
         {
             _pingerFactory = pingerFactory;
         }
-
         public void Run(Settings settings)
         {
             _settings = settings;
-
             if (!File.Exists(_settings.Settingspath))
             {
                 File.WriteAllText(_settings.Settingspath, JsonConvert.SerializeObject(_settings));
@@ -48,7 +42,6 @@ namespace Pinger
                     Console.ReadKey();
                 }
             }
-
             if (_settings.Protocol == "ICMP")
             {
                 IcmpPing();
@@ -68,13 +61,10 @@ namespace Pinger
                 IcmpPing();
             }
         }
-
         private void IcmpPing()
         {
             string logpath = _settings.Logpath;
-
             List<string> rowhosts;
-
             try
             {
                 rowhosts = new List<string>(File.ReadAllLines(_settings.Rowhostspath));
@@ -85,38 +75,28 @@ namespace Pinger
                 Console.ReadKey();
                 return;
             }
-
             var icmpPinger = _pingerFactory.CreateIcmpPinger(rowhosts, logpath);
             var mainAnswer = icmpPinger.Ping();
-
             foreach (var item in mainAnswer)
             {
                 icmpPinger.Logging(item.Key, item.Value);
             }
-
             while (true)
             {
                 Thread.Sleep(_settings.Period);
-
                 var tempAnswer = icmpPinger.Ping();
-
                 var exceptAnswer = tempAnswer.Except(mainAnswer).ToList();
-
                 foreach (var item in exceptAnswer)
                 {
                     icmpPinger.Logging(item.Key, item.Value);
                 }
-
                 mainAnswer = tempAnswer;
             }
         }
-
         private void HttpPing()
         {
             string logpath = _settings.Logpath;
-
             List<string> rowhosts;
-
             try
             {
                 rowhosts = new List<string>(File.ReadAllLines(_settings.Rowhostspath));
@@ -127,38 +107,28 @@ namespace Pinger
                 Console.ReadKey();
                 return;
             }
-
             var httpPinger = _pingerFactory.CreateHttpPinger(rowhosts, logpath);
             var mainAnswer = httpPinger.Ping();
-
             foreach (var item in mainAnswer)
             {
                 httpPinger.Logging(item.Key, item.Value);
             }
-
             while (true)
             {
                 Thread.Sleep(_settings.Period);
-
                 var tempAnswer = httpPinger.Ping();
-
                 var exceptAnswer = tempAnswer.Except(mainAnswer).ToList();
-
                 foreach (var item in exceptAnswer)
                 {
                     httpPinger.Logging(item.Key, item.Value);
                 }
-
                 mainAnswer = tempAnswer;
             }
         }
-
         private void TcpPinger()
         {
             string logpath = _settings.Logpath;
-
             List<string> rowhosts;
-
             try
             {
                 rowhosts = new List<string>(File.ReadAllLines(_settings.Rowhostspath));
@@ -169,28 +139,21 @@ namespace Pinger
                 Console.ReadKey();
                 return;
             }
-
             var tcpPinger = _pingerFactory.CreateTcpPinger(rowhosts, logpath);
             var mainAnswer = tcpPinger.Ping();
-
             foreach (var item in mainAnswer)
             {
                 tcpPinger.Logging(item.Key, item.Value);
             }
-
             while (true)
             {
                 Thread.Sleep(_settings.Period);
-
                 var tempAnswer = tcpPinger.Ping();
-
                 var exceptAnswer = tempAnswer.Except(mainAnswer).ToList();
-
                 foreach (var item in exceptAnswer)
                 {
                     tcpPinger.Logging(item.Key, item.Value);
                 }
-
                 mainAnswer = tempAnswer;
             }
         }

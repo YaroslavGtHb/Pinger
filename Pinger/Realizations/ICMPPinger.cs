@@ -11,13 +11,11 @@ namespace Pinger.Realizations
         private List<string> _rowhosts;
         private string _logpath;
         private Settings _settings = new Settings();
-
         public IcmpPinger(List<string> rowhosts, string logpath)
         {
             _rowhosts = rowhosts;
             _logpath = logpath;
         }
-
         public Dictionary<string, string> Ping()
         {
             Dictionary<string, string> answer = new Dictionary<string, string>();
@@ -28,7 +26,6 @@ namespace Pinger.Realizations
                 Console.WriteLine("Period: " + _settings.Period);
                 Console.WriteLine("Protocol: " + _settings.Protocol);
                 Console.WriteLine();
-
                 try
                 {
                     PingReply pingReply = ping.Send(rowhost);
