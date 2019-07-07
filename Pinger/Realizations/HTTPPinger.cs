@@ -13,11 +13,13 @@ namespace Pinger.Realizations
         private List<string> _rowhosts;
         private string _logpath;
         private Settings _settings = new Settings();
+
         public HttpPinger(List<string> rowhosts, string logpath)
         {
             _rowhosts = rowhosts;
             _logpath = logpath;
         }
+
         public Dictionary<string, string> Ping()
         {
             Dictionary<string, string> answer = new Dictionary<string, string>();
@@ -27,6 +29,7 @@ namespace Pinger.Realizations
                 Console.WriteLine("Period: " + _settings.Period);
                 Console.WriteLine("Protocol: " + _settings.Protocol);
                 Console.WriteLine();
+
                 try
                 {
                     HttpWebRequest webRequest = (HttpWebRequest) WebRequest
@@ -66,8 +69,10 @@ namespace Pinger.Realizations
                     answer.Add(rowhost, "FAILED");
                 }
             }
+
             return answer;
         }
+
         public void Logging(string host, string responce)
         {
             try

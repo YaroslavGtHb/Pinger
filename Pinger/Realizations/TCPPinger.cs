@@ -19,9 +19,11 @@ namespace Pinger.Realizations
             _rowhosts = rowhosts;
             _logpath = logpath;
         }
+
         public Dictionary<string, string> Ping()
         {
             Dictionary<string, string> answer = new Dictionary<string, string>();
+
 
             foreach (var rowhost in _rowhosts)
             {
@@ -29,6 +31,7 @@ namespace Pinger.Realizations
                 Console.WriteLine("Period: " + _settings.Period);
                 Console.WriteLine("Protocol: " + _settings.Protocol);
                 Console.WriteLine();
+
                 try
                 {
                     IPAddress[] ip = Dns.GetHostAddresses(rowhost);
@@ -56,8 +59,10 @@ namespace Pinger.Realizations
                     answer.Add(rowhost, "FAILED");
                 }
             }
+
             return answer;
         }
+
         public void Logging(string responce, string host)
         {
             try

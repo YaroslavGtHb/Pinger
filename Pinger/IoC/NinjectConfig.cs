@@ -12,6 +12,7 @@ namespace Pinger.IoC
             Bind<IIcmpPinger>().To<IcmpPinger>();
             Bind<IHttpPinger>().To<HttpPinger>();
             Bind<ITcpPinger>().To<TcpPinger>();
+
             Bind<IPingerFactory>().ToFactory();
         }
     }
