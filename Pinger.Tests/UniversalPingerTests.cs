@@ -13,7 +13,6 @@ namespace Pinger.Tests
         private string logspath = "./Logs.txt";
         private string wrongvaluepath = "./WrongValue.json";
         private string wronghost = "./WrongHost.json";
-
         [Test]
         public void WrongValueTest()
         {
@@ -22,12 +21,10 @@ namespace Pinger.Tests
             Assert.Throws(typeof(JsonReaderException), wrongvalue);
             File.Delete(logspath);
         }
-
         private void WrongValue()
         {
             UniversalTesting(wrongvaluepath);
         }
-
         [Test]
         public void WrongHostTest()
         {
@@ -35,28 +32,19 @@ namespace Pinger.Tests
             Assert.Throws(typeof(FileNotFoundException), wronghost);
             File.Delete(logspath);
         }
-
         private void WrongHost()
-
         {
             UniversalTesting(wronghost);
         }
-
-
-
         private void UniversalTesting(string testsettingspath)
         {
             IKernel kernel = new StandardKernel(new NinjectConfig());
-
             if (!kernel.HasModule("Ninject.Extensions.Factory.FuncModule"))
             {
                 kernel.Load(new FuncModule());
             }
-
             var settings = new Settings();
-
             settings = JsonConvert.DeserializeObject<Settings>(File.ReadAllText(testsettingspath));
-
             UniversalPinger pinger = kernel.Get<UniversalPinger>();
             pinger.Run(settings);
         }

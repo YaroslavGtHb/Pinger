@@ -8,16 +8,16 @@ namespace Pinger.Realizations
 {
     public class IcmpPinger : IIcmpPinger
     {
+        private string okanswer { get; } = "OK";
+        private string failedanswer { get; } = "FAILED";
         private List<string> _rowhosts;
         private string _logpath;
         private Settings _settings = new Settings();
-
         public IcmpPinger(List<string> rowhosts, string logpath)
         {
             _rowhosts = rowhosts;
             _logpath = logpath;
         }
-
         public Dictionary<string, string> Ping()
         {
             Dictionary<string, string> answer = new Dictionary<string, string>();
@@ -28,29 +28,26 @@ namespace Pinger.Realizations
                 Console.WriteLine("Period: " + _settings.Period);
                 Console.WriteLine("Protocol: " + _settings.Protocol);
                 Console.WriteLine();
-
                 try
                 {
                     PingReply pingReply = ping.Send(rowhost);
 
                     if (pingReply != null && pingReply.Status.ToString() == "Success")
                     {
-                        answer.Add(rowhost, "OK");
+                        answer.Add(rowhost, okanswer);
                     }
                     else
                     {
-                        answer.Add(rowhost, "FAILED");
+                        answer.Add(rowhost, failedanswer);
                     }
                 }
                 catch (PingException)
                 {
-                    answer.Add(rowhost, "FAILED");
+                    answer.Add(rowhost, failedanswer);
                 }
             }
-
             return answer;
         }
-
         public void Logging(string host, string responce)
         {
             try
