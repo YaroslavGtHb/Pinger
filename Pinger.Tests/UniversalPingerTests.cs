@@ -43,10 +43,8 @@ namespace Pinger.Tests
             {
                 kernel.Load(new FuncModule());
             }
-            var settings = new Settings();
-            settings = JsonConvert.DeserializeObject<Settings>(File.ReadAllText(testsettingspath));
             UniversalPinger pinger = kernel.Get<UniversalPinger>();
-            pinger.Run(settings);
+            pinger.Run();
         }
     }
 }

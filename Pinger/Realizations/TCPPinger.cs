@@ -5,6 +5,7 @@ using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using Pinger.Intefaces;
+using Pinger.Properties;
 
 namespace Pinger.Realizations
 {
@@ -14,7 +15,6 @@ namespace Pinger.Realizations
         private string failedanswer { get; } = "FAILED";
         private List<string> _rowhosts;
         private string _logpath;
-        private Settings _settings = new Settings();
         public TcpPinger(List<string> rowhosts, string logpath)
         {
             _rowhosts = rowhosts;
@@ -26,8 +26,8 @@ namespace Pinger.Realizations
             foreach (var rowhost in _rowhosts)
             {
                 Console.WriteLine("Host: " + rowhost);
-                Console.WriteLine("Period: " + _settings.Period);
-                Console.WriteLine("Protocol: " + _settings.Protocol);
+                Console.WriteLine("Period: " + Settings.Period);
+                Console.WriteLine("Protocol: " + Settings.Protocol);
                 Console.WriteLine();
                 try
                 {

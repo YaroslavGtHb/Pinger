@@ -6,13 +6,13 @@ using System.Threading;
 using Newtonsoft.Json;
 using Ninject;
 using Pinger.IoC;
+using Pinger.Properties;
 
 namespace Pinger
 {
     public class UniversalPinger
     {
         private readonly IPingerFactory _pingerFactory;
-        private Settings _settings = new Settings();
         private string wrongsettingsmessage =
             "Wrong parameter in settings file. Program will be using default settings. Press any key to start.";
         private string wronghostmessage = "Wrong row hosts path in settings file.";
@@ -24,34 +24,18 @@ namespace Pinger
         {
             _pingerFactory = pingerFactory;
         }
-        public void Run(Settings settings)
+        public void Run()
         {
-            _settings = settings;
-            if (!File.Exists(_settings.Settingspath))
-            {
-                File.WriteAllText(_settings.Settingspath, JsonConvert.SerializeObject(_settings));
-            }
-            else
-            {
-                try
-                {
-                    _settings = JsonConvert.DeserializeObject<Settings>(File.ReadAllText(_settings.Settingspath));
-                }
-                catch (JsonReaderException)
-                {
-                    Console.WriteLine(wrongsettingsmessage);
-                    Console.ReadKey();
-                }
-            }
-            if (_settings.Protocol == "ICMP")
+
+            if (Settings.Protocol == "ICMP")
             {
                 IcmpPing();
             }
-            else if (_settings.Protocol == "HTTP")
+            else if (Settings.Protocol == "HTTP")
             {
                 HttpPing();
             }
-            else if (_settings.Protocol == "TCP")
+            else if (Settings.Protocol == "TCP")
             {
                 TcpPinger();
             }
@@ -64,11 +48,11 @@ namespace Pinger
         }
         private void IcmpPing()
         {
-            string logpath = _settings.Logpath;
+            string logpath = Settings.Logpath;
             List<string> rowhosts;
             try
             {
-                rowhosts = new List<string>(File.ReadAllLines(_settings.Rowhostspath));
+                rowhosts = new List<string>(File.ReadAllLines(Settings.Rowhostspath));
             }
             catch (DirectoryNotFoundException)
             {
@@ -85,7 +69,7 @@ namespace Pinger
             }
             while (true)
             {
-                Thread.Sleep(_settings.Period);
+                Thread.Sleep(Int32.Parse(Settings.Period));
                 var tempAnswer = icmpPinger.Ping();
                 var exceptAnswer = tempAnswer.Except(mainAnswer).ToList();
                 foreach (var item in exceptAnswer)
@@ -97,11 +81,11 @@ namespace Pinger
         }
         private void HttpPing()
         {
-            string logpath = _settings.Logpath;
+            string logpath = Settings.Logpath;
             List<string> rowhosts;
             try
             {
-                rowhosts = new List<string>(File.ReadAllLines(_settings.Rowhostspath));
+                rowhosts = new List<string>(File.ReadAllLines(Settings.Rowhostspath));
             }
             catch (DirectoryNotFoundException)
             {
@@ -117,7 +101,7 @@ namespace Pinger
             }
             while (true)
             {
-                Thread.Sleep(_settings.Period);
+                Thread.Sleep(Int32.Parse(Settings.Period));
                 var tempAnswer = httpPinger.Ping();
                 var exceptAnswer = tempAnswer.Except(mainAnswer).ToList();
                 foreach (var item in exceptAnswer)
@@ -129,11 +113,11 @@ namespace Pinger
         }
         private void TcpPinger()
         {
-            string logpath = _settings.Logpath;
+            string logpath = Settings.Logpath;
             List<string> rowhosts;
             try
             {
-                rowhosts = new List<string>(File.ReadAllLines(_settings.Rowhostspath));
+                rowhosts = new List<string>(File.ReadAllLines(Settings.Rowhostspath));
             }
             catch (DirectoryNotFoundException)
             {
@@ -149,7 +133,7 @@ namespace Pinger
             }
             while (true)
             {
-                Thread.Sleep(_settings.Period);
+                Thread.Sleep(Int32.Parse(Settings.Period));
                 var tempAnswer = tcpPinger.Ping();
                 var exceptAnswer = tempAnswer.Except(mainAnswer).ToList();
                 foreach (var item in exceptAnswer)
