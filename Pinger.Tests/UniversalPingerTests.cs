@@ -14,18 +14,6 @@ namespace Pinger.Tests
         private string wrongvaluepath = "./WrongValue.json";
         private string wronghost = "./WrongHost.json";
         [Test]
-        public void WrongValueTest()
-        {
-
-            TestDelegate wrongvalue = WrongValue;
-            Assert.Throws(typeof(JsonReaderException), wrongvalue);
-            File.Delete(logspath);
-        }
-        private void WrongValue()
-        {
-            UniversalTesting(wrongvaluepath);
-        }
-        [Test]
         public void WrongHostTest()
         {
             TestDelegate wronghost = WrongHost;
