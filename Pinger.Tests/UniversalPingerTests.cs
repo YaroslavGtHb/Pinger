@@ -1,18 +1,16 @@
 ﻿using System.IO;
-using Newtonsoft.Json;
 using Ninject;
 using Ninject.Extensions.Factory;
 using NUnit.Framework;
-using NUnit.Framework.Internal;
 using Pinger.IoC;
 
 namespace Pinger.Tests
 {
     class UniversalPingerTests
     {
-        private string logspath = "./Logs.txt";
-        private string wrongvaluepath = "./WrongValue.json";
-        private string wronghost = "./WrongHost.json";
+        private readonly string logspath = "./Logs.txt";
+        private string _wrongvaluepath = "./WrongValue.json";
+        private string _wronghost = "./WrongHost.json";
         [Test]
         public void WrongHostTest()
         {
@@ -22,9 +20,9 @@ namespace Pinger.Tests
         }
         private void WrongHost()
         {
-            UniversalTesting(wronghost);
+            UniversalTesting();
         }
-        private void UniversalTesting(string testsettingspath)
+        private void UniversalTesting()
         {
             IKernel kernel = new StandardKernel(new NinjectConfig());
             if (!kernel.HasModule("Ninject.Extensions.Factory.FuncModule"))
