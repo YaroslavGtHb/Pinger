@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net.NetworkInformation;
+using System.Threading.Tasks;
 using Pinger.Intefaces;
 using Pinger.Properties;
 
@@ -18,7 +19,7 @@ namespace Pinger.Realizations
             _rowhosts = rowhosts;
             _logpath = logpath;
         }
-        public Dictionary<string, string> Ping()
+        public async Task<Dictionary<string, string>> Ping()
         {
             Dictionary<string, string> answer = new Dictionary<string, string>();
             Ping ping = new Ping();

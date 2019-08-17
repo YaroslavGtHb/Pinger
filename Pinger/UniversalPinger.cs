@@ -46,7 +46,7 @@ namespace Pinger
                 IcmpPing();
             }
         }
-        private void IcmpPing()
+        private async void IcmpPing()
         {
             string logpath = Settings.Logpath;
             List<string> rowhosts;
@@ -61,8 +61,7 @@ namespace Pinger
                 return;
             }
             var icmpPinger = _pingerFactory.CreateIcmpPinger(rowhosts, logpath);
-            var mainAnswer = icmpPinger.Ping();
-
+            var mainAnswer = await icmpPinger.Ping();
             foreach (var item in mainAnswer)
             {
                 icmpPinger.Logging(item.Key, item.Value);
@@ -70,7 +69,8 @@ namespace Pinger
             while (true)
             {
                 Thread.Sleep(Int32.Parse(Settings.Period));
-                var tempAnswer = icmpPinger.Ping();
+                var tempAnswerTask = icmpPinger.Ping();
+                var tempAnswer = tempAnswerTask.Result;
                 var exceptAnswer = tempAnswer.Except(mainAnswer).ToList();
                 foreach (var item in exceptAnswer)
                 {
@@ -79,7 +79,7 @@ namespace Pinger
                 mainAnswer = tempAnswer;
             }
         }
-        private void HttpPing()
+        private async void HttpPing()
         {
             string logpath = Settings.Logpath;
             List<string> rowhosts;
@@ -94,8 +94,7 @@ namespace Pinger
                 return;
             }
             var httpPinger = _pingerFactory.CreateHttpPinger(rowhosts, logpath);
-            var mainAnswerTask = httpPinger.Ping();
-            var mainAnswer = mainAnswerTask.Result;
+            var mainAnswer = await httpPinger.Ping();
             foreach (var item in mainAnswer)
             {
                 httpPinger.Logging(item.Key, item.Value);
@@ -103,8 +102,7 @@ namespace Pinger
             while (true)
             {
                 Thread.Sleep(Int32.Parse(Settings.Period));
-                var tempAnswerTask = httpPinger.Ping();
-                var tempAnswer = tempAnswerTask.Result;
+                var tempAnswer = httpPinger.Ping().Result;
                 var exceptAnswer = tempAnswer.Except(mainAnswer).ToList();
                 foreach (var item in exceptAnswer)
                 {
@@ -113,7 +111,7 @@ namespace Pinger
                 mainAnswer = tempAnswer;
             }
         }
-        private void TcpPinger()
+        private async void TcpPinger()
         {
             string logpath = Settings.Logpath;
             List<string> rowhosts;
@@ -128,7 +126,7 @@ namespace Pinger
                 return;
             }
             var tcpPinger = _pingerFactory.CreateTcpPinger(rowhosts, logpath);
-            var mainAnswer = tcpPinger.Ping();
+            var mainAnswer = await tcpPinger.Ping();
             foreach (var item in mainAnswer)
             {
                 tcpPinger.Logging(item.Key, item.Value);
@@ -136,7 +134,7 @@ namespace Pinger
             while (true)
             {
                 Thread.Sleep(Int32.Parse(Settings.Period));
-                var tempAnswer = tcpPinger.Ping();
+                var tempAnswer = await tcpPinger.Ping();
                 var exceptAnswer = tempAnswer.Except(mainAnswer).ToList();
                 foreach (var item in exceptAnswer)
                 {

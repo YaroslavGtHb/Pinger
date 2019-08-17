@@ -8,13 +8,14 @@ namespace Pinger.Tests
     class HttpPingerTests
     {
         string logpath = "./LogsTest.txt";
-        List<string> rowhosts = new List<string>(File.ReadAllLines("./HostsTest.txt"));
+        List<string> rowhosts = new List<string>(File.ReadAllLines("./Hosts.txt"));
         [Test]
         public void PingTest()
         {
             HttpPinger httppinger = new HttpPinger(rowhosts, logpath);
             Dictionary<string, string> actual = new Dictionary<string, string>();
-            Dictionary<string, string> expected = httppinger.Ping();
+            var expectedTask = httppinger.Ping();
+            var expected = expectedTask.Result;
             actual.Add("https://www.google.com/", "OK");
             actual.Add("https://www.google1234455435435.com/", "FAILED");
             actual.Add("216.58.207.78", "FAILED");
