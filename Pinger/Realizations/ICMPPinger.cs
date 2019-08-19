@@ -53,7 +53,7 @@ namespace Pinger.Realizations
         {
             try
             {
-                using (var writer = new StreamWriter("./Logs.txt", true))
+                using (var writer = new StreamWriter(Settings.Logpath, true))
                 {
                     writer.WriteLine(DateTime.Now + " " + host + " " + responce);
                 }
