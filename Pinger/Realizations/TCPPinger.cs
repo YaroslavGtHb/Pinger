@@ -45,12 +45,10 @@ namespace Pinger.Realizations
                     times.Add(t);
                     sock.Close();
                     answer.Add(rowhost, Okanswer);
-                    GetConsoleAnswer(Okanswer);
                 }
                 catch (SocketException)
                 {
                     answer.Add(rowhost, Failedanswer);
-                    GetConsoleAnswer(Failedanswer);
                 }
             }
             return answer;
@@ -59,7 +57,7 @@ namespace Pinger.Realizations
         {
             try
             {
-                using (var writer = new StreamWriter(Settings.Logpath, true))
+                using (var writer = new StreamWriter("./Logs.txt", true))
                 {
                     writer.WriteLine(DateTime.Now + " " + host + " " + responce);
                 }
@@ -71,12 +69,6 @@ namespace Pinger.Realizations
                     writer.WriteLine(DateTime.Now + " " + host + " " + responce);
                 }
             }
-        }
-
-        private void GetConsoleAnswer(string answer)
-        {
-            Console.WriteLine(DateTime.Now);
-            Console.WriteLine("\nAnswer is: " + answer);
         }
     }
 }
