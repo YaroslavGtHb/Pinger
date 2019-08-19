@@ -36,36 +36,47 @@ namespace Pinger.Realizations
                         .Create(rowhost);
                     webRequest.AllowAutoRedirect = false;
                     HttpWebResponse response = (HttpWebResponse) webRequest.GetResponse();
-                    if (response.StatusCode.ToString() != null && (int) response.StatusCode == Int32.Parse(Settings.Httpvalidcode))
+                    if (response.StatusCode.ToString() != null &&
+                        (int) response.StatusCode == Int32.Parse(Settings.Httpvalidcode))
+                    {
                         answer.Add(rowhost, Okanswer);
+                        GetConsoleAnswer(Okanswer);
+                    }
                     else
                     {
                         answer.Add(rowhost, Failedanswer);
+                        GetConsoleAnswer(Okanswer);
                     }
                 }
                 catch (PingException)
                 {
                     answer.Add(rowhost, Failedanswer);
+                    GetConsoleAnswer(Failedanswer);
                 }
                 catch (ArgumentException)
                 {
                     answer.Add(rowhost, Failedanswer);
+                    GetConsoleAnswer(Failedanswer);
                 }
                 catch (WebException)
                 {
                     answer.Add(rowhost, Failedanswer);
+                    GetConsoleAnswer(Failedanswer);
                 }
                 catch (UriFormatException)
                 {
                     answer.Add(rowhost, Failedanswer);
+                    GetConsoleAnswer(Failedanswer);
                 }
                 catch (FormatException)
                 {
                     answer.Add(rowhost, Failedanswer);
+                    GetConsoleAnswer(Failedanswer);
                 }
                 catch (SocketException)
                 {
                     answer.Add(rowhost, Failedanswer);
+                    GetConsoleAnswer(Failedanswer);
                 }
             }
             return answer;
@@ -74,7 +85,7 @@ namespace Pinger.Realizations
         {
             try
             {
-                using (var writer = new StreamWriter("./Logs.txt", true))
+                using (var writer = new StreamWriter(Settings.Logpath, true))
                 {
                     writer.WriteLine(DateTime.Now + " " + host + " " + responce);
                 }
@@ -86,6 +97,11 @@ namespace Pinger.Realizations
                     writer.WriteLine(DateTime.Now + " " + host + " " + responce);
                 }
             }
+        }
+        private void GetConsoleAnswer(string answer)
+        {
+            Console.WriteLine(DateTime.Now);
+            Console.WriteLine("\nAnswer is: " + answer);
         }
     }
 }
