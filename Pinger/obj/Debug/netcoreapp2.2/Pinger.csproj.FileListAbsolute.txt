@@ -11,3 +11,16 @@ C:\Users\Anonymous\Desktop\HubForEducation\Pinger\Pinger\obj\Debug\netcoreapp2.2
 C:\Users\Anonymous\Desktop\HubForEducation\Pinger\Pinger\obj\Debug\netcoreapp2.2\Pinger.csprojAssemblyReference.cache
 C:\Users\Anonymous\Desktop\HubForEducation\Pinger\Pinger\obj\Debug\netcoreapp2.2\Pinger.csproj.GenerateResource.cache
 C:\Users\Anonymous\Desktop\HubForEducation\Pinger\Pinger\obj\Debug\netcoreapp2.2\Pinger.Properties.Settings.resources
+D:\educationproject\Pinger\Pinger\bin\Debug\netcoreapp2.2\Pinger.deps.json
+D:\educationproject\Pinger\Pinger\bin\Debug\netcoreapp2.2\Pinger.runtimeconfig.json
+D:\educationproject\Pinger\Pinger\bin\Debug\netcoreapp2.2\Pinger.runtimeconfig.dev.json
+D:\educationproject\Pinger\Pinger\bin\Debug\netcoreapp2.2\Pinger.dll
+D:\educationproject\Pinger\Pinger\bin\Debug\netcoreapp2.2\Pinger.pdb
+D:\educationproject\Pinger\Pinger\obj\Debug\netcoreapp2.2\Pinger.csprojAssemblyReference.cache
+D:\educationproject\Pinger\Pinger\obj\Debug\netcoreapp2.2\Pinger.Properties.Settings.resources
+D:\educationproject\Pinger\Pinger\obj\Debug\netcoreapp2.2\Pinger.csproj.GenerateResource.cache
+D:\educationproject\Pinger\Pinger\obj\Debug\netcoreapp2.2\Pinger.csproj.CoreCompileInputs.cache
+D:\educationproject\Pinger\Pinger\obj\Debug\netcoreapp2.2\Pinger.AssemblyInfoInputs.cache
+D:\educationproject\Pinger\Pinger\obj\Debug\netcoreapp2.2\Pinger.AssemblyInfo.cs
+D:\educationproject\Pinger\Pinger\obj\Debug\netcoreapp2.2\Pinger.dll
+D:\educationproject\Pinger\Pinger\obj\Debug\netcoreapp2.2\Pinger.pdb
