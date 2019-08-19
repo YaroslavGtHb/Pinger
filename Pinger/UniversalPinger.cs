@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
-using Newtonsoft.Json;
 using Ninject;
 using Pinger.IoC;
 using Pinger.Properties;
@@ -13,7 +12,7 @@ namespace Pinger
     public class UniversalPinger
     {
         private readonly IPingerFactory _pingerFactory;
-        private string wrongsettingsmessage =
+        private string _wrongsettingsmessage =
             "Wrong parameter in settings file. Program will be using default settings. Press any key to start.";
         private string wronghostmessage = "Wrong row hosts path in settings file.";
 

@@ -12,9 +12,9 @@ namespace Pinger.Realizations
 {
     public class HttpPinger : IHttpPinger
     {
-        private string okanswer { get;} = "OK";
-        private string failedanswer { get;} = "FAILED";
-        private List<string> _rowhosts;
+        private string Okanswer { get;} = "OK";
+        private string Failedanswer { get;} = "FAILED";
+        private readonly List<string> _rowhosts;
         private string _logpath;
         public HttpPinger(List<string> rowhosts, string logpath)
         {
@@ -37,35 +37,35 @@ namespace Pinger.Realizations
                     webRequest.AllowAutoRedirect = false;
                     HttpWebResponse response = (HttpWebResponse) webRequest.GetResponse();
                     if (response.StatusCode.ToString() != null && (int) response.StatusCode == Int32.Parse(Settings.Httpvalidcode))
-                        answer.Add(rowhost, okanswer);
+                        answer.Add(rowhost, Okanswer);
                     else
                     {
-                        answer.Add(rowhost, failedanswer);
+                        answer.Add(rowhost, Failedanswer);
                     }
                 }
                 catch (PingException)
                 {
-                    answer.Add(rowhost, failedanswer);
+                    answer.Add(rowhost, Failedanswer);
                 }
                 catch (ArgumentException)
                 {
-                    answer.Add(rowhost, failedanswer);
+                    answer.Add(rowhost, Failedanswer);
                 }
                 catch (WebException)
                 {
-                    answer.Add(rowhost, failedanswer);
+                    answer.Add(rowhost, Failedanswer);
                 }
                 catch (UriFormatException)
                 {
-                    answer.Add(rowhost, failedanswer);
+                    answer.Add(rowhost, Failedanswer);
                 }
                 catch (FormatException)
                 {
-                    answer.Add(rowhost, failedanswer);
+                    answer.Add(rowhost, Failedanswer);
                 }
                 catch (SocketException)
                 {
-                    answer.Add(rowhost, failedanswer);
+                    answer.Add(rowhost, Failedanswer);
                 }
             }
             return answer;

@@ -9,8 +9,6 @@ namespace Pinger.Tests
     class UniversalPingerTests
     {
         private readonly string logspath = "./Logs.txt";
-        private string _wrongvaluepath = "./WrongValue.json";
-        private string _wronghost = "./WrongHost.json";
         [Test]
         public void WrongHostTest()
         {

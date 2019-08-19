@@ -12,8 +12,8 @@ namespace Pinger.Realizations
 {
     public class TcpPinger : ITcpPinger
     {
-        private string okanswer { get; } = "OK";
-        private string failedanswer { get; } = "FAILED";
+        private string Okanswer { get; } = "OK";
+        private string Failedanswer { get; } = "FAILED";
         private List<string> _rowhosts;
         private string _logpath;
         public TcpPinger(List<string> rowhosts, string logpath)
@@ -44,11 +44,11 @@ namespace Pinger.Realizations
                     double t = stopwatch.Elapsed.TotalMilliseconds;
                     times.Add(t);
                     sock.Close();
-                    answer.Add(rowhost, okanswer);
+                    answer.Add(rowhost, Okanswer);
                 }
                 catch (SocketException)
                 {
-                    answer.Add(rowhost, failedanswer);
+                    answer.Add(rowhost, Failedanswer);
                 }
             }
             return answer;

@@ -10,9 +10,9 @@ namespace Pinger.Realizations
 {
     public class IcmpPinger : IIcmpPinger
     {
-        private string okanswer { get; } = "OK";
-        private string failedanswer { get; } = "FAILED";
-        private List<string> _rowhosts;
+        private string Okanswer { get; } = "OK";
+        private string Failedanswer { get; } = "FAILED";
+        private readonly List<string> _rowhosts;
         private string _logpath;
         public IcmpPinger(List<string> rowhosts, string logpath)
         {
@@ -35,16 +35,16 @@ namespace Pinger.Realizations
 
                     if (pingReply != null && pingReply.Status.ToString() == "Success")
                     {
-                        answer.Add(rowhost, okanswer);
+                        answer.Add(rowhost, Okanswer);
                     }
                     else
                     {
-                        answer.Add(rowhost, failedanswer);
+                        answer.Add(rowhost, Failedanswer);
                     }
                 }
                 catch (PingException)
                 {
-                    answer.Add(rowhost, failedanswer);
+                    answer.Add(rowhost, Failedanswer);
                 }
             }
             return answer;
