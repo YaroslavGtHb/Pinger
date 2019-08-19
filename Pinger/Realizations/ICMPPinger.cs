@@ -51,19 +51,22 @@ namespace Pinger.Realizations
         }
         public void Logging(string host, string responce)
         {
+            string answerline = DateTime.Now + " " + host + " " + responce;
             try
             {
-                using (var writer = new StreamWriter("./Logs.txt", true))
+                using (var writer = new StreamWriter(Settings.Logpath, true))
                 {
-                    writer.WriteLine(DateTime.Now + " " + host + " " + responce);
+                    writer.WriteLine(answerline);
                 }
+                Console.WriteLine(answerline);
             }
             catch (DirectoryNotFoundException)
             {
                 using (var writer = new StreamWriter(_logpath, true))
                 {
-                    writer.WriteLine(DateTime.Now + " " + host + " " + responce);
+                    writer.WriteLine(answerline);
                 }
+                Console.WriteLine(answerline);
             }
         }
     }
