@@ -10,7 +10,7 @@ using Pinger.Properties;
 
 namespace Pinger.Realizations
 {
-    public class TcpPinger : ITcpPinger
+    public class TcpPinger : Loger, ITcpPinger
     {
         private string Okanswer { get; } = "OK";
         private string Failedanswer { get; } = "FAILED";
@@ -52,23 +52,6 @@ namespace Pinger.Realizations
                 }
             }
             return answer;
-        }
-        public void Logging(string responce, string host)
-        {
-            try
-            {
-                using (var writer = new StreamWriter("./Logs.txt", true))
-                {
-                    writer.WriteLine(DateTime.Now + " " + host + " " + responce);
-                }
-            }
-            catch (DirectoryNotFoundException)
-            {
-                using (var writer = new StreamWriter(_logpath, true))
-                {
-                    writer.WriteLine(DateTime.Now + " " + host + " " + responce);
-                }
-            }
         }
     }
 }
