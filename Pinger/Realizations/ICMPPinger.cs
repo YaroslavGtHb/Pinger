@@ -24,10 +24,7 @@ namespace Pinger.Realizations
             Ping ping = new Ping();
             foreach (var rowhost in _rowhosts)
             {
-                Console.WriteLine("Host: " + rowhost);
-                Console.WriteLine("Period: " + Settings.Period);
-                Console.WriteLine("Protocol: " + Settings.Protocol);
-                Console.WriteLine();
+                
                 try
                 {
                     PingReply pingReply = ping.Send(rowhost);
@@ -35,16 +32,23 @@ namespace Pinger.Realizations
                     if (pingReply != null && pingReply.Status.ToString() == "Success")
                     {
                         answer.Add(rowhost, Okanswer);
+                        Console.WriteLine(Okanswer);
                     }
                     else
                     {
                         answer.Add(rowhost, Failedanswer);
+                        Console.WriteLine(Failedanswer);
                     }
                 }
                 catch (PingException)
                 {
                     answer.Add(rowhost, Failedanswer);
+                    Console.WriteLine(Failedanswer);
                 }
+                Console.WriteLine("Host: " + rowhost);
+                Console.WriteLine("Period: " + Settings.Period);
+                Console.WriteLine("Protocol: " + Settings.Protocol);
+                Console.WriteLine();
             }
             return answer;
         }

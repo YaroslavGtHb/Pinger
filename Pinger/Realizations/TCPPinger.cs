@@ -25,10 +25,6 @@ namespace Pinger.Realizations
             Dictionary<string, string> answer = new Dictionary<string, string>();
             foreach (var rowhost in _rowhosts)
             {
-                Console.WriteLine("Host: " + rowhost);
-                Console.WriteLine("Period: " + Settings.Period);
-                Console.WriteLine("Protocol: " + Settings.Protocol);
-                Console.WriteLine();
                 try
                 {
                     IPAddress[] ip = Dns.GetHostAddresses(rowhost);
@@ -44,11 +40,17 @@ namespace Pinger.Realizations
                     times.Add(t);
                     sock.Close();
                     answer.Add(rowhost, Okanswer);
+                    Console.WriteLine(Okanswer);
                 }
                 catch (SocketException)
                 {
                     answer.Add(rowhost, Failedanswer);
+                    Console.WriteLine(Failedanswer);
                 }
+                Console.WriteLine("Host: " + rowhost);
+                Console.WriteLine("Period: " + Settings.Period);
+                Console.WriteLine("Protocol: " + Settings.Protocol);
+                Console.WriteLine();
             }
             return answer;
         }

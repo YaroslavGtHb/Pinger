@@ -25,47 +25,58 @@ namespace Pinger.Realizations
             Dictionary<string, string> answer = new Dictionary<string, string>();
             foreach (var rowhost in _rowhosts)
             {
-                Console.WriteLine("Host: " + rowhost);
-                Console.WriteLine("Period: " + Settings.Period);
-                Console.WriteLine("Protocol: " + Settings.Protocol);
-                Console.WriteLine();
                 try
                 {
                     HttpWebRequest webRequest = (HttpWebRequest) WebRequest
                         .Create(rowhost);
                     webRequest.AllowAutoRedirect = false;
                     HttpWebResponse response = (HttpWebResponse) webRequest.GetResponse();
-                    if (response.StatusCode.ToString() != null && (int) response.StatusCode == Int32.Parse(Settings.Httpvalidcode))
+                    if (response.StatusCode.ToString() != null &&
+                        (int) response.StatusCode == Int32.Parse(Settings.Httpvalidcode))
+                    {
                         answer.Add(rowhost, Okanswer);
+                        Console.WriteLine(Okanswer);
+                    }
                     else
                     {
                         answer.Add(rowhost, Failedanswer);
+                        Console.WriteLine(Failedanswer);
                     }
                 }
                 catch (PingException)
                 {
                     answer.Add(rowhost, Failedanswer);
+                    Console.WriteLine(Failedanswer);
                 }
                 catch (ArgumentException)
                 {
                     answer.Add(rowhost, Failedanswer);
+                    Console.WriteLine(Failedanswer);
                 }
                 catch (WebException)
                 {
                     answer.Add(rowhost, Failedanswer);
+                    Console.WriteLine(Failedanswer);
                 }
                 catch (UriFormatException)
                 {
                     answer.Add(rowhost, Failedanswer);
+                    Console.WriteLine(Failedanswer);
                 }
                 catch (FormatException)
                 {
                     answer.Add(rowhost, Failedanswer);
+                    Console.WriteLine(Failedanswer);
                 }
                 catch (SocketException)
                 {
                     answer.Add(rowhost, Failedanswer);
+                    Console.WriteLine(Failedanswer);
                 }
+                Console.WriteLine("Host: " + rowhost);
+                Console.WriteLine("Period: " + Settings.Period);
+                Console.WriteLine("Protocol: " + Settings.Protocol);
+                Console.WriteLine();
             }
             return answer;
         }
