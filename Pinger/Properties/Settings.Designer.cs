@@ -72,9 +72,9 @@ namespace Pinger.Properties {
         /// <summary>
         ///   Ищет локализованную строку, похожую на ./Logs.txt.
         /// </summary>
-        internal static string Logpath {
+        internal static string MainLogpath {
             get {
-                return ResourceManager.GetString("Logpath", resourceCulture);
+                return ResourceManager.GetString("MainLogpath", resourceCulture);
             }
         }
         

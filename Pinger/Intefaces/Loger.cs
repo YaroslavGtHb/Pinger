@@ -11,14 +11,14 @@ namespace Pinger.Intefaces
             string LogString = DateTime.Now + " " + host + " " + responce;
             try
             {
-                using (var writer = new StreamWriter(Settings.Logpath, true))
+                using (var writer = new StreamWriter(Settings.MainLogpath, true))
                 {
                     writer.WriteLine(LogString);
                 }
             }
             catch (DirectoryNotFoundException)
             {
-                using (var writer = new StreamWriter(Settings.Logpath, true))
+                using (var writer = new StreamWriter(Settings.MainLogpath, true))
                 {
                     writer.WriteLine(LogString);
                 }

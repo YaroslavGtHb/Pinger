@@ -47,7 +47,7 @@ namespace Pinger
         }
         private async void IcmpPing()
         {
-            string logpath = Settings.Logpath;
+            string logpath = Settings.MainLogpath;
             List<string> rowhosts;
             try
             {
@@ -80,7 +80,7 @@ namespace Pinger
         }
         private async void HttpPing()
         {
-            string logpath = Settings.Logpath;
+            string logpath = Settings.MainLogpath;
             List<string> rowhosts;
             try
             {
@@ -112,7 +112,7 @@ namespace Pinger
         }
         private async void TcpPinger()
         {
-            string logpath = Settings.Logpath;
+            string logpath = Settings.MainLogpath;
             List<string> rowhosts;
             try
             {

@@ -120,7 +120,7 @@
   <data name="Httpvalidcode" xml:space="preserve">
     <value>200</value>
   </data>
-  <data name="Logpath" xml:space="preserve">
+  <data name="MainLogpath" xml:space="preserve">
     <value>./Logs.txt</value>
   </data>
   <data name="Period" xml:space="preserve">
