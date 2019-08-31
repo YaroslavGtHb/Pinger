@@ -8,18 +8,19 @@ namespace Pinger.Intefaces
     {
         public virtual void Logging(string host, string responce)
         {
+            string LogString = DateTime.Now + " " + host + " " + responce;
             try
             {
                 using (var writer = new StreamWriter(Settings.Logpath, true))
                 {
-                    writer.WriteLine(DateTime.Now + " " + host + " " + responce);
+                    writer.WriteLine(LogString);
                 }
             }
             catch (DirectoryNotFoundException)
             {
                 using (var writer = new StreamWriter(Settings.Logpath, true))
                 {
-                    writer.WriteLine(DateTime.Now + " " + host + " " + responce);
+                    writer.WriteLine(LogString);
                 }
             }
         }
