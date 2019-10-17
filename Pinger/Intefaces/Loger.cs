@@ -10,13 +10,13 @@ namespace Pinger.Intefaces
         public static List<string> Advancedlogpaths = new List<string>()
         {
             Settings.MainLogpath,
-            "./Logs1234.txt"
+            "./AdvancedLogs.txt"
         };
 
         public virtual void Logging(string host, string responce)
         {
 
-            string LogString = DateTime.Now + " " + host + " " + responce;
+            var LogString = DateTime.Now + " " + host + " " + responce;
 
             try
             {
