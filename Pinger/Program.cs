@@ -3,13 +3,11 @@ using Microsoft.Extensions.Configuration;
 using Ninject;
 using Ninject.Extensions.Factory;
 using Pinger.IoC;
-using Pinger.Properties;
 
 namespace Pinger
 {
     class Program
     {
-
         static void Main()
         {
             IKernel kernel = new StandardKernel(new NinjectConfig());

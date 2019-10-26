@@ -4,7 +4,6 @@ using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Pinger.Intefaces;
-using Pinger.Properties;
 
 namespace Pinger.Realizations
 {

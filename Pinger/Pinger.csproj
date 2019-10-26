@@ -17,18 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Properties\Settings.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Update="Properties\Settings.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    <Folder Include="Properties\" />
   </ItemGroup>
 
 </Project>

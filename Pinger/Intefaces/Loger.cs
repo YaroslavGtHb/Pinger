@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using Microsoft.Extensions.Configuration;
-using Pinger.Properties;
 using Pinger;
 
 namespace Pinger.Intefaces

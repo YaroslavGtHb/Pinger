@@ -6,7 +6,6 @@ using System.Threading;
 using Microsoft.Extensions.Configuration;
 using Ninject;
 using Pinger.IoC;
-using Pinger.Properties;
 
 namespace Pinger
 {
