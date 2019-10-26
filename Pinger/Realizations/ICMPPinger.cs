@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net.NetworkInformation;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 using Pinger.Intefaces;
 using Pinger.Properties;
 
@@ -9,6 +10,8 @@ namespace Pinger.Realizations
 {
     public class IcmpPinger : Loger, IIcmpPinger
     {
+        private IConfigurationRoot Configuration = Startup.builder.Build();
+
         private string Okanswer { get; } = "OK";
         private string Failedanswer { get; } = "FAILED";
         private readonly List<string> _rowhosts;
@@ -46,8 +49,8 @@ namespace Pinger.Realizations
                     Console.WriteLine(Failedanswer);
                 }
                 Console.WriteLine("Host: " + rowhost);
-                Console.WriteLine("Period: " + Settings.Period);
-                Console.WriteLine("Protocol: " + Settings.Protocol);
+                Console.WriteLine("Period: " + Configuration["Period"]);
+                Console.WriteLine("Protocol: " + Configuration["Protocol"]);
                 Console.WriteLine();
             }
             return answer;

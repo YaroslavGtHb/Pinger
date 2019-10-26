@@ -4,6 +4,7 @@ using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 using Pinger.Intefaces;
 using Pinger.Properties;
 
@@ -11,6 +12,8 @@ namespace Pinger.Realizations
 {
     public class HttpPinger : Loger, IHttpPinger
     {
+        private IConfigurationRoot Configuration = Startup.builder.Build();
+
         private string Okanswer { get;} = "OK";
         private string Failedanswer { get;} = "FAILED";
         private readonly List<string> _rowhosts;
@@ -32,7 +35,7 @@ namespace Pinger.Realizations
                     webRequest.AllowAutoRedirect = false;
                     HttpWebResponse response = (HttpWebResponse) webRequest.GetResponse();
                     if (response.StatusCode.ToString() != null &&
-                        (int) response.StatusCode == Int32.Parse(Settings.Httpvalidcode))
+                        (int) response.StatusCode == Int32.Parse(Configuration["Httpvalidcode"]))
                     {
                         answer.Add(rowhost, Okanswer);
                         Console.WriteLine(Okanswer);
@@ -74,8 +77,8 @@ namespace Pinger.Realizations
                     Console.WriteLine(Failedanswer);
                 }
                 Console.WriteLine("Host: " + rowhost);
-                Console.WriteLine("Period: " + Settings.Period);
-                Console.WriteLine("Protocol: " + Settings.Protocol);
+                Console.WriteLine("Period: " + Configuration["Period"]);
+                Console.WriteLine("Protocol: " + Configuration["Protocol"]);
                 Console.WriteLine();
             }
             return answer;
