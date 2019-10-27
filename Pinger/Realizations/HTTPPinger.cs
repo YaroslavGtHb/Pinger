@@ -16,17 +16,16 @@ namespace Pinger.Realizations
         private string Okanswer { get;} = "OK";
         private string Failedanswer { get;} = "FAILED";
         private readonly List<string> _rowhosts;
-        private string _logpath;
-        public HttpPinger(List<string> rowhosts, string logpath)
+        public HttpPinger(List<string> rowhosts)
         {
             _rowhosts = rowhosts;
-            _logpath = logpath;
         }
         public async Task<Dictionary<string, string>> Ping()
         {
             Dictionary<string, string> answer = new Dictionary<string, string>();
             foreach (var rowhost in _rowhosts)
             {
+                Console.WriteLine(DateTime.Now);
                 try
                 {
                     HttpWebRequest webRequest = (HttpWebRequest) WebRequest

@@ -12,7 +12,7 @@ namespace Pinger.Tests
         [Test]
         public void PingTest()
         {
-            HttpPinger httppinger = new HttpPinger(rowhosts, logpath);
+            HttpPinger httppinger = new HttpPinger(rowhosts);
             Dictionary<string, string> actual = new Dictionary<string, string>();
             var expectedTask = httppinger.Ping();
             var expected = expectedTask.Result;
@@ -25,7 +25,7 @@ namespace Pinger.Tests
         [Test]
         public void LoggingTest()
         {
-            HttpPinger httppinger = new HttpPinger(rowhosts, logpath);
+            HttpPinger httppinger = new HttpPinger(rowhosts);
             foreach (var item in rowhosts)
             {
                 httppinger.Logging(item, "OK");

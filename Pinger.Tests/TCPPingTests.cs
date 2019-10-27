@@ -12,7 +12,7 @@ namespace Pinger.Tests
         [Test]
         public void PingTest()
         {
-            TcpPinger tcppinger = new TcpPinger(rowhosts, logpath);
+            TcpPinger tcppinger = new TcpPinger(rowhosts);
             Dictionary<string, string> actual = new Dictionary<string, string>();
             Dictionary<string, string> expected = tcppinger.Ping().Result;
             actual.Add("https://www.google.com/", "FAILED");
@@ -24,7 +24,7 @@ namespace Pinger.Tests
         [Test]
         public void LoggingTest()
         {
-            TcpPinger tcppinger = new TcpPinger(rowhosts, logpath);
+            TcpPinger tcppinger = new TcpPinger(rowhosts);
             foreach (var item in rowhosts)
             {
                 tcppinger.Logging(item, "OK");

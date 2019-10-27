@@ -14,11 +14,9 @@ namespace Pinger.Realizations
         private string Okanswer { get; } = "OK";
         private string Failedanswer { get; } = "FAILED";
         private readonly List<string> _rowhosts;
-        private string _logpath;
-        public IcmpPinger(List<string> rowhosts, string logpath)
+        public IcmpPinger(List<string> rowhosts)
         {
             _rowhosts = rowhosts;
-            _logpath = logpath;
         }
         public async Task<Dictionary<string, string>> Ping()
         {
@@ -26,7 +24,7 @@ namespace Pinger.Realizations
             Ping ping = new Ping();
             foreach (var rowhost in _rowhosts)
             {
-                
+                Console.WriteLine(DateTime.Now);
                 try
                 {
                     PingReply pingReply = ping.Send(rowhost);

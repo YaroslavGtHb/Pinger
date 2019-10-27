@@ -16,7 +16,7 @@ namespace Pinger.Tests
         [Test]
         public void PingTest()
         {
-            IcmpPinger icmppinger = new IcmpPinger(rowhosts, logpath);
+            IcmpPinger icmppinger = new IcmpPinger(rowhosts);
             Dictionary<string, string> actual = new Dictionary<string, string>();
             var expected = icmppinger.Ping().Result;
             actual.Add("https://www.google.com/", "FAILED");
@@ -28,7 +28,7 @@ namespace Pinger.Tests
         [Test]
         public void LoggingTest()
         {
-            IcmpPinger icmppinger = new IcmpPinger(rowhosts, logpath);
+            IcmpPinger icmppinger = new IcmpPinger(rowhosts);
             foreach (var item in rowhosts)
             {
                 icmppinger.Logging(item, "OK");
