@@ -25,9 +25,10 @@ namespace Pinger.Tests
         public void LoggingTest()
         {
             TcpPinger tcppinger = new TcpPinger(rowhosts);
-            foreach (var item in rowhosts)
+            var answer = tcppinger.Ping();
+            foreach (var item in answer.Result)
             {
-                tcppinger.Logging(item, "OK");
+                tcppinger.Logging(item.Key, item.Value);
             }
             File.Delete(logpath);
         }

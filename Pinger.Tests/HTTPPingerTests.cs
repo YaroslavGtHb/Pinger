@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using NUnit.Framework;
 using Pinger.Realizations;
@@ -26,9 +27,10 @@ namespace Pinger.Tests
         public void LoggingTest()
         {
             HttpPinger httppinger = new HttpPinger(rowhosts);
-            foreach (var item in rowhosts)
+            var answer = httppinger.Ping();
+            foreach (var item in answer.Result)
             {
-                httppinger.Logging(item, "OK");
+                httppinger.Logging(item.Key, item.Value);
             }
             File.Delete(logpath);
         }
