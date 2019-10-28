@@ -1,4 +1,3 @@
-(http://www.worldgolfhalloffame.org/wp-content/uploads/2013/03/PING.png)
 # Pinger
 
 Простая программа для опроса заданных хостов, доступно три протокола, **ICMP**, **HTTP** и **TCP**.
