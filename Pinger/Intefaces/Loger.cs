@@ -48,6 +48,7 @@ namespace Pinger.Intefaces
             Console.WriteLine("Protocol: " + Configuration["Protocol"]);
             Console.WriteLine();
         }
+<<<<<<< HEAD
 
         public void ShowStatusConsole(ref Dictionary<string, string> answer, string rowhost, bool answerstatus)
         {
@@ -64,5 +65,7 @@ namespace Pinger.Intefaces
         }
 =======
 >>>>>>> parent of 17b93d0... ConsoleLogging optimization.
+=======
+>>>>>>> parent of 3829356... TEST.
     }
 }

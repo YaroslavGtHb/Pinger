@@ -20,6 +20,9 @@ namespace Pinger.Realizations
             _rowhosts = rowhosts;
         }
 
+        private string Okanswer { get; } = "OK";
+        private string Failedanswer { get; } = "FAILED";
+
         public async Task<Dictionary<string, string>> Ping()
         {
             var consoleloger = new ConsoleLoger();
@@ -41,11 +44,13 @@ namespace Pinger.Realizations
                     double t = stopwatch.Elapsed.TotalMilliseconds;
                     times.Add(t);
                     sock.Close();
-                    ShowStatusConsole(ref answer, rowhost, true);
+                    answer.Add(rowhost, Okanswer);
+                    Console.WriteLine(Okanswer);
                 }
                 catch (SocketException)
                 {
-                    ShowStatusConsole(ref answer, rowhost, false);
+                    answer.Add(rowhost, Failedanswer);
+                    Console.WriteLine(Failedanswer);
                 }
 
                 consoleloger.Show(rowhost);
