@@ -11,14 +11,13 @@ namespace Pinger
 {
     public class UniversalPinger
     {
+        private readonly IConfigurationRoot _configuration = Startup.Builder.Build();
         private readonly IPingerFactory _pingerFactory;
 
         private readonly string wronghostmessage = "Wrong row hosts path in settings file.";
 
         private readonly string wrongprotocolmessage =
             "Wrong protocol value in settings file. \n Any key to start default ICMP Ping.";
-
-        private readonly IConfigurationRoot _configuration = Startup.Builder.Build();
 
         [Inject]
         public UniversalPinger(IPingerFactory pingerFactory)

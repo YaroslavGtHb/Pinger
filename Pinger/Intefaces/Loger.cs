@@ -36,6 +36,7 @@ namespace Pinger.Intefaces
                     }
             }
         }
+
         public void ConsoleLogging(string rowhost)
         {
             Console.WriteLine("Host: " + rowhost);
