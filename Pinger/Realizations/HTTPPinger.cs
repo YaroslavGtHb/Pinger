@@ -41,10 +41,13 @@ namespace Pinger.Realizations
                     var response = (HttpWebResponse) webRequest.GetResponse();
                     if ((int) response.StatusCode == int.Parse(_configuration["Httpvalidcode"]))
 <<<<<<< HEAD
+<<<<<<< HEAD
                         ShowStatusConsole(ref answer, rowhost, true);
 =======
                     HttpWebResponse response = (HttpWebResponse) webRequest.GetResponse();
                     if ((int) response.StatusCode == Int32.Parse(Configuration["Httpvalidcode"]))
+=======
+>>>>>>> parent of 3829356... TEST.
 =======
 >>>>>>> parent of 3829356... TEST.
                     {
@@ -52,7 +55,10 @@ namespace Pinger.Realizations
                         Console.WriteLine(Okanswer);
                     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> parent of 5d5f9cd... CLEANUP!
+=======
+>>>>>>> parent of 3829356... TEST.
 =======
 >>>>>>> parent of 3829356... TEST.
                     else

@@ -49,6 +49,7 @@ namespace Pinger.Intefaces
             Console.WriteLine();
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
         public void ShowStatusConsole(ref Dictionary<string, string> answer, string rowhost, bool answerstatus)
         {
@@ -65,6 +66,8 @@ namespace Pinger.Intefaces
         }
 =======
 >>>>>>> parent of 17b93d0... ConsoleLogging optimization.
+=======
+>>>>>>> parent of 3829356... TEST.
 =======
 >>>>>>> parent of 3829356... TEST.
     }
