@@ -28,10 +28,9 @@ namespace Pinger.Tests
         public void LoggingTest()
         {
             HttpPinger httppinger = new HttpPinger(rowhosts);
-            var answer = httppinger.Ping();
-            foreach (var item in answer.Result)
+            foreach (var item in rowhosts)
             {
-                httppinger.Logging(item.Key, item.Value);
+                httppinger.Logging(item, "OK");
             }
 
             File.Delete(logpath);

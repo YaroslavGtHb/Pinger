@@ -32,10 +32,9 @@ namespace Pinger.Tests
         public void LoggingTest()
         {
             IcmpPinger icmppinger = new IcmpPinger(rowhosts);
-            var answer = icmppinger.Ping();
-            foreach (var item in answer.Result)
+            foreach (var item in rowhosts)
             {
-                icmppinger.Logging(item.Key, item.Value);
+                icmppinger.Logging(item, "OK");
             }
 
             File.Delete(logpath);
