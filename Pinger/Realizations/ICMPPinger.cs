@@ -17,6 +17,7 @@ namespace Pinger.Realizations
 
         public async Task<Dictionary<string, string>> Ping()
         {
+            var consoleloger = new ConsoleLoger();
             var answer = new Dictionary<string, string>();
             var ping = new Ping();
             foreach (var rowhost in _rowhosts)
@@ -36,7 +37,7 @@ namespace Pinger.Realizations
                     ShowStatusConsole(ref answer, rowhost, false);
                 }
 
-                ConsoleLogging(rowhost);
+                consoleloger.Show(rowhost);
             }
 
             return answer;

@@ -36,6 +36,7 @@ namespace Pinger.Intefaces
                     }
             }
         }
+<<<<<<< HEAD
         public void ConsoleLogging(string rowhost)
         {
             Console.WriteLine("Host: " + rowhost);
@@ -57,5 +58,7 @@ namespace Pinger.Intefaces
                 Console.WriteLine("FAILED");
             }
         }
+=======
+>>>>>>> parent of 17b93d0... ConsoleLogging optimization.
     }
 }

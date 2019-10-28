@@ -11,8 +11,8 @@ namespace Pinger.Realizations
 {
     public class HttpPinger : Loger, IHttpPinger
     {
-        private readonly IConfigurationRoot _configuration = Startup.Builder.Build();
         private readonly List<string> _rowhosts;
+        private readonly IConfigurationRoot _configuration = Startup.Builder.Build();
 
         public HttpPinger(List<string> rowhosts)
         {
@@ -21,6 +21,7 @@ namespace Pinger.Realizations
 
         public async Task<Dictionary<string, string>> Ping()
         {
+            var consoleloger = new ConsoleLoger();
             var answer = new Dictionary<string, string>();
             foreach (var rowhost in _rowhosts)
             {
@@ -47,7 +48,7 @@ namespace Pinger.Realizations
                         ShowStatusConsole(ref answer, rowhost, false);
                 }
 
-                ConsoleLogging(rowhost);
+                consoleloger.Show(rowhost);
             }
 
             return answer;
