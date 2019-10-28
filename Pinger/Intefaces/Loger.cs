@@ -43,5 +43,19 @@ namespace Pinger.Intefaces
             Console.WriteLine("Protocol: " + Configuration["Protocol"]);
             Console.WriteLine();
         }
+
+        public void ShowStatusConsole(ref Dictionary<string, string> answer, string rowhost, bool answerstatus)
+        {
+            if (answerstatus)
+            {
+                answer.Add(rowhost, "OK");
+                Console.WriteLine("OK");
+            }
+            else
+            {
+                answer.Add(rowhost, "FAILED");
+                Console.WriteLine("FAILED");
+            }
+        }
     }
 }

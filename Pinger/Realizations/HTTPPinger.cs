@@ -19,9 +19,6 @@ namespace Pinger.Realizations
             _rowhosts = rowhosts;
         }
 
-        private string Okanswer { get; } = "OK";
-        private string Failedanswer { get; } = "FAILED";
-
         public async Task<Dictionary<string, string>> Ping()
         {
             var answer = new Dictionary<string, string>();
@@ -35,45 +32,19 @@ namespace Pinger.Realizations
                     webRequest.AllowAutoRedirect = false;
                     var response = (HttpWebResponse) webRequest.GetResponse();
                     if ((int) response.StatusCode == int.Parse(_configuration["Httpvalidcode"]))
-                    {
-                        answer.Add(rowhost, Okanswer);
-                        Console.WriteLine(Okanswer);
-                    }
+                        ShowStatusConsole(ref answer, rowhost, true);
                     else
-                    {
-                        answer.Add(rowhost, Failedanswer);
-                        Console.WriteLine(Failedanswer);
-                    }
+                        ShowStatusConsole(ref answer, rowhost, false);
                 }
-                catch (PingException)
+                catch (Exception ex)
                 {
-                    answer.Add(rowhost, Failedanswer);
-                    Console.WriteLine(Failedanswer);
-                }
-                catch (ArgumentException)
-                {
-                    answer.Add(rowhost, Failedanswer);
-                    Console.WriteLine(Failedanswer);
-                }
-                catch (WebException)
-                {
-                    answer.Add(rowhost, Failedanswer);
-                    Console.WriteLine(Failedanswer);
-                }
-                catch (UriFormatException)
-                {
-                    answer.Add(rowhost, Failedanswer);
-                    Console.WriteLine(Failedanswer);
-                }
-                catch (FormatException)
-                {
-                    answer.Add(rowhost, Failedanswer);
-                    Console.WriteLine(Failedanswer);
-                }
-                catch (SocketException)
-                {
-                    answer.Add(rowhost, Failedanswer);
-                    Console.WriteLine(Failedanswer);
+                    if (ex is PingException ||
+                        ex is ArgumentException ||
+                        ex is WebException ||
+                        ex is UriFormatException ||
+                        ex is FormatException ||
+                        ex is SocketException)
+                        ShowStatusConsole(ref answer, rowhost, false);
                 }
 
                 ConsoleLogging(rowhost);

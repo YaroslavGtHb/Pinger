@@ -15,9 +15,6 @@ namespace Pinger.Realizations
             _rowhosts = rowhosts;
         }
 
-        private string Okanswer { get; } = "OK";
-        private string Failedanswer { get; } = "FAILED";
-
         public async Task<Dictionary<string, string>> Ping()
         {
             var answer = new Dictionary<string, string>();
@@ -30,20 +27,13 @@ namespace Pinger.Realizations
                     var pingReply = ping.Send(rowhost);
 
                     if (pingReply != null && pingReply.Status.ToString() == "Success")
-                    {
-                        answer.Add(rowhost, Okanswer);
-                        Console.WriteLine(Okanswer);
-                    }
+                        ShowStatusConsole(ref answer, rowhost, true);
                     else
-                    {
-                        answer.Add(rowhost, Failedanswer);
-                        Console.WriteLine(Failedanswer);
-                    }
+                        ShowStatusConsole(ref answer, rowhost, false);
                 }
                 catch (PingException)
                 {
-                    answer.Add(rowhost, Failedanswer);
-                    Console.WriteLine(Failedanswer);
+                    ShowStatusConsole(ref answer, rowhost, false);
                 }
 
                 ConsoleLogging(rowhost);

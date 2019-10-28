@@ -67,7 +67,7 @@ namespace Pinger
                 return;
             }
 
-            var icmpPinger = _pingerFactory.CreateIcmpPinger(rowhosts, logpath);
+            var icmpPinger = _pingerFactory.CreateIcmpPinger(rowhosts);
             var mainAnswer = await icmpPinger.Ping();
             foreach (var item in mainAnswer) icmpPinger.Logging(item.Key, item.Value);
 
@@ -98,7 +98,7 @@ namespace Pinger
                 return;
             }
 
-            var httpPinger = _pingerFactory.CreateHttpPinger(rowhosts, logpath);
+            var httpPinger = _pingerFactory.CreateHttpPinger(rowhosts);
             var mainAnswer = await httpPinger.Ping();
             foreach (var item in mainAnswer) httpPinger.Logging(item.Key, item.Value);
 
@@ -128,7 +128,7 @@ namespace Pinger
                 return;
             }
 
-            var tcpPinger = _pingerFactory.CreateTcpPinger(rowhosts, logpath);
+            var tcpPinger = _pingerFactory.CreateTcpPinger(rowhosts);
             var mainAnswer = await tcpPinger.Ping();
             foreach (var item in mainAnswer) tcpPinger.Logging(item.Key, item.Value);
 
