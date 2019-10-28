@@ -7,8 +7,8 @@ namespace Pinger.Tests
 {
     public class IcmpPingerTests
     {
-        string logpath = "./LogsTest.txt";
-        List<string> rowhosts = new List<string>(File.ReadAllLines("./Hosts.txt"));
+        private readonly string logpath = "./LogsTest.txt";
+        private readonly List<string> rowhosts = new List<string>(File.ReadAllLines("./Hosts.txt"));
 
         [SetUp]
         public void Setup()
@@ -18,8 +18,8 @@ namespace Pinger.Tests
         [Test]
         public void PingTest()
         {
-            IcmpPinger icmppinger = new IcmpPinger(rowhosts);
-            Dictionary<string, string> actual = new Dictionary<string, string>();
+            var icmppinger = new IcmpPinger(rowhosts);
+            var actual = new Dictionary<string, string>();
             var expected = icmppinger.Ping().Result;
             actual.Add("https://www.google.com/", "FAILED");
             actual.Add("https://www.google1234455435435.com/", "FAILED");
@@ -31,12 +31,9 @@ namespace Pinger.Tests
         [Test]
         public void LoggingTest()
         {
-            IcmpPinger icmppinger = new IcmpPinger(rowhosts);
+            var icmppinger = new IcmpPinger(rowhosts);
             var answer = icmppinger.Ping();
-            foreach (var item in answer.Result)
-            {
-                icmppinger.Logging(item.Key, item.Value);
-            }
+            foreach (var item in answer.Result) icmppinger.Logging(item.Key, item.Value);
 
             File.Delete(logpath);
         }
