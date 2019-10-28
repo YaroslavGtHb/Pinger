@@ -5,16 +5,16 @@ using Pinger.Realizations;
 
 namespace Pinger.Tests
 {
-    internal class HttpPingerTests
+    class HttpPingerTests
     {
-        private readonly string logpath = "./LogsTest.txt";
-        private readonly List<string> rowhosts = new List<string>(File.ReadAllLines("./Hosts.txt"));
+        string logpath = "./LogsTest.txt";
+        List<string> rowhosts = new List<string>(File.ReadAllLines("./Hosts.txt"));
 
         [Test]
         public void PingTest()
         {
-            var httppinger = new HttpPinger(rowhosts);
-            var actual = new Dictionary<string, string>();
+            HttpPinger httppinger = new HttpPinger(rowhosts);
+            Dictionary<string, string> actual = new Dictionary<string, string>();
             var expectedTask = httppinger.Ping();
             var expected = expectedTask.Result;
             actual.Add("https://www.google.com/", "OK");
@@ -27,9 +27,12 @@ namespace Pinger.Tests
         [Test]
         public void LoggingTest()
         {
-            var httppinger = new HttpPinger(rowhosts);
+            HttpPinger httppinger = new HttpPinger(rowhosts);
             var answer = httppinger.Ping();
-            foreach (var item in answer.Result) httppinger.Logging(item.Key, item.Value);
+            foreach (var item in answer.Result)
+            {
+                httppinger.Logging(item.Key, item.Value);
+            }
 
             File.Delete(logpath);
         }

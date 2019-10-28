@@ -6,11 +6,14 @@ using System.Net.Sockets;
 using System.Threading.Tasks;
 using Pinger.Intefaces;
 
+
 namespace Pinger.Realizations
 {
     public class TcpPinger : Loger, ITcpPinger
     {
-        private readonly List<string> _rowhosts;
+        private string Okanswer { get; } = "OK";
+        private string Failedanswer { get; } = "FAILED";
+        private List<string> _rowhosts;
 
         public TcpPinger(List<string> rowhosts)
         {
@@ -20,13 +23,13 @@ namespace Pinger.Realizations
         public async Task<Dictionary<string, string>> Ping()
         {
             var consoleloger = new ConsoleLoger();
-            var answer = new Dictionary<string, string>();
+            Dictionary<string, string> answer = new Dictionary<string, string>();
             foreach (var rowhost in _rowhosts)
             {
                 Console.WriteLine(DateTime.Now);
                 try
                 {
-                    var ip = Dns.GetHostAddresses(rowhost);
+                    IPAddress[] ip = Dns.GetHostAddresses(rowhost);
                     EndPoint endPoint = new IPEndPoint(ip[0], 80);
                     var times = new List<double>();
                     var sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
@@ -35,7 +38,7 @@ namespace Pinger.Realizations
                     stopwatch.Start();
                     sock.Connect(endPoint);
                     stopwatch.Stop();
-                    var t = stopwatch.Elapsed.TotalMilliseconds;
+                    double t = stopwatch.Elapsed.TotalMilliseconds;
                     times.Add(t);
                     sock.Close();
                     ShowStatusConsole(ref answer, rowhost, true);

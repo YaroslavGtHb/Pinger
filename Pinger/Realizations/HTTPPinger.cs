@@ -11,8 +11,11 @@ namespace Pinger.Realizations
 {
     public class HttpPinger : Loger, IHttpPinger
     {
+        private IConfigurationRoot Configuration = Startup.Builder.Build();
+
+        private string Okanswer { get; } = "OK";
+        private string Failedanswer { get; } = "FAILED";
         private readonly List<string> _rowhosts;
-        private readonly IConfigurationRoot _configuration = Startup.Builder.Build();
 
         public HttpPinger(List<string> rowhosts)
         {
@@ -22,18 +25,27 @@ namespace Pinger.Realizations
         public async Task<Dictionary<string, string>> Ping()
         {
             var consoleloger = new ConsoleLoger();
-            var answer = new Dictionary<string, string>();
+            Dictionary<string, string> answer = new Dictionary<string, string>();
             foreach (var rowhost in _rowhosts)
             {
                 Console.WriteLine(DateTime.Now);
                 try
                 {
-                    var webRequest = (HttpWebRequest) WebRequest
+                    HttpWebRequest webRequest = (HttpWebRequest) WebRequest
                         .Create(rowhost);
                     webRequest.AllowAutoRedirect = false;
+<<<<<<< HEAD
                     var response = (HttpWebResponse) webRequest.GetResponse();
                     if ((int) response.StatusCode == int.Parse(_configuration["Httpvalidcode"]))
                         ShowStatusConsole(ref answer, rowhost, true);
+=======
+                    HttpWebResponse response = (HttpWebResponse) webRequest.GetResponse();
+                    if ((int) response.StatusCode == Int32.Parse(Configuration["Httpvalidcode"]))
+                    {
+                        answer.Add(rowhost, Okanswer);
+                        Console.WriteLine(Okanswer);
+                    }
+>>>>>>> parent of 5d5f9cd... CLEANUP!
                     else
                         ShowStatusConsole(ref answer, rowhost, false);
                 }

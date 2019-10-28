@@ -7,9 +7,9 @@ namespace Pinger.Intefaces
 {
     public abstract class Loger
     {
-        private static readonly IConfigurationRoot Configuration = Startup.Builder.Build();
+        private static IConfigurationRoot Configuration = Startup.Builder.Build();
 
-        public static List<string> Advancedlogpaths = new List<string>
+        public static List<string> Advancedlogpaths = new List<string>()
         {
             Configuration["MainLogpath"],
             "./AdvancedLogs.txt"
@@ -22,18 +22,22 @@ namespace Pinger.Intefaces
             try
             {
                 foreach (var logpath in Advancedlogpaths)
+                {
                     using (var writer = new StreamWriter(logpath, true))
                     {
                         writer.WriteLine(logString);
                     }
+                }
             }
             catch (DirectoryNotFoundException)
             {
                 foreach (var logpath in Advancedlogpaths)
+                {
                     using (var writer = new StreamWriter(logpath, true))
                     {
                         writer.WriteLine(logString);
                     }
+                }
             }
         }
 <<<<<<< HEAD

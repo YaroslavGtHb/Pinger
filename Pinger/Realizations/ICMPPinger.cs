@@ -8,6 +8,8 @@ namespace Pinger.Realizations
 {
     public class IcmpPinger : Loger, IIcmpPinger
     {
+        private string Okanswer { get; } = "OK";
+        private string Failedanswer { get; } = "FAILED";
         private readonly List<string> _rowhosts;
 
         public IcmpPinger(List<string> rowhosts)
@@ -18,14 +20,14 @@ namespace Pinger.Realizations
         public async Task<Dictionary<string, string>> Ping()
         {
             var consoleloger = new ConsoleLoger();
-            var answer = new Dictionary<string, string>();
-            var ping = new Ping();
+            Dictionary<string, string> answer = new Dictionary<string, string>();
+            Ping ping = new Ping();
             foreach (var rowhost in _rowhosts)
             {
                 Console.WriteLine(DateTime.Now);
                 try
                 {
-                    var pingReply = ping.Send(rowhost);
+                    PingReply pingReply = ping.Send(rowhost);
 
                     if (pingReply != null && pingReply.Status.ToString() == "Success")
                         ShowStatusConsole(ref answer, rowhost, true);
