@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
 using Pinger.Intefaces;
 
 
@@ -15,10 +14,12 @@ namespace Pinger.Realizations
         private string Okanswer { get; } = "OK";
         private string Failedanswer { get; } = "FAILED";
         private List<string> _rowhosts;
+
         public TcpPinger(List<string> rowhosts)
         {
             _rowhosts = rowhosts;
         }
+
         public async Task<Dictionary<string, string>> Ping()
         {
             var consoleloger = new ConsoleLoger();
@@ -48,8 +49,10 @@ namespace Pinger.Realizations
                     answer.Add(rowhost, Failedanswer);
                     Console.WriteLine(Failedanswer);
                 }
+
                 consoleloger.Show(rowhost);
             }
+
             return answer;
         }
     }

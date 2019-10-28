@@ -11,23 +11,27 @@ namespace Pinger
 {
     public class UniversalPinger
     {
-        private IConfigurationRoot Configuration = Startup.builder.Build();
+        private IConfigurationRoot Configuration = Startup.Builder.Build();
 
         private readonly IPingerFactory _pingerFactory;
-        private string _wrongsettingsmessage =
-            "Wrong parameter in settings file. Program will be using default settings. Press any key to start.";
-        private string wronghostmessage = "Wrong row hosts path in settings file.";
 
-        private string wrongprotocolmessage =
+        public string Wrongsettingsmessage =
+            "Wrong parameter in settings file. Program will be using default settings. Press any key to start.";
+
+        private readonly string wronghostmessage = "Wrong row hosts path in settings file.";
+
+        private readonly string wrongprotocolmessage =
             "Wrong protocol value in settings file. \n Any key to start default ICMP Ping.";
+
         [Inject]
-        public UniversalPinger(IPingerFactory pingerFactory)
+        public UniversalPinger(IPingerFactory pingerFactory, string wrongsettingsmessage)
         {
             _pingerFactory = pingerFactory;
+            Wrongsettingsmessage = wrongsettingsmessage;
         }
+
         public void Run()
         {
-
             if (Configuration["Protocol"] == "ICMP")
             {
                 IcmpPing();
@@ -47,6 +51,7 @@ namespace Pinger
                 IcmpPing();
             }
         }
+
         private async void IcmpPing()
         {
             string logpath = Configuration["MainLogpath"];
@@ -61,12 +66,14 @@ namespace Pinger
                 Console.ReadKey();
                 return;
             }
+
             var icmpPinger = _pingerFactory.CreateIcmpPinger(rowhosts, logpath);
             var mainAnswer = await icmpPinger.Ping();
             foreach (var item in mainAnswer)
             {
                 icmpPinger.Logging(item.Key, item.Value);
             }
+
             while (true)
             {
                 Thread.Sleep(Int32.Parse(Configuration["Period"]));
@@ -77,9 +84,11 @@ namespace Pinger
                 {
                     icmpPinger.Logging(item.Key, item.Value);
                 }
+
                 mainAnswer = tempAnswer;
             }
         }
+
         private async void HttpPing()
         {
             string logpath = Configuration["MainLogpath"];
@@ -94,12 +103,14 @@ namespace Pinger
                 Console.ReadKey();
                 return;
             }
+
             var httpPinger = _pingerFactory.CreateHttpPinger(rowhosts, logpath);
             var mainAnswer = await httpPinger.Ping();
             foreach (var item in mainAnswer)
             {
                 httpPinger.Logging(item.Key, item.Value);
             }
+
             while (true)
             {
                 Thread.Sleep(Int32.Parse(Configuration["Period"]));
@@ -109,9 +120,11 @@ namespace Pinger
                 {
                     httpPinger.Logging(item.Key, item.Value);
                 }
+
                 mainAnswer = tempAnswer;
             }
         }
+
         private async void TcpPinger()
         {
             string logpath = Configuration["MainLogpath"];
@@ -126,12 +139,14 @@ namespace Pinger
                 Console.ReadKey();
                 return;
             }
+
             var tcpPinger = _pingerFactory.CreateTcpPinger(rowhosts, logpath);
             var mainAnswer = await tcpPinger.Ping();
             foreach (var item in mainAnswer)
             {
                 tcpPinger.Logging(item.Key, item.Value);
             }
+
             while (true)
             {
                 Thread.Sleep(Int32.Parse(Configuration["Period"]));
@@ -141,6 +156,7 @@ namespace Pinger
                 {
                     tcpPinger.Logging(item.Key, item.Value);
                 }
+
                 mainAnswer = tempAnswer;
             }
         }

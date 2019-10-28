@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using System.IO;
 using Microsoft.Extensions.Configuration;
-using Pinger;
 
 namespace Pinger.Intefaces
 {
-
     public abstract class Loger
     {
-        private static IConfigurationRoot Configuration = Startup.builder.Build();
+        private static IConfigurationRoot Configuration = Startup.Builder.Build();
 
         public static List<string> Advancedlogpaths = new List<string>()
         {
@@ -19,8 +17,7 @@ namespace Pinger.Intefaces
 
         public virtual void Logging(string host, string responce)
         {
-
-            var LogString = DateTime.Now + " " + host + " " + responce;
+            var logString = DateTime.Now + " " + host + " " + responce;
 
             try
             {
@@ -28,7 +25,7 @@ namespace Pinger.Intefaces
                 {
                     using (var writer = new StreamWriter(logpath, true))
                     {
-                        writer.WriteLine(LogString);
+                        writer.WriteLine(logString);
                     }
                 }
             }
@@ -38,7 +35,7 @@ namespace Pinger.Intefaces
                 {
                     using (var writer = new StreamWriter(logpath, true))
                     {
-                        writer.WriteLine(LogString);
+                        writer.WriteLine(logString);
                     }
                 }
             }

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using Microsoft.Extensions.Configuration;
-using Ninject;
+﻿using Ninject;
 using Ninject.Extensions.Factory;
 using Pinger.IoC;
 

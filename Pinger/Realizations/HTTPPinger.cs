@@ -11,15 +11,17 @@ namespace Pinger.Realizations
 {
     public class HttpPinger : Loger, IHttpPinger
     {
-        private IConfigurationRoot Configuration = Startup.builder.Build();
+        private IConfigurationRoot Configuration = Startup.Builder.Build();
 
-        private string Okanswer { get;} = "OK";
-        private string Failedanswer { get;} = "FAILED";
+        private string Okanswer { get; } = "OK";
+        private string Failedanswer { get; } = "FAILED";
         private readonly List<string> _rowhosts;
+
         public HttpPinger(List<string> rowhosts)
         {
             _rowhosts = rowhosts;
         }
+
         public async Task<Dictionary<string, string>> Ping()
         {
             var consoleloger = new ConsoleLoger();
@@ -33,8 +35,7 @@ namespace Pinger.Realizations
                         .Create(rowhost);
                     webRequest.AllowAutoRedirect = false;
                     HttpWebResponse response = (HttpWebResponse) webRequest.GetResponse();
-                    if (response.StatusCode.ToString() != null &&
-                        (int) response.StatusCode == Int32.Parse(Configuration["Httpvalidcode"]))
+                    if ((int) response.StatusCode == Int32.Parse(Configuration["Httpvalidcode"]))
                     {
                         answer.Add(rowhost, Okanswer);
                         Console.WriteLine(Okanswer);
@@ -75,9 +76,10 @@ namespace Pinger.Realizations
                     answer.Add(rowhost, Failedanswer);
                     Console.WriteLine(Failedanswer);
                 }
-                
+
                 consoleloger.Show(rowhost);
             }
+
             return answer;
         }
     }

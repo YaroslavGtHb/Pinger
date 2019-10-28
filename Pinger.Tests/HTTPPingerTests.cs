@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Data;
 using System.IO;
 using NUnit.Framework;
 using Pinger.Realizations;
@@ -10,6 +9,7 @@ namespace Pinger.Tests
     {
         string logpath = "./LogsTest.txt";
         List<string> rowhosts = new List<string>(File.ReadAllLines("./Hosts.txt"));
+
         [Test]
         public void PingTest()
         {
@@ -23,6 +23,7 @@ namespace Pinger.Tests
             actual.Add("34.22.1.23", "FAILED");
             Assert.AreEqual(expected, actual);
         }
+
         [Test]
         public void LoggingTest()
         {
@@ -32,6 +33,7 @@ namespace Pinger.Tests
             {
                 httppinger.Logging(item.Key, item.Value);
             }
+
             File.Delete(logpath);
         }
     }
