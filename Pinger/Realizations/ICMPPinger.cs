@@ -9,8 +9,6 @@ namespace Pinger.Realizations
 {
     public class IcmpPinger : Loger, IIcmpPinger
     {
-        private IConfigurationRoot Configuration = Startup.builder.Build();
-
         private string Okanswer { get; } = "OK";
         private string Failedanswer { get; } = "FAILED";
         private readonly List<string> _rowhosts;
@@ -20,6 +18,7 @@ namespace Pinger.Realizations
         }
         public async Task<Dictionary<string, string>> Ping()
         {
+            var consoleloger = new ConsoleLoger();
             Dictionary<string, string> answer = new Dictionary<string, string>();
             Ping ping = new Ping();
             foreach (var rowhost in _rowhosts)
@@ -45,10 +44,8 @@ namespace Pinger.Realizations
                     answer.Add(rowhost, Failedanswer);
                     Console.WriteLine(Failedanswer);
                 }
-                Console.WriteLine("Host: " + rowhost);
-                Console.WriteLine("Period: " + Configuration["Period"]);
-                Console.WriteLine("Protocol: " + Configuration["Protocol"]);
-                Console.WriteLine();
+                
+                consoleloger.Show(rowhost);
             }
             return answer;
         }
