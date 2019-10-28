@@ -22,7 +22,6 @@ namespace Pinger.Realizations
 
         public async Task<Dictionary<string, string>> Ping()
         {
-            var consoleloger = new ConsoleLoger();
             var answer = new Dictionary<string, string>();
             foreach (var rowhost in _rowhosts)
             {
@@ -50,7 +49,7 @@ namespace Pinger.Realizations
                     Console.WriteLine(Failedanswer);
                 }
 
-                consoleloger.Show(rowhost);
+                ConsoleLogging(rowhost);
             }
 
             return answer;

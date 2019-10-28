@@ -36,5 +36,12 @@ namespace Pinger.Intefaces
                     }
             }
         }
+        public void ConsoleLogging(string rowhost)
+        {
+            Console.WriteLine("Host: " + rowhost);
+            Console.WriteLine("Period: " + Configuration["Period"]);
+            Console.WriteLine("Protocol: " + Configuration["Protocol"]);
+            Console.WriteLine();
+        }
     }
 }
