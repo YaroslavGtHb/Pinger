@@ -11,10 +11,7 @@ namespace Pinger.Realizations
 {
     public class HttpPinger : Loger, IHttpPinger
     {
-        private IConfigurationRoot Configuration = Startup.Builder.Build();
-
-        private string Okanswer { get; } = "OK";
-        private string Failedanswer { get; } = "FAILED";
+        private readonly IConfigurationRoot _configuration = Startup.Builder.Build();
         private readonly List<string> _rowhosts;
 
         public HttpPinger(List<string> rowhosts)
@@ -22,83 +19,35 @@ namespace Pinger.Realizations
             _rowhosts = rowhosts;
         }
 
-        private string Okanswer { get; } = "OK";
-        private string Failedanswer { get; } = "FAILED";
-
         public async Task<Dictionary<string, string>> Ping()
         {
-            var consoleloger = new ConsoleLoger();
-            Dictionary<string, string> answer = new Dictionary<string, string>();
+            var answer = new Dictionary<string, string>();
             foreach (var rowhost in _rowhosts)
             {
                 Console.WriteLine(DateTime.Now);
                 try
                 {
-                    HttpWebRequest webRequest = (HttpWebRequest) WebRequest
+                    var webRequest = (HttpWebRequest) WebRequest
                         .Create(rowhost);
                     webRequest.AllowAutoRedirect = false;
-<<<<<<< HEAD
                     var response = (HttpWebResponse) webRequest.GetResponse();
                     if ((int) response.StatusCode == int.Parse(_configuration["Httpvalidcode"]))
-<<<<<<< HEAD
-<<<<<<< HEAD
                         ShowStatusConsole(ref answer, rowhost, true);
-=======
-                    HttpWebResponse response = (HttpWebResponse) webRequest.GetResponse();
-                    if ((int) response.StatusCode == Int32.Parse(Configuration["Httpvalidcode"]))
-=======
->>>>>>> parent of 3829356... TEST.
-=======
->>>>>>> parent of 3829356... TEST.
-                    {
-                        answer.Add(rowhost, Okanswer);
-                        Console.WriteLine(Okanswer);
-                    }
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of 5d5f9cd... CLEANUP!
-=======
->>>>>>> parent of 3829356... TEST.
-=======
->>>>>>> parent of 3829356... TEST.
                     else
-                    {
-                        answer.Add(rowhost, Failedanswer);
-                        Console.WriteLine(Failedanswer);
-                    }
+                        ShowStatusConsole(ref answer, rowhost, false);
                 }
-                catch (PingException)
+                catch (Exception ex)
                 {
-                    answer.Add(rowhost, Failedanswer);
-                    Console.WriteLine(Failedanswer);
-                }
-                catch (ArgumentException)
-                {
-                    answer.Add(rowhost, Failedanswer);
-                    Console.WriteLine(Failedanswer);
-                }
-                catch (WebException)
-                {
-                    answer.Add(rowhost, Failedanswer);
-                    Console.WriteLine(Failedanswer);
-                }
-                catch (UriFormatException)
-                {
-                    answer.Add(rowhost, Failedanswer);
-                    Console.WriteLine(Failedanswer);
-                }
-                catch (FormatException)
-                {
-                    answer.Add(rowhost, Failedanswer);
-                    Console.WriteLine(Failedanswer);
-                }
-                catch (SocketException)
-                {
-                    answer.Add(rowhost, Failedanswer);
-                    Console.WriteLine(Failedanswer);
+                    if (ex is PingException ||
+                        ex is ArgumentException ||
+                        ex is WebException ||
+                        ex is UriFormatException ||
+                        ex is FormatException ||
+                        ex is SocketException)
+                        ShowStatusConsole(ref answer, rowhost, false);
                 }
 
-                consoleloger.Show(rowhost);
+                ConsoleLogging(rowhost);
             }
 
             return answer;

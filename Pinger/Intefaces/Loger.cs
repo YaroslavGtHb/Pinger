@@ -7,9 +7,9 @@ namespace Pinger.Intefaces
 {
     public abstract class Loger
     {
-        private static IConfigurationRoot Configuration = Startup.Builder.Build();
+        private static readonly IConfigurationRoot Configuration = Startup.Builder.Build();
 
-        public static List<string> Advancedlogpaths = new List<string>()
+        public static List<string> Advancedlogpaths = new List<string>
         {
             Configuration["MainLogpath"],
             "./AdvancedLogs.txt"
@@ -22,25 +22,20 @@ namespace Pinger.Intefaces
             try
             {
                 foreach (var logpath in Advancedlogpaths)
-                {
                     using (var writer = new StreamWriter(logpath, true))
                     {
                         writer.WriteLine(logString);
                     }
-                }
             }
             catch (DirectoryNotFoundException)
             {
                 foreach (var logpath in Advancedlogpaths)
-                {
                     using (var writer = new StreamWriter(logpath, true))
                     {
                         writer.WriteLine(logString);
                     }
-                }
             }
         }
-<<<<<<< HEAD
         public void ConsoleLogging(string rowhost)
         {
             Console.WriteLine("Host: " + rowhost);
@@ -48,8 +43,6 @@ namespace Pinger.Intefaces
             Console.WriteLine("Protocol: " + Configuration["Protocol"]);
             Console.WriteLine();
         }
-<<<<<<< HEAD
-<<<<<<< HEAD
 
         public void ShowStatusConsole(ref Dictionary<string, string> answer, string rowhost, bool answerstatus)
         {
@@ -64,11 +57,5 @@ namespace Pinger.Intefaces
                 Console.WriteLine("FAILED");
             }
         }
-=======
->>>>>>> parent of 17b93d0... ConsoleLogging optimization.
-=======
->>>>>>> parent of 3829356... TEST.
-=======
->>>>>>> parent of 3829356... TEST.
     }
 }

@@ -8,8 +8,6 @@ namespace Pinger.Realizations
 {
     public class IcmpPinger : Loger, IIcmpPinger
     {
-        private string Okanswer { get; } = "OK";
-        private string Failedanswer { get; } = "FAILED";
         private readonly List<string> _rowhosts;
 
         public IcmpPinger(List<string> rowhosts)
@@ -17,39 +15,28 @@ namespace Pinger.Realizations
             _rowhosts = rowhosts;
         }
 
-        private string Okanswer { get; } = "OK";
-        private string Failedanswer { get; } = "FAILED";
-
         public async Task<Dictionary<string, string>> Ping()
         {
-            var consoleloger = new ConsoleLoger();
-            Dictionary<string, string> answer = new Dictionary<string, string>();
-            Ping ping = new Ping();
+            var answer = new Dictionary<string, string>();
+            var ping = new Ping();
             foreach (var rowhost in _rowhosts)
             {
                 Console.WriteLine(DateTime.Now);
                 try
                 {
-                    PingReply pingReply = ping.Send(rowhost);
+                    var pingReply = ping.Send(rowhost);
 
                     if (pingReply != null && pingReply.Status.ToString() == "Success")
-                    {
-                        answer.Add(rowhost, Okanswer);
-                        Console.WriteLine(Okanswer);
-                    }
+                        ShowStatusConsole(ref answer, rowhost, true);
                     else
-                    {
-                        answer.Add(rowhost, Failedanswer);
-                        Console.WriteLine(Failedanswer);
-                    }
+                        ShowStatusConsole(ref answer, rowhost, false);
                 }
                 catch (PingException)
                 {
-                    answer.Add(rowhost, Failedanswer);
-                    Console.WriteLine(Failedanswer);
+                    ShowStatusConsole(ref answer, rowhost, false);
                 }
 
-                consoleloger.Show(rowhost);
+                ConsoleLogging(rowhost);
             }
 
             return answer;

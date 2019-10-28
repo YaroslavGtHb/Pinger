@@ -4,17 +4,14 @@ using Pinger.IoC;
 
 namespace Pinger
 {
-    class Program
+    internal class Program
     {
-        static void Main()
+        private static void Main()
         {
             IKernel kernel = new StandardKernel(new NinjectConfig());
-            if (!kernel.HasModule("Ninject.Extensions.Factory.FuncModule"))
-            {
-                kernel.Load(new FuncModule());
-            }
+            if (!kernel.HasModule("Ninject.Extensions.Factory.FuncModule")) kernel.Load(new FuncModule());
 
-            UniversalPinger pinger = kernel.Get<UniversalPinger>();
+            var pinger = kernel.Get<UniversalPinger>();
             pinger.Run();
         }
     }
