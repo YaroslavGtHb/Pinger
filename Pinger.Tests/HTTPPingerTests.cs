@@ -8,14 +8,19 @@ namespace Pinger.Tests
     internal class HttpPingerTests
     {
         private readonly string logpath = "./LogsTest.txt";
-        private readonly List<string> rowhosts = new List<string>(File.ReadAllLines("./Hosts.txt"));
+        private Dictionary<string, string> rowhosts = new Dictionary<string, string>();
 
         [Test]
         public void PingTest()
         {
-            var httppinger = new HttpPinger(rowhosts);
+            var rowhostskeys = new List<string>(File.ReadAllLines("./Hosts.txt"));
+            foreach (var item in rowhostskeys)
+            {
+                rowhosts.Add(item, item);
+            }
+            var httppinger = new HttpPinger();
             var actual = new Dictionary<string, string>();
-            var expectedTask = httppinger.Ping();
+            var expectedTask = httppinger.Ping(rowhosts);
             var expected = expectedTask.Result;
             actual.Add("https://www.google.com/", "OK");
             actual.Add("https://www.google1234455435435.com/", "FAILED");
@@ -27,8 +32,8 @@ namespace Pinger.Tests
         [Test]
         public void LoggingTest()
         {
-            var httppinger = new HttpPinger(rowhosts);
-            var answer = httppinger.Ping();
+            var httppinger = new HttpPinger();
+            var answer = httppinger.Ping(rowhosts);
             foreach (var item in answer.Result) httppinger.Logging(item.Key, item.Value);
 
             File.Delete(logpath);
