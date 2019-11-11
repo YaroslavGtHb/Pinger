@@ -12,17 +12,11 @@ namespace Pinger.Realizations
     public class HttpPinger : Loger, IHttpPinger
     {
         private readonly IConfigurationRoot _configuration = Startup.Builder.Build();
-        private readonly List<string> _rowhosts;
 
-        public HttpPinger(List<string> rowhosts)
-        {
-            _rowhosts = rowhosts;
-        }
-
-        public async Task<Dictionary<string, string>> Ping()
+        public async Task<Dictionary<string, string>> Ping(Dictionary<string, string> rowhosts)
         {
             var answer = new Dictionary<string, string>();
-            foreach (var rowhost in _rowhosts)
+            foreach (var rowhost in rowhosts.Keys)
             {
                 Console.WriteLine(DateTime.Now);
                 try
