@@ -8,16 +8,14 @@ namespace Pinger.Tests
     internal class HttpPingerTests
     {
         private readonly string logpath = "./LogsTest.txt";
-        private Dictionary<string, string> rowhosts = new Dictionary<string, string>();
+        private readonly Dictionary<string, string> rowhosts = new Dictionary<string, string>();
 
         [Test]
         public void PingTest()
         {
             var rowhostskeys = new List<string>(File.ReadAllLines("./Hosts.txt"));
-            foreach (var item in rowhostskeys)
-            {
-                rowhosts.Add(item, item);
-            }
+            foreach (var item in rowhostskeys) rowhosts.Add(item, item);
+
             var httppinger = new HttpPinger();
             var actual = new Dictionary<string, string>();
             var expectedTask = httppinger.Ping(rowhosts);

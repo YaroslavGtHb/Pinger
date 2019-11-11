@@ -13,7 +13,6 @@ namespace Pinger
     {
         private readonly IConfigurationRoot _configuration = Startup.Builder.Build();
         private readonly IPingerFactory _pingerFactory;
-
         private readonly string wronghostmessage = "Wrong row hosts path in settings file.";
 
         private readonly string wrongprotocolmessage =
@@ -49,14 +48,11 @@ namespace Pinger
 
         private async void IcmpPing()
         {
-            Dictionary<string, string> rowhosts = new Dictionary<string, string>();
+            var rowhosts = new Dictionary<string, string>();
             try
             {
                 var rowhostskeys = new List<string>(File.ReadAllLines(_configuration["Rowhostspath"]));
-                foreach (var item in rowhostskeys)
-                {
-                    rowhosts.Add(item, item);
-                }
+                foreach (var item in rowhostskeys) rowhosts.Add(item, item);
             }
             catch (DirectoryNotFoundException)
             {
@@ -68,7 +64,6 @@ namespace Pinger
             var icmpPinger = _pingerFactory.CreateIcmpPinger();
             var mainAnswer = await icmpPinger.Ping(rowhosts);
             foreach (var item in mainAnswer) icmpPinger.Logging(item.Key, item.Value);
-
             while (true)
             {
                 Thread.Sleep(int.Parse(_configuration["Period"]));
@@ -83,14 +78,11 @@ namespace Pinger
 
         private async void HttpPing()
         {
-            Dictionary<string, string> rowhosts = new Dictionary<string, string>();
+            var rowhosts = new Dictionary<string, string>();
             try
             {
                 var rowhostskeys = new List<string>(File.ReadAllLines(_configuration["Rowhostspath"]));
-                foreach (var item in rowhostskeys)
-                {
-                    rowhosts.Add(item, item);
-                }
+                foreach (var item in rowhostskeys) rowhosts.Add(item, item);
             }
             catch (DirectoryNotFoundException)
             {
@@ -117,14 +109,11 @@ namespace Pinger
         private async void TcpPinger()
         {
             var logpath = _configuration["MainLogpath"];
-            Dictionary<string, string> rowhosts = new Dictionary<string, string>();
+            var rowhosts = new Dictionary<string, string>();
             try
             {
                 var rowhostskeys = new List<string>(File.ReadAllLines(_configuration["Rowhostspath"]));
-                foreach (var item in rowhostskeys)
-                {
-                    rowhosts.Add(item, item);
-                }
+                foreach (var item in rowhostskeys) rowhosts.Add(item, item);
             }
             catch (DirectoryNotFoundException)
             {
@@ -136,7 +125,6 @@ namespace Pinger
             var tcpPinger = _pingerFactory.CreateTcpPinger();
             var mainAnswer = await tcpPinger.Ping(rowhosts);
             foreach (var item in mainAnswer) tcpPinger.Logging(item.Key, item.Value);
-
             while (true)
             {
                 Thread.Sleep(int.Parse(_configuration["Period"]));

@@ -8,7 +8,7 @@ namespace Pinger.Tests
     public class IcmpPingerTests
     {
         private readonly string logpath = "./LogsTest.txt";
-        private Dictionary<string, string> rowhosts = new Dictionary<string, string>();
+        private readonly Dictionary<string, string> rowhosts = new Dictionary<string, string>();
 
         [SetUp]
         public void Setup()
@@ -19,10 +19,8 @@ namespace Pinger.Tests
         public void PingTest()
         {
             var rowhostskeys = new List<string>(File.ReadAllLines("./Hosts.txt"));
-            foreach (var item in rowhostskeys)
-            {
-                rowhosts.Add(item, item);
-            }
+            foreach (var item in rowhostskeys) rowhosts.Add(item, item);
+
             var icmppinger = new IcmpPinger();
             var actual = new Dictionary<string, string>();
             var expected = icmppinger.Ping(rowhosts).Result;

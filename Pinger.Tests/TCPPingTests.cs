@@ -8,7 +8,7 @@ namespace Pinger.Tests
     public class TcpPingTests
     {
         private readonly string logpath = "./LogsTest.txt";
-        private Dictionary<string, string> rowhosts = new Dictionary<string, string>();
+        private readonly Dictionary<string, string> rowhosts = new Dictionary<string, string>();
 
         [Test]
         public void PingTest()
@@ -28,10 +28,8 @@ namespace Pinger.Tests
         {
             var tcppinger = new TcpPinger();
             var rowhostskeys = new List<string>(File.ReadAllLines("./Hosts.txt"));
-            foreach (var item in rowhostskeys)
-            {
-                rowhosts.Add(item, item);
-            }
+            foreach (var item in rowhostskeys) rowhosts.Add(item, item);
+
             var answer = tcppinger.Ping(rowhosts);
             foreach (var item in answer.Result) tcppinger.Logging(item.Key, item.Value);
 

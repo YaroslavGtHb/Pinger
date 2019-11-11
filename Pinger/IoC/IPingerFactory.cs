@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Pinger.Intefaces;
+﻿using Pinger.Intefaces;
 
 namespace Pinger.IoC
 {
