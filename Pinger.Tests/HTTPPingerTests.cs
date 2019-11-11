@@ -18,6 +18,7 @@ namespace Pinger.Tests
             {
                 rowhosts.Add(item, item);
             }
+
             var httppinger = new HttpPinger();
             var actual = new Dictionary<string, string>();
             var expectedTask = httppinger.Ping(rowhosts);
