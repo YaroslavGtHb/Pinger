@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace Pinger
 {
-    internal class Startup
+    class Startup
     {
         public static IConfigurationBuilder Builder = new ConfigurationBuilder()
             .AddInMemoryCollection(new Dictionary<string, string>
@@ -12,7 +12,7 @@ namespace Pinger
                 {"MainLogpath", "./Logs.txt"},
                 {"Period", "1000"},
                 {"Protocol", "ICMP"},
-                {"Rowhostspath", "./Hosts.txt"}
+                {"Rowhostspath", "./Hosts.txt"},
             });
     }
 }

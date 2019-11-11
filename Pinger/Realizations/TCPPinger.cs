@@ -10,6 +10,7 @@ namespace Pinger.Realizations
 {
     public class TcpPinger : Loger, ITcpPinger
     {
+
         public async Task<Dictionary<string, string>> Ping(Dictionary<string, string> rowhosts)
         {
             var answer = new Dictionary<string, string>();
