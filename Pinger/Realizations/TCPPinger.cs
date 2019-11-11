@@ -10,11 +10,17 @@ namespace Pinger.Realizations
 {
     public class TcpPinger : Loger, ITcpPinger
     {
+        private readonly List<string> _rowhosts;
 
-        public async Task<Dictionary<string, string>> Ping(Dictionary<string, string> rowhosts)
+        public TcpPinger(List<string> rowhosts)
+        {
+            _rowhosts = rowhosts;
+        }
+
+        public async Task<Dictionary<string, string>> Ping()
         {
             var answer = new Dictionary<string, string>();
-            foreach (var rowhost in rowhosts.Keys)
+            foreach (var rowhost in _rowhosts)
             {
                 Console.WriteLine(DateTime.Now);
                 try

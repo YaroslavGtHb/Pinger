@@ -5,8 +5,8 @@ namespace Pinger.IoC
 {
     public interface IPingerFactory
     {
-        IIcmpPinger CreateIcmpPinger();
-        IHttpPinger CreateHttpPinger();
-        ITcpPinger CreateTcpPinger();
+        IIcmpPinger CreateIcmpPinger(List<string> rowhosts);
+        IHttpPinger CreateHttpPinger(List<string> rowhosts);
+        ITcpPinger CreateTcpPinger(List<string> rowhosts);
     }
 }

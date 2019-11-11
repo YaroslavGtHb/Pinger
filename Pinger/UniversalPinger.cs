@@ -49,14 +49,10 @@ namespace Pinger
 
         private async void IcmpPing()
         {
-            Dictionary<string, string> rowhosts = new Dictionary<string, string>();
+            List<string> rowhosts;
             try
             {
-                var rowhostskeys = new List<string>(File.ReadAllLines(_configuration["Rowhostspath"]));
-                foreach (var item in rowhostskeys)
-                {
-                    rowhosts.Add(item, item);
-                }
+                rowhosts = new List<string>(File.ReadAllLines(_configuration["Rowhostspath"]));
             }
             catch (DirectoryNotFoundException)
             {
@@ -65,14 +61,14 @@ namespace Pinger
                 return;
             }
 
-            var icmpPinger = _pingerFactory.CreateIcmpPinger();
-            var mainAnswer = await icmpPinger.Ping(rowhosts);
+            var icmpPinger = _pingerFactory.CreateIcmpPinger(rowhosts);
+            var mainAnswer = await icmpPinger.Ping();
             foreach (var item in mainAnswer) icmpPinger.Logging(item.Key, item.Value);
 
             while (true)
             {
                 Thread.Sleep(int.Parse(_configuration["Period"]));
-                var tempAnswerTask = icmpPinger.Ping(rowhosts);
+                var tempAnswerTask = icmpPinger.Ping();
                 var tempAnswer = tempAnswerTask.Result;
                 var exceptAnswer = tempAnswer.Except(mainAnswer).ToList();
                 foreach (var item in exceptAnswer) icmpPinger.Logging(item.Key, item.Value);
@@ -83,14 +79,10 @@ namespace Pinger
 
         private async void HttpPing()
         {
-            Dictionary<string, string> rowhosts = new Dictionary<string, string>();
+            List<string> rowhosts;
             try
             {
-                var rowhostskeys = new List<string>(File.ReadAllLines(_configuration["Rowhostspath"]));
-                foreach (var item in rowhostskeys)
-                {
-                    rowhosts.Add(item, item);
-                }
+                rowhosts = new List<string>(File.ReadAllLines(_configuration["Rowhostspath"]));
             }
             catch (DirectoryNotFoundException)
             {
@@ -99,14 +91,14 @@ namespace Pinger
                 return;
             }
 
-            var httpPinger = _pingerFactory.CreateHttpPinger();
-            var mainAnswer = await httpPinger.Ping(rowhosts);
+            var httpPinger = _pingerFactory.CreateHttpPinger(rowhosts);
+            var mainAnswer = await httpPinger.Ping();
             foreach (var item in mainAnswer) httpPinger.Logging(item.Key, item.Value);
 
             while (true)
             {
                 Thread.Sleep(int.Parse(_configuration["Period"]));
-                var tempAnswer = httpPinger.Ping(rowhosts).Result;
+                var tempAnswer = httpPinger.Ping().Result;
                 var exceptAnswer = tempAnswer.Except(mainAnswer).ToList();
                 foreach (var item in exceptAnswer) httpPinger.Logging(item.Key, item.Value);
 
@@ -117,14 +109,10 @@ namespace Pinger
         private async void TcpPinger()
         {
             var logpath = _configuration["MainLogpath"];
-            Dictionary<string, string> rowhosts = new Dictionary<string, string>();
+            List<string> rowhosts;
             try
             {
-                var rowhostskeys = new List<string>(File.ReadAllLines(_configuration["Rowhostspath"]));
-                foreach (var item in rowhostskeys)
-                {
-                    rowhosts.Add(item, item);
-                }
+                rowhosts = new List<string>(File.ReadAllLines(_configuration["Rowhostspath"]));
             }
             catch (DirectoryNotFoundException)
             {
@@ -133,14 +121,14 @@ namespace Pinger
                 return;
             }
 
-            var tcpPinger = _pingerFactory.CreateTcpPinger();
-            var mainAnswer = await tcpPinger.Ping(rowhosts);
+            var tcpPinger = _pingerFactory.CreateTcpPinger(rowhosts);
+            var mainAnswer = await tcpPinger.Ping();
             foreach (var item in mainAnswer) tcpPinger.Logging(item.Key, item.Value);
 
             while (true)
             {
                 Thread.Sleep(int.Parse(_configuration["Period"]));
-                var tempAnswer = await tcpPinger.Ping(rowhosts);
+                var tempAnswer = await tcpPinger.Ping();
                 var exceptAnswer = tempAnswer.Except(mainAnswer).ToList();
                 foreach (var item in exceptAnswer) tcpPinger.Logging(item.Key, item.Value);
 

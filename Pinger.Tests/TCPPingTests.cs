@@ -8,14 +8,14 @@ namespace Pinger.Tests
     public class TcpPingTests
     {
         private readonly string logpath = "./LogsTest.txt";
-        private Dictionary<string, string> rowhosts = new Dictionary<string, string>();
+        private readonly List<string> _rowhosts = new List<string>(File.ReadAllLines("./Hosts.txt"));
 
         [Test]
         public void PingTest()
         {
-            var tcppinger = new TcpPinger();
+            var tcppinger = new TcpPinger(_rowhosts);
             var actual = new Dictionary<string, string>();
-            var expected = tcppinger.Ping(rowhosts).Result;
+            var expected = tcppinger.Ping().Result;
             actual.Add("https://www.google.com/", "FAILED");
             actual.Add("https://www.google1234455435435.com/", "FAILED");
             actual.Add("216.58.207.78", "OK");
@@ -26,13 +26,8 @@ namespace Pinger.Tests
         [Test]
         public void LoggingTest()
         {
-            var tcppinger = new TcpPinger();
-            var rowhostskeys = new List<string>(File.ReadAllLines("./Hosts.txt"));
-            foreach (var item in rowhostskeys)
-            {
-                rowhosts.Add(item, item);
-            }
-            var answer = tcppinger.Ping(rowhosts);
+            var tcppinger = new TcpPinger(_rowhosts);
+            var answer = tcppinger.Ping();
             foreach (var item in answer.Result) tcppinger.Logging(item.Key, item.Value);
 
             File.Delete(logpath);
